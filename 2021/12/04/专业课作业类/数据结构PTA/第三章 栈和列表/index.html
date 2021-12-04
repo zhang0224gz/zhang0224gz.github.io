@@ -1,44 +1,309 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="PTA 第三章栈和列表                           判断题（错题：1-10）       1-1  若一个栈的输入序列为1，2，3，…，N，输出序列的第一个元素是i，则第j个输出元素是j−i−1。F 1-2  所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F 1-3  在对不带头结点的链队列作出队操作时，不会改变头指针的值">
+<!DOCTYPE html>
+<html lang=en>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Hexo</title>
+  <meta name="description" content="PTA 第三章栈和列表判断题（错题：1-10）1-1  若一个栈的输入序列为1，2，3，…，N，输出序列的第一个元素是i，则第j个输出元素是j−i−1。F 1-2  所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F 1-3  在对不带头结点的链队列作出队操作时，不会改变头指针的值。F 1-4  不论是入队列操作还是入栈操作,在顺序存储结构上都需要考虑”溢出”情况。T 1-5  队列和栈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="PTA 第三章栈和列表                           判断题（错题：1-10）       1-1  若一个栈的输入序列为1，2，3，…，N，输出序列的第一个元素是i，则第j个输出元素是j−i−1。F 1-2  所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F 1-3  在对不带头结点的链队列作出队操作时，不会改变头指针的值">
+<meta property="og:description" content="PTA 第三章栈和列表判断题（错题：1-10）1-1  若一个栈的输入序列为1，2，3，…，N，输出序列的第一个元素是i，则第j个输出元素是j−i−1。F 1-2  所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F 1-3  在对不带头结点的链队列作出队操作时，不会改变头指针的值。F 1-4  不论是入队列操作还是入栈操作,在顺序存储结构上都需要考虑”溢出”情况。T 1-5  队列和栈">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-12-04T09:05:47.076Z">
 <meta property="article:modified_time" content="2021-12-04T09:34:27.926Z">
 <meta property="article:author" content="zhang0224gz">
-<meta name="twitter:card" content="summary"><title>[ Untitled ] | Hexo</title><link ref="canonical" href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
-var CONFIG = {
-  root: '/',
-  algolia: undefined,
-  assistSearch: undefined,
-  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
-  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
-  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
-  postWidget: {"endText":true},
-  nightMode: {"enable":true},
-  back2top: {"enable":true},
-  codeblock: {"style":"default","highlight":"light","wordWrap":false},
-  reward: false,
-  fancybox: false,
-  zoomImage: {"gapAside":"20px"},
-  galleryWaterfall: undefined,
-  lazyload: false,
-  pjax: undefined,
-  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
-  shortcuts: undefined,
-  prompt: {"copyButton":"Copy","copySuccess":"Copy Success","copyError":"Copy Error"},
-  sourcePath: {"js":"js","css":"css","images":"images"},
-};
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">Home</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">Archives</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Hexo</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">[ Untitled ]</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">Created</span><span class="post-meta-item__value">2021-12-04</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">Updated</span><span class="post-meta-item__value">2021-12-04</span></span></div></header><div class="post-body">
-        <h3 id="PTA-第三章栈和列表"   >
-          <a href="#PTA-第三章栈和列表" class="heading-link"><i class="fas fa-link"></i></a><a href="#PTA-第三章栈和列表" class="headerlink" title="PTA 第三章栈和列表"></a>PTA 第三章栈和列表</h3>
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
       
-        <h4 id="判断题（错题：1-10）"   >
-          <a href="#判断题（错题：1-10）" class="heading-link"><i class="fas fa-link"></i></a><a href="#判断题（错题：1-10）" class="headerlink" title="判断题（错题：1-10）"></a>判断题（错题：1-10）</h4>
-      <p>1-1 </p>
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">昵称</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">Books</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">Links</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">December 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-12-04T09:05:47.076Z" itemprop="datePublished">2021-12-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2021/11/27/hello-world/" class="title">Hello World</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2021-11-27T13:15:34.628Z" itemprop="datePublished">2021-11-27</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-专业课作业类/数据结构PTA/第三章 栈和列表" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/" class="article-date">
+	  <time datetime="2021-12-04T09:05:47.076Z" itemprop="datePublished">2021-12-04</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="PTA-第三章栈和列表"><a href="#PTA-第三章栈和列表" class="headerlink" title="PTA 第三章栈和列表"></a>PTA 第三章栈和列表</h3><h4 id="判断题（错题：1-10）"><a href="#判断题（错题：1-10）" class="headerlink" title="判断题（错题：1-10）"></a>判断题（错题：1-10）</h4><p>1-1 </p>
 <p>若一个栈的输入序列为1，2，3，…，<em>N</em>，输出序列的第一个元素是<em>i</em>，则第<em>j</em>个输出元素是<em>j</em>−<em>i</em>−1。F</p>
 <p>1-2 </p>
 <p>所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F</p>
@@ -66,10 +331,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 <p>序列{1,2,3,4,5}依次入栈，则不可能得到{3,4,1,2,5}的出栈序列。 T</p>
 <p>1-14</p>
 <p>队列中允许插入的一端叫队头，允许删除的一端叫队尾。F</p>
-
-        <h4 id="单选题（错题：2-2、2-18）"   >
-          <a href="#单选题（错题：2-2、2-18）" class="heading-link"><i class="fas fa-link"></i></a><a href="#单选题（错题：2-2、2-18）" class="headerlink" title="单选题（错题：2-2、2-18）"></a>单选题（错题：2-2、2-18）</h4>
-      <p>2-1</p>
+<h4 id="单选题（错题：2-2、2-18）"><a href="#单选题（错题：2-2、2-18）" class="headerlink" title="单选题（错题：2-2、2-18）"></a>单选题（错题：2-2、2-18）</h4><p>2-1</p>
 <p>若用大小为6的数组来实现循环队列，且当前<code>front</code>和<code>rear</code>的值分别为0和4。当从队列中删除两个元素，再加入两个元素后，<code>front</code>和<code>rear</code>的值分别为多少？</p>
 <p>A.2和0</p>
 <p>2-2</p>
@@ -133,41 +395,248 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 <p>2-21</p>
 <p>用S表示入栈操作，X表示出栈操作，若元素入栈的顺序为1234，为了得到1342出栈顺序，相应的S和X的操作串为( )。</p>
 <p>D.SXSSXSXX</p>
-
-        <h4 id="填空题（错题：4-3）"   >
-          <a href="#填空题（错题：4-3）" class="heading-link"><i class="fas fa-link"></i></a><a href="#填空题（错题：4-3）" class="headerlink" title="填空题（错题：4-3）"></a>填空题（错题：4-3）</h4>
-      <p>4-1</p>
+<h4 id="填空题（错题：4-3）"><a href="#填空题（错题：4-3）" class="headerlink" title="填空题（错题：4-3）"></a>填空题（错题：4-3）</h4><p>4-1</p>
 <p>栈的运算遵循 后进先出 的原则。</p>
 <p>4-2</p>
 <p>以下运算实现在链队上的入队列，请在空白处用适当句子予以填充。</p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(QueptrTp *lq,DataType x)</span></span>&#123;</span><br><span class="line">       LqueueTp *p;</span><br><span class="line">       p=(LqueueTp *)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(LqueueTp));</span><br><span class="line">       p-&gt;data=x;</span><br><span class="line">       p-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">       (lq-&gt;rear)-&gt;next=p;</span><br><span class="line">       lq-&gt;rear=p;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">EnQueue</span><span class="params">(QueptrTp *lq,DataType x)</span></span>&#123;</span><br><span class="line">       LqueueTp *p;</span><br><span class="line">       p=(LqueueTp *)<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(LqueueTp));</span><br><span class="line">       p-&gt;data=x;</span><br><span class="line">       p-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">       (lq-&gt;rear)-&gt;next=p;</span><br><span class="line">       lq-&gt;rear=p;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
 
 <p>4-3</p>
 <p>以下运算实现在链栈上的初始化，请在空白处用请适当句子予以填充。</p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  DataType data;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;StackNode,*LStackTp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitStack</span><span class="params">(LStackTp &amp;ls)</span></span>&#123; 不知……;&#125;。</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">  DataType data;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">next</span>;</span></span><br><span class="line">&#125;StackNode,*LStackTp;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InitStack</span><span class="params">(LStackTp &amp;ls)</span></span>&#123; 不知……;&#125;。</span><br></pre></td></tr></table></figure>
 
-
-        <h4 id="函数题"   >
-          <a href="#函数题" class="heading-link"><i class="fas fa-link"></i></a><a href="#函数题" class="headerlink" title="函数题"></a>函数题</h4>
-      <p><strong>6-3 jmu-ds-舞伴问题 (20 分)</strong></p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">QueueLen</span><span class="params">(SqQueue Q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (Q-&gt;rear-Q-&gt;front+MAXQSIZE)%MAXQSIZE;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">EnQueue</span><span class="params">(SqQueue &amp;Q, Person e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Q-&gt;rear = (Q-&gt;rear+<span class="number">1</span>)%MAXQSIZE;</span><br><span class="line">    Q-&gt;data[Q-&gt;rear] = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">QueueEmpty</span><span class="params">(SqQueue &amp;Q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q-&gt;rear==Q-&gt;front)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">DeQueue</span><span class="params">(SqQueue &amp;Q, Person &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Q-&gt;front = (Q-&gt;front+<span class="number">1</span>)%MAXQSIZE;</span><br><span class="line">    e = Q-&gt;data[Q-&gt;front];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DancePartner</span><span class="params">(Person dancer[], <span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(dancer[i].sex==<span class="string">&#x27;M&#x27;</span>)</span><br><span class="line">            <span class="built_in">EnQueue</span>(Mdancers,dancer[i]);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">EnQueue</span>(Fdancers,dancer[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">QueueEmpty</span>(Mdancers)&amp;&amp;!<span class="built_in">QueueEmpty</span>(Fdancers))</span><br><span class="line">    &#123;</span><br><span class="line">        Person x,y;</span><br><span class="line">        <span class="built_in">DeQueue</span>(Mdancers,x);</span><br><span class="line">        <span class="built_in">DeQueue</span>(Fdancers,y);</span><br><span class="line">        cout&lt;&lt;y.name&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;x.name&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></div></figure>
+<h4 id="函数题"><a href="#函数题" class="headerlink" title="函数题"></a>函数题</h4><p><strong>6-3 jmu-ds-舞伴问题 (20 分)</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">QueueLen</span><span class="params">(SqQueue Q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (Q-&gt;rear-Q-&gt;front+MAXQSIZE)%MAXQSIZE;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">EnQueue</span><span class="params">(SqQueue &amp;Q, Person e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Q-&gt;rear = (Q-&gt;rear+<span class="number">1</span>)%MAXQSIZE;</span><br><span class="line">    Q-&gt;data[Q-&gt;rear] = e;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">QueueEmpty</span><span class="params">(SqQueue &amp;Q)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q-&gt;rear==Q-&gt;front)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">DeQueue</span><span class="params">(SqQueue &amp;Q, Person &amp;e)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Q-&gt;front = (Q-&gt;front+<span class="number">1</span>)%MAXQSIZE;</span><br><span class="line">    e = Q-&gt;data[Q-&gt;front];</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">DancePartner</span><span class="params">(Person dancer[], <span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(dancer[i].sex==<span class="string">&#x27;M&#x27;</span>)</span><br><span class="line">            <span class="built_in">EnQueue</span>(Mdancers,dancer[i]);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">EnQueue</span>(Fdancers,dancer[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(!<span class="built_in">QueueEmpty</span>(Mdancers)&amp;&amp;!<span class="built_in">QueueEmpty</span>(Fdancers))</span><br><span class="line">    &#123;</span><br><span class="line">        Person x,y;</span><br><span class="line">        <span class="built_in">DeQueue</span>(Mdancers,x);</span><br><span class="line">        <span class="built_in">DeQueue</span>(Fdancers,y);</span><br><span class="line">        cout&lt;&lt;y.name&lt;&lt;<span class="string">&quot;  &quot;</span>&lt;&lt;x.name&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p><strong>6-4 十进制转二进制（顺序栈设计和应用） (10 分)</strong></p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(top==<span class="number">-1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 元素x入栈 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//if(x==MaxSize)cout&lt;&lt;&quot;上溢&quot;&lt;&lt;endl;</span></span><br><span class="line">    <span class="comment">//else </span></span><br><span class="line">     mystack[++top]=x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 取栈顶元素 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mystack[top];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除栈顶元素 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    top--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(top==<span class="number">-1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 元素x入栈 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//if(x==MaxSize)cout&lt;&lt;&quot;上溢&quot;&lt;&lt;endl;</span></span><br><span class="line">    <span class="comment">//else </span></span><br><span class="line">     mystack[++top]=x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 取栈顶元素 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mystack[top];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除栈顶元素 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    top--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-        <h4 id="编程题"   >
-          <a href="#编程题" class="heading-link"><i class="fas fa-link"></i></a><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h4>
-      <p><strong>7-1 银行业务队列简单模拟 (25 分)</strong></p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">1000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> flag1=<span class="number">0</span>,flag2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> top1=<span class="number">0</span>,top2=<span class="number">0</span>,top=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">int</span> a1[n+<span class="number">1</span>],a2[n+<span class="number">1</span>],a[n+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;arr[i];</span><br><span class="line">        <span class="keyword">if</span>(arr[i]%<span class="number">2</span>!=<span class="number">0</span>)a1[top1++]=arr[i];</span><br><span class="line">        <span class="keyword">else</span> a2[top2++]=arr[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> t1=<span class="number">0</span>,t2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]%<span class="number">2</span>==<span class="number">0</span>)flag2++;</span><br><span class="line">        <span class="keyword">else</span> flag1++;</span><br><span class="line">        <span class="keyword">if</span>(flag2%<span class="number">2</span>==<span class="number">0</span>&amp;&amp;flag1%<span class="number">4</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a2[t2++];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(t1!=top1&amp;&amp;(flag1%<span class="number">2</span>==<span class="number">0</span>||t2==top2))</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(t2!=top2&amp;&amp;(flag2%<span class="number">2</span>==<span class="number">0</span>||t1==top1||flag1%<span class="number">2</span>==<span class="number">0</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a2[t2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(top==n)<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)</span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout&lt;&lt;a[n<span class="number">-1</span>]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<h4 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h4><p><strong>7-1 银行业务队列简单模拟 (25 分)</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">1000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> flag1=<span class="number">0</span>,flag2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> top1=<span class="number">0</span>,top2=<span class="number">0</span>,top=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">int</span> a1[n+<span class="number">1</span>],a2[n+<span class="number">1</span>],a[n+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;arr[i];</span><br><span class="line">        <span class="keyword">if</span>(arr[i]%<span class="number">2</span>!=<span class="number">0</span>)a1[top1++]=arr[i];</span><br><span class="line">        <span class="keyword">else</span> a2[top2++]=arr[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> t1=<span class="number">0</span>,t2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]%<span class="number">2</span>==<span class="number">0</span>)flag2++;</span><br><span class="line">        <span class="keyword">else</span> flag1++;</span><br><span class="line">        <span class="keyword">if</span>(flag2%<span class="number">2</span>==<span class="number">0</span>&amp;&amp;flag1%<span class="number">4</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a2[t2++];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(t1!=top1&amp;&amp;(flag1%<span class="number">2</span>==<span class="number">0</span>||t2==top2))</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(t2!=top2&amp;&amp;(flag2%<span class="number">2</span>==<span class="number">0</span>||t1==top1||flag1%<span class="number">2</span>==<span class="number">0</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a2[t2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(top==n)<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)</span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout&lt;&lt;a[n<span class="number">-1</span>]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>7-2 堆栈操作合法性 (20 分)</strong></p>
-<figure class="highlight c++"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N,M;</span><br><span class="line">    string str;</span><br><span class="line">    <span class="keyword">int</span> n,x=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;N&gt;&gt;M;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;str;</span><br><span class="line">        n = str.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(str[j]==<span class="string">&#x27;S&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                x++;</span><br><span class="line">                <span class="keyword">if</span>(x&gt;M)<span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(str[j]==<span class="string">&#x27;X&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                x--;</span><br><span class="line">                <span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>)cout&lt;&lt;<span class="string">&quot;YES&quot;</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;NO&quot;</span>&lt;&lt;endl;</span><br><span class="line">        x=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></div></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> N,M;</span><br><span class="line">    string str;</span><br><span class="line">    <span class="keyword">int</span> n,x=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;N&gt;&gt;M;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;N; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;str;</span><br><span class="line">        n = str.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;n; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(str[j]==<span class="string">&#x27;S&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                x++;</span><br><span class="line">                <span class="keyword">if</span>(x&gt;M)<span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(str[j]==<span class="string">&#x27;X&#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                x--;</span><br><span class="line">                <span class="keyword">if</span>(x&lt;<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(x==<span class="number">0</span>)cout&lt;&lt;<span class="string">&quot;YES&quot;</span>&lt;&lt;endl;</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot;NO&quot;</span>&lt;&lt;endl;</span><br><span class="line">        x=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ END ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">Author: </span><span class="copyright-author__value"><a href="https://zhang0224gz.github.io">zhang0224gz</a></span></div><div class="copyright-link"><span class="copyright-link__name">Link: </span><span class="copyright-link__value"><a href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/">https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">Copyright: </span><span class="copyright-notice__value">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> unless stating additionally</span></div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/11/27/hello-world/"><span class="paginator-prev__text">Hello World</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">Catalog</span><span class="sidebar-nav-ov">Overview</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#PTA-%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number">1.</span> <span class="toc-text">
-          PTA 第三章栈和列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A1-10%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">
-          判断题（错题：1-10）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A2-2%E3%80%812-18%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">
-          单选题（错题：2-2、2-18）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A4-3%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">
-          填空题（错题：4-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">
-          函数题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="toc-number">1.5.</span> <span class="toc-text">
-          编程题</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/images/icons/stun-logo.svg" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">Archives</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="Creative Commons" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">You have read </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>zhang0224gz</span></div><div><span>Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a></span><span> v5.4.0</span><span class="footer__devider">|</span><span>Theme - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/" title="" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/04/专业课作业类/数据结构PTA/第三章 栈和列表/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">昵称</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    
+    <li class="next">
+      <a href="/2021/11/27/hello-world/" title="Hello World"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan" />
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
