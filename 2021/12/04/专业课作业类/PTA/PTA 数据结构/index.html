@@ -17,20 +17,20 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>PTA 第三章栈和列表 | Flutter</title>
-  <meta name="description" content="判断题（错题：1-10）1-1  若一个栈的输入序列为1，2，3，…，N，输出序列的第一个元素是i，则第j个输出元素是j−i−1。F 1-2  所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F 1-3  在对不带头结点的链队列作出队操作时，不会改变头指针的值。F 1-4  不论是入队列操作还是入栈操作,在顺序存储结构上都需要考虑”溢出”情况。T 1-5  队列和栈都是运算受限的线性表，">
+  <title>PTA 数据结构 | Flutter</title>
+  <meta name="description" content="第一章 绪论判断题1-1 数据元素是数据的最小单位。F(数据项) 1-2 数据的逻辑结构是指数据的各数据项之间的逻辑关系。F（数据元素之间） 1-3 数据结构概念包括数据之间的逻辑结构、数据在计算机中的存储方式和数据的运算三个方面。T 1-4 数据结构的抽象操作的定义与具体实现有关。F 1-5 算法和程序没有区别，在数据结构中二者是通用的。F 1-6 数据结构包括数据对象集以及它们的逻辑结构和物理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PTA 第三章栈和列表">
-<meta property="og:url" content="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/index.html">
+<meta property="og:title" content="PTA 数据结构">
+<meta property="og:url" content="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/PTA/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="判断题（错题：1-10）1-1  若一个栈的输入序列为1，2，3，…，N，输出序列的第一个元素是i，则第j个输出元素是j−i−1。F 1-2  所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F 1-3  在对不带头结点的链队列作出队操作时，不会改变头指针的值。F 1-4  不论是入队列操作还是入栈操作,在顺序存储结构上都需要考虑”溢出”情况。T 1-5  队列和栈都是运算受限的线性表，">
+<meta property="og:description" content="第一章 绪论判断题1-1 数据元素是数据的最小单位。F(数据项) 1-2 数据的逻辑结构是指数据的各数据项之间的逻辑关系。F（数据元素之间） 1-3 数据结构概念包括数据之间的逻辑结构、数据在计算机中的存储方式和数据的运算三个方面。T 1-4 数据结构的抽象操作的定义与具体实现有关。F 1-5 算法和程序没有区别，在数据结构中二者是通用的。F 1-6 数据结构包括数据对象集以及它们的逻辑结构和物理">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-04T09:05:47.076Z">
-<meta property="article:modified_time" content="2021-12-04T10:40:12.829Z">
+<meta property="article:published_time" content="2021-12-04T15:24:25.366Z">
+<meta property="article:modified_time" content="2021-12-05T11:52:21.431Z">
 <meta property="article:author" content="zhang0224gz">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/index.html">
+  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/PTA/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -245,10 +245,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/" class="title">静态博客的创建</a>
+                <a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/PTA/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="title">PTA 数据结构</a>
               </p>
               <p class="item-date">
-                <time datetime="2021-12-04T11:35:25.302Z" itemprop="datePublished">2021-12-04</time>
+                <time datetime="2021-12-04T15:24:25.366Z" itemprop="datePublished">2021-12-04</time>
               </p>
             </div>
           </li>
@@ -260,10 +260,10 @@
                 
               </p>
               <p class="item-title">
-                <a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/" class="title">PTA 第三章栈和列表</a>
+                <a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/" class="title">静态博客的创建</a>
               </p>
               <p class="item-date">
-                <time datetime="2021-12-04T09:05:47.076Z" itemprop="datePublished">2021-12-04</time>
+                <time datetime="2021-12-04T11:35:25.302Z" itemprop="datePublished">2021-12-04</time>
               </p>
             </div>
           </li>
@@ -296,14 +296,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-专业课作业类/数据结构PTA/第三章 栈和列表" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-专业课作业类/PTA/PTA 数据结构" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      PTA 第三章栈和列表
+      PTA 数据结构
     </h1>
   
 
@@ -311,8 +311,8 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/" class="article-date">
-	  <time datetime="2021-12-04T09:05:47.076Z" itemprop="datePublished">2021-12-04</time>
+	<a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/PTA/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="article-date">
+	  <time datetime="2021-12-04T15:24:25.366Z" itemprop="datePublished">2021-12-04</time>
 	</a>
 </span>
         
@@ -327,13 +327,235 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/PTA/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h4 id="判断题（错题：1-10）"><a href="#判断题（错题：1-10）" class="headerlink" title="判断题（错题：1-10）"></a>判断题（错题：1-10）</h4><p>1-1 </p>
+        <h3 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a>第一章 绪论</h3><h4 id="判断题"><a href="#判断题" class="headerlink" title="判断题"></a>判断题</h4><p>1-1</p>
+<p>数据元素是数据的最小单位。F(数据项)</p>
+<p>1-2</p>
+<p>数据的逻辑结构是指数据的各数据项之间的逻辑关系。F（数据元素之间）</p>
+<p>1-3</p>
+<p>数据结构概念包括数据之间的逻辑结构、数据在计算机中的存储方式和数据的运算三个方面。T</p>
+<p>1-4</p>
+<p>数据结构的抽象操作的定义与具体实现有关。F</p>
+<p>1-5</p>
+<p>算法和程序没有区别，在数据结构中二者是通用的。F</p>
+<p>1-6</p>
+<p>数据结构包括数据对象集以及它们的逻辑结构和物理结构，还包括与数据对象相关联的操作集，以及实现这些操作的高效的算法。T</p>
+<h4 id="选择题（错题：2-9-2-13）"><a href="#选择题（错题：2-9-2-13）" class="headerlink" title="选择题（错题：2-9,2-13）"></a>选择题（错题：2-9,2-13）</h4><p>2-1</p>
+<p>在 Data_Structure = (D，R)中，D 是（ ）的有限集合。</p>
+<p>A.数据元素</p>
+<p>2-2</p>
+<p>以下关于数据结构的说法中错误的是（ ）。</p>
+<p>A.数据结构相同，对应的存储结构也相同</p>
+<p>2-4</p>
+<p>算法分析的目的是( )</p>
+<p>C.分析算法的效率以求改进</p>
+<p>2-5</p>
+<p>算法分析的两个主要方面是( )</p>
+<p>A.空间复杂度和时间复杂度</p>
+<p>2-6</p>
+<p>采用链结构存储线性表时，其地址（ ）。</p>
+<p>B.连续不连续都可以</p>
+<p>2-7</p>
+<p>一个正确的算法应该具有 5 个特性，除输入、输出特性外，另外 3 个特性是（ ）。</p>
+<p>A.确定性、可行性、有穷性</p>
+<p>2-8</p>
+<p>算法的时间复杂度取决于（ ）</p>
+<p>C.问题的规模和待处理数据的初态</p>
+<p>2-9</p>
+<p>以下数据结构中，哪一个是线性结构（ ）</p>
+<p>D.串</p>
+<p>2-10</p>
+<p>以下数据结构中，（ ）是非线性数据结构</p>
+<p>B.字符串</p>
+<p>2-11</p>
+<p>算法的时间复杂度与（ ）有关。</p>
+<p>A.问题规模</p>
+<p>2-12</p>
+<p>以下程序段的空间复杂度为</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int a = 1, b = 1, i;</span><br><span class="line">for (i=0; i&lt;=10; i++) &#123;</span><br><span class="line">  b += a;</span><br><span class="line">  a = b - a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>B.O(1)</p>
+<p>2-13</p>
+<p>下列程序段的时间复杂度是（ ）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">count=0;</span><br><span class="line">for(k=1;k&lt;=n;k*=2)</span><br><span class="line"> for(j=1;j&lt;=n;j++)</span><br><span class="line">   count++;</span><br></pre></td></tr></table></figure>
+
+<p>C.O*(<em>n<strong>l</strong>og</em>2*n)</p>
+<p>2-14</p>
+<p>下面说法中，错误的是（ ）。</p>
+<p>ⅰ.算法原地工作的含义是指不需要任何额外的辅助空间</p>
+<p>ⅱ.在相同规模n下，复杂度为<em>O</em>(<em>n</em>)的算法在时间上总是优于复杂度为<em>O</em>(2<em>n</em>)的算法</p>
+<p>ⅲ.所谓时间复杂度，是指最坏情况下估算算法执行时间的一个上界</p>
+<p>ⅳ.同一个算法，实现语言的级别越高，执行效率越低</p>
+<p>C.ⅰ,ⅳ</p>
+<p>2-15</p>
+<p>算法的计算量的大小称为算法的____。</p>
+<p>B.复杂度</p>
+<p>2-16</p>
+<p>在下面的程序段中，对x的赋值语句的频度为（ ）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for (i=1;i&lt;=n;i++)</span><br><span class="line">    for (j=1;j&lt;=n;j++)</span><br><span class="line">      x=x+1;</span><br></pre></td></tr></table></figure>
+
+<p>C.O(<em>n</em>2)</p>
+<p>2-17</p>
+<p>下面程序段的时间复杂度是 ( )</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">i ＝ 0；</span><br><span class="line">while（i&lt;=n）</span><br><span class="line">     i = i * 3；</span><br></pre></td></tr></table></figure>
+
+<p>D.O(<em>l<strong>o</strong>g</em>3<em>n</em>)</p>
+<h4 id="填空题（错题：4-1-4-4-4-6，4-7，4-10）"><a href="#填空题（错题：4-1-4-4-4-6，4-7，4-10）" class="headerlink" title="填空题（错题：4-1, 4-4, 4-6，4-7，4-10）"></a>填空题（错题：4-1, 4-4, 4-6，4-7，4-10）</h4><p>4-1</p>
+<p>算法效率的比较</p>
+<p>假设为解决某问题而设计的若干算法的时间复杂度分别为：</p>
+<p>A) <em>O</em>(<em>n</em>)<br>B) <em>O</em>(<em>n</em>2)<br>C) <em>O</em>(log2​<em>n</em>)<br>D) <em>O</em>(<em>n</em>log2​<em>n</em>)<br>E) <em>O</em>(2<em>n</em>)<br>F) <em>O</em>(<em>n</em>​)<br>G) <em>O</em>(<em>n</em>!)<br>H) <em>O</em>(1)<br>I) <em>O</em>(<em>n**n</em>​)<br>J) <em>O</em>(<em>n**n</em>)</p>
+<p>这些算法按效率由高到低的顺序是 HCFADIBEGJ</p>
+<p>4-2</p>
+<p>基本术语</p>
+<p><strong>数据</strong> 是客观事物的符号表示，是所有能输入到计算机中并被计算机程序处理的符号的总称。</p>
+<p>4-3</p>
+<p>数据结构的数学定义</p>
+<p>数据结构的数学定义为一个二元组：</p>
+<p><em>D**S</em>=(<em>D</em>,<em>R</em>)</p>
+<p>其中：<em>D</em> 是数据<strong>元素</strong>的有限集，<em>R</em> 是 <em>D</em> 上的<strong>关系</strong> 的有限集。</p>
+<p>4-4</p>
+<p>存储结构存储结构包括   的表示和    的表示。</p>
+<p>4-5</p>
+<p>基本术语</p>
+<p><strong>抽象数据类型</strong> 一般指由用户定义的、表示应用问题的数学模型，以及定义在该模型上的一组操作。</p>
+<p>4-6</p>
+<p>在数据结构中，数据的逻辑结构分为  和    。</p>
+<p>4-7</p>
+<p>数据结构由数据的  、 和  三部分组成。</p>
+<p>4-8</p>
+<p>算法的特性</p>
+<p>一个算法必须满足以下五个重要特性：</p>
+<p>(1) <strong>有穷性</strong> 一个算法必须总是在执行有穷步后结束，且每一步都可以有穷有时间内完成。</p>
+<p>(2) <strong>确定性</strong> 一个算法中每一条指令必须有确切的含义。</p>
+<p>(3) <strong>可行性</strong> 算法中的所有操作都可以通过已经实现的基本操作运算执行有限次来实现。</p>
+<p>(4) <strong>输入</strong>一个算法有零个或多个输入。</p>
+<p>(5) <strong>输出</strong>一个算法有一个或多个输出，它们是算法进行信息加工后得到的结果。</p>
+<p>4-9</p>
+<p>基本术语</p>
+<p> <strong>数据元素</strong>是数据的基本单位，<strong>数据项</strong>是数据的不可分割最小单位。其中：前者在计算机中通常作为一个整体进行考虑和处理，它可以由一个或多个后者组成。</p>
+<p>4-10</p>
+<p>数据的实例</p>
+<p>观察下面的表格：</p>
+<table>
+<thead>
+<tr>
+<th><strong>学号</strong></th>
+<th><strong>姓名</strong></th>
+<th><strong>性别</strong></th>
+<th><strong>语文</strong></th>
+<th><strong>数学</strong></th>
+<th><strong>物理</strong></th>
+<th><strong>化学</strong></th>
+<th><strong>英语</strong></th>
+<th><strong>总分</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>15160101</td>
+<td>王克强</td>
+<td>男</td>
+<td>87</td>
+<td>95</td>
+<td>93</td>
+<td>76</td>
+<td>84</td>
+<td>435</td>
+</tr>
+<tr>
+<td>15160102</td>
+<td>刘铭志</td>
+<td>男</td>
+<td>77</td>
+<td>82</td>
+<td>80</td>
+<td>97</td>
+<td>95</td>
+<td>431</td>
+</tr>
+<tr>
+<td>15160103</td>
+<td>孙勇</td>
+<td>男</td>
+<td>78</td>
+<td>85</td>
+<td>87</td>
+<td>86</td>
+<td>65</td>
+<td>401</td>
+</tr>
+<tr>
+<td>15160104</td>
+<td>李瀚东</td>
+<td>男</td>
+<td>93</td>
+<td>82</td>
+<td>72</td>
+<td>75</td>
+<td>95</td>
+<td>417</td>
+</tr>
+<tr>
+<td>15160105</td>
+<td>赵敏</td>
+<td>女</td>
+<td>95</td>
+<td>90</td>
+<td>88</td>
+<td>82</td>
+<td>96</td>
+<td>451</td>
+</tr>
+<tr>
+<td>15160106</td>
+<td>张毅</td>
+<td>男</td>
+<td>78</td>
+<td>76</td>
+<td>65</td>
+<td>81</td>
+<td>80</td>
+<td>380</td>
+</tr>
+<tr>
+<td>15160107</td>
+<td>柳青</td>
+<td>女</td>
+<td>82</td>
+<td>91</td>
+<td>82</td>
+<td>84</td>
+<td>85</td>
+<td>424</td>
+</tr>
+<tr>
+<td>15160108</td>
+<td>蔡文婷</td>
+<td>女</td>
+<td>85</td>
+<td>78</td>
+<td>80</td>
+<td>86</td>
+<td>95</td>
+<td>424</td>
+</tr>
+</tbody></table>
+<p>整张表格称为一个 <strong>数据对象</strong>，其中每一行称为一个 <strong>数据元素</strong>，任意一行中的每一个栏目称为一个<strong>数据项</strong>。</p>
+<p>4-11</p>
+<p>沃斯的名言</p>
+<p>瑞士科学家尼古拉斯·沃斯(Niklaus Wirth)有一句在计算机领域里人尽皆知的名言：</p>
+<p><strong>算法 + 数据结构 = 程序</strong></p>
+<h4 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h4><p><strong>7-1 求最小值和次小值 (25 分)</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,x;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    cin&gt;&gt;x;</span><br><span class="line">    <span class="keyword">if</span>(n&gt;<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">int</span> mini = x;</span><br><span class="line">    <span class="keyword">int</span> mini2 = x;</span><br><span class="line">    <span class="keyword">int</span> a[n]=&#123;x&#125;;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;a[i];</span><br><span class="line">        <span class="keyword">if</span>(mini&gt;a[i])mini=a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]==mini)<span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(mini2==mini)mini2=a[i];</span><br><span class="line">        <span class="keyword">if</span>(mini2&gt;a[i])mini2=a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(mini==mini2)</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;There is no second smallest element&quot;</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        cout&lt;&lt;mini&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;mini2;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;Invalid Input&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>7-2 求素数个数 (30 分)</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,num=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">        <span class="keyword">int</span> *a=<span class="keyword">new</span> <span class="keyword">int</span>[n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">            a[i]=<span class="number">1</span>;</span><br><span class="line">        a[<span class="number">0</span>]=a[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i*i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">2</span>*i;j&lt;=n;j+=i)</span><br><span class="line">                    a[j]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i])num++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;num&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int main()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int n,num=1,flag=1;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;n;</span></span><br><span class="line"><span class="comment">    if(n==1)cout&lt;&lt;&quot;0&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    else if(n==2)cout&lt;&lt;&quot;1&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    else</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        for(int i=3;i&lt;=n;i+=2)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            for(int j=3;j*j&lt;=i;j+=2)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                if(i%j==0)</span></span><br><span class="line"><span class="comment">                &#123;</span></span><br><span class="line"><span class="comment">                    flag=0;</span></span><br><span class="line"><span class="comment">                    break;</span></span><br><span class="line"><span class="comment">                &#125;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            if(flag)</span></span><br><span class="line"><span class="comment">                num++;</span></span><br><span class="line"><span class="comment">            flag=1;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        cout&lt;&lt;num&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">int main()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int n,num=0,flag=1;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;n;</span></span><br><span class="line"><span class="comment">    for(int i=2;i&lt;=n;i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        for(int j=2;j*j&lt;=i;j++)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            if(i%j==0)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                flag=0;</span></span><br><span class="line"><span class="comment">                break;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        if(flag)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            num++;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        flag=1;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    cout&lt;&lt;num&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="第三章-栈和列表"><a href="#第三章-栈和列表" class="headerlink" title="第三章 栈和列表"></a>第三章 栈和列表</h3><h4 id="判断题（错题：1-10）"><a href="#判断题（错题：1-10）" class="headerlink" title="判断题（错题：1-10）"></a>判断题（错题：1-10）</h4><p>1-1 </p>
 <p>若一个栈的输入序列为1，2，3，…，<em>N</em>，输出序列的第一个元素是<em>i</em>，则第<em>j</em>个输出元素是<em>j</em>−<em>i</em>−1。F</p>
 <p>1-2 </p>
 <p>所谓“循环队列”是指用单向循环链表或者循环数组表示的队列。F</p>
@@ -441,7 +663,7 @@
 <p><strong>6-4 十进制转二进制（顺序栈设计和应用） (10 分)</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(top==<span class="number">-1</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 元素x入栈 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Push</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//if(x==MaxSize)cout&lt;&lt;&quot;上溢&quot;&lt;&lt;endl;</span></span><br><span class="line">    <span class="comment">//else </span></span><br><span class="line">     mystack[++top]=x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 取栈顶元素 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> mystack[top];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 删除栈顶元素 */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Pop</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    top--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="编程题"><a href="#编程题" class="headerlink" title="编程题"></a>编程题</h4><p><strong>7-1 银行业务队列简单模拟 (25 分)</strong></p>
+<h4 id="编程题-1"><a href="#编程题-1" class="headerlink" title="编程题"></a>编程题</h4><p><strong>7-1 银行业务队列简单模拟 (25 分)</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">int</span> arr[<span class="number">1000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> flag1=<span class="number">0</span>,flag2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> top1=<span class="number">0</span>,top2=<span class="number">0</span>,top=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">int</span> a1[n+<span class="number">1</span>],a2[n+<span class="number">1</span>],a[n+<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;arr[i];</span><br><span class="line">        <span class="keyword">if</span>(arr[i]%<span class="number">2</span>!=<span class="number">0</span>)a1[top1++]=arr[i];</span><br><span class="line">        <span class="keyword">else</span> a2[top2++]=arr[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> t1=<span class="number">0</span>,t2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(arr[i]%<span class="number">2</span>==<span class="number">0</span>)flag2++;</span><br><span class="line">        <span class="keyword">else</span> flag1++;</span><br><span class="line">        <span class="keyword">if</span>(flag2%<span class="number">2</span>==<span class="number">0</span>&amp;&amp;flag1%<span class="number">4</span>==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a2[t2++];</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(t1!=top1&amp;&amp;(flag1%<span class="number">2</span>==<span class="number">0</span>||t2==top2))</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">            a[top++]=a1[t1++];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(t2!=top2&amp;&amp;(flag2%<span class="number">2</span>==<span class="number">0</span>||t1==top1||flag1%<span class="number">2</span>==<span class="number">0</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            a[top++]=a2[t2++];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(top==n)<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)</span><br><span class="line">        cout&lt;&lt;a[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    cout&lt;&lt;a[n<span class="number">-1</span>]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>7-2 堆栈操作合法性 (20 分)</strong></p>
@@ -456,7 +678,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84PTA/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8/" title="PTA 第三章栈和列表" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/04/专业课作业类/数据结构PTA/第三章 栈和列表/</a>
+      <a href="https://zhang0224gz.github.io/2021/12/04/%E4%B8%93%E4%B8%9A%E8%AF%BE%E4%BD%9C%E4%B8%9A%E7%B1%BB/PTA/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="PTA 数据结构" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/04/专业课作业类/PTA/PTA 数据结构/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -502,13 +724,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/" title="静态博客的创建"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/11/27/hello-world/" title="Hello World"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/" title="静态博客的创建"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
