@@ -17,14 +17,16 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>第二章 线性表 | Flutter</title>
-  <meta property="og:type" content="article">
-<meta property="og:title" content="第二章 线性表">
+  <title>第二，三，四章 线性表 | Flutter</title>
+  <meta name="description" content="字符串：线性表特例 多维数组：线性表推广（严格不是） 线性表（表）：具有相同类型的数据元素的有限序列 -&gt; 将元素类型限制为字符：字符串（串）：零个或多个字符组成的有限序列 串长：串中所包含的字符个数 空串：长度为 0 的串 子串：串中任意个连续的字符组成的子序列(包含空串)主串：包含子串的串子串的位置：子串的第一个字符在主串中的序号 串的存储结构 字符串通常采用顺序存储，即用数组存储 模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二，三，四章 线性表">
 <meta property="og:url" content="https://zhang0224gz.github.io/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="字符串：线性表特例 多维数组：线性表推广（严格不是） 线性表（表）：具有相同类型的数据元素的有限序列 -&gt; 将元素类型限制为字符：字符串（串）：零个或多个字符组成的有限序列 串长：串中所包含的字符个数 空串：长度为 0 的串 子串：串中任意个连续的字符组成的子序列(包含空串)主串：包含子串的串子串的位置：子串的第一个字符在主串中的序号 串的存储结构 字符串通常采用顺序存储，即用数组存储 模式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-28T07:14:34.053Z">
-<meta property="article:modified_time" content="2021-12-28T07:21:33.800Z">
+<meta property="article:modified_time" content="2021-12-29T12:52:45.783Z">
 <meta property="article:author" content="zhang0224gz">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
@@ -217,7 +219,7 @@
   <div class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">8</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -227,7 +229,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTA/" rel="tag">PTA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">6</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTA/" rel="tag">PTA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">5</span></li></ul>
     </div>
   </div>
 
@@ -262,13 +264,13 @@
             
             <div class="item-inner">
               <p class="item-category">
-                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+                
               </p>
               <p class="item-title">
-                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">一些小知识点</a>
+                <a href="/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/" class="title">(no title)</a>
               </p>
               <p class="item-date">
-                <time datetime="2021-12-28T12:36:46.476Z" itemprop="datePublished">2021-12-28</time>
+                <time datetime="2021-12-29T12:23:27.423Z" itemprop="datePublished">2021-12-29</time>
               </p>
             </div>
           </li>
@@ -280,10 +282,10 @@
                 <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
               </p>
               <p class="item-title">
-                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%9F%A5%E6%89%BE/" class="title">第七章 查找技术</a>
+                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">一些小知识点</a>
               </p>
               <p class="item-date">
-                <time datetime="2021-12-28T09:26:01.487Z" itemprop="datePublished">2021-12-28</time>
+                <time datetime="2021-12-28T12:36:46.476Z" itemprop="datePublished">2021-12-28</time>
               </p>
             </div>
           </li>
@@ -310,7 +312,7 @@
                 <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
               </p>
               <p class="item-title">
-                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="title">第二章 线性表</a>
+                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="title">第二，三，四章 线性表</a>
               </p>
               <p class="item-date">
                 <time datetime="2021-12-28T07:14:34.053Z" itemprop="datePublished">2021-12-28</time>
@@ -348,7 +350,7 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">1.</span> <span class="toc-text">模式匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-BF%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">-&gt; BF算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-KMP%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">-&gt; KMP算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number"></span> <span class="toc-text">特殊矩阵的压缩存储</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">0.1.</span> <span class="toc-text">-&gt; 对称矩阵的压缩存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E4%B8%89%E8%A7%92%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">0.2.</span> <span class="toc-text">-&gt; 三角矩阵的压缩存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">0.3.</span> <span class="toc-text">-&gt; 对角矩阵的压缩存储</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number"></span> <span class="toc-text">稀疏矩阵的压缩存储</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E4%B8%89%E5%85%83%E7%BB%84%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="toc-number">0.1.</span> <span class="toc-text">-&gt; 三元组顺序表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8"><span class="toc-number">0.2.</span> <span class="toc-text">-&gt; 十字链表</span></a></li></ol></li></ol>
     </nav>
   </div>
 </aside>
@@ -362,7 +364,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      第二章 线性表
+      第二，三，四章 线性表
     </h1>
   
 
@@ -402,7 +404,50 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        
+        <p>字符串：线性表特例</p>
+<p>多维数组：线性表推广（严格不是）</p>
+<p>线性表（表）：具有相同类型的数据元素的有限序列</p>
+<p>-&gt; 将元素类型限制为字符：字符串（串）：零个或多个字符组成的有限序列</p>
+<p>串长：串中所包含的字符个数</p>
+<p>空串：长度为 0 的串</p>
+<p>子串：串中任意个连续的字符组成的子序列(包含空串)<br>主串：包含子串的串<br>子串的位置：子串的第一个字符在主串中的序号</p>
+<p>串的存储结构</p>
+<p>字符串通常采用顺序存储，即用数组存储</p>
+<h4 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h4><h5 id="gt-BF算法"><a href="#gt-BF算法" class="headerlink" title="-&gt; BF算法"></a>-&gt; BF算法</h5><p>模式匹配：在主串 S 中寻找子串 T 的过程，T 也称为模式</p>
+<p>如果匹配成功，返回 T 在 S 中的位置；否则返回 0</p>
+<p>模式匹配问题有什么特点？</p>
+<p>（1） 算法的一次执行时间：问题规模通常很大，常常在大量信息中进行匹配</p>
+<p>（2） 算法改进所取得的积累效益：模式匹配操作经常被调用，执行频率高</p>
+<h5 id="gt-KMP算法"><a href="#gt-KMP算法" class="headerlink" title="-&gt; KMP算法"></a>-&gt; KMP算法</h5><p>数组的存储结构</p>
+<p>如何存储（多维）数组呢？</p>
+<p>数组没有插入和删除操作，所以，不用预留空间，适合采用顺序存储</p>
+<p>按行优先：先存储行号较小的元素，行号相同者先存储列号较小的元素</p>
+<p>按列优先：先存储列号较小的元素，列号相同者先存储行号较小的元素 </p>
+<h3 id="特殊矩阵的压缩存储"><a href="#特殊矩阵的压缩存储" class="headerlink" title="特殊矩阵的压缩存储"></a>特殊矩阵的压缩存储</h3><p>什么是特殊矩阵？</p>
+<p> 特殊矩阵：矩阵中很多值相同的元素并且它们的分布有一定的规律</p>
+<p>特殊矩阵如何压缩存储？</p>
+<p>为值相同的元素分配一个存储空间</p>
+<p>特殊矩阵压缩存储后有什么要求吗？</p>
+<p>保证<strong>随机存取</strong>，即在O(1)时间内寻址</p>
+<h5 id="gt-对称矩阵的压缩存储"><a href="#gt-对称矩阵的压缩存储" class="headerlink" title="-&gt; 对称矩阵的压缩存储"></a>-&gt; 对称矩阵的压缩存储</h5><p>如何压缩存储对称矩阵呢？    只存储下三角部分的元素</p>
+<p>aij 在一维数组中的下标    k = i×(i-1)/2+ j-1</p>
+<p> 对称矩阵压缩存储后的寻址方法</p>
+<p>对于下三角中的元素aij（i ≥ j）：k＝i×(i-1)/2＋j -1</p>
+<p>对于上三角中的元素aij（i＜j），因为aij＝aji，则 k＝j×(j-1)/2＋i -1</p>
+<h5 id="gt-三角矩阵的压缩存储"><a href="#gt-三角矩阵的压缩存储" class="headerlink" title="-&gt; 三角矩阵的压缩存储"></a>-&gt; 三角矩阵的压缩存储</h5><p>如何压缩存储三角矩阵呢？</p>
+<p>下（上）三角部分的元素；相同的常数只存储一个</p>
+<p> 下三角矩阵压缩存储后的寻址方法</p>
+<p>对于下三角中的元素aij（i ≥ j）：k＝i×(i -1)/2 + j-1</p>
+<p>对于上三角中的元素aij（i＜j）：k＝n×(n + 1)/2</p>
+<h5 id="gt-对角矩阵的压缩存储"><a href="#gt-对角矩阵的压缩存储" class="headerlink" title="-&gt; 对角矩阵的压缩存储"></a>-&gt; 对角矩阵的压缩存储</h5><p>对角矩阵：所有非零元素都集中在以<strong>主对角线为中心</strong>的带状区域中，所有其他元素都为零 </p>
+<h3 id="稀疏矩阵的压缩存储"><a href="#稀疏矩阵的压缩存储" class="headerlink" title="稀疏矩阵的压缩存储"></a>稀疏矩阵的压缩存储</h3><p>什么是稀疏矩阵？</p>
+<p> 稀疏矩阵：矩阵中有很多零元素，并且分布没有规律</p>
+<p>稀疏矩阵如何压缩存储？</p>
+<p>只存储非零元素，零元素不分配存储空间</p>
+<p>如何只存储非零元素？</p>
+<p> 三元组：（行号，列号，非零元素值）</p>
+<h5 id="gt-三元组顺序表"><a href="#gt-三元组顺序表" class="headerlink" title="-&gt; 三元组顺序表"></a>-&gt; 三元组顺序表</h5><p> 三元组表：将稀疏矩阵的非零元素对应的三元组所构成的集合，按行优先的顺序排列成一个线性表</p>
+<h5 id="gt-十字链表"><a href="#gt-十字链表" class="headerlink" title="-&gt; 十字链表"></a>-&gt; 十字链表</h5>
       
     </div>
     <div class="article-footer">
@@ -411,7 +456,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://zhang0224gz.github.io/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" title="第二章 线性表" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/28/数据结构/线性表/</a>
+      <a href="https://zhang0224gz.github.io/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" title="第二，三，四章 线性表" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/28/数据结构/线性表/</a>
     </li>
     
     <li class="post-copyright-license">

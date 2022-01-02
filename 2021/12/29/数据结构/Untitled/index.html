@@ -17,22 +17,18 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>线性结构：字符串——KMP算法 | Flutter</title>
-  <meta name="description" content="i 0 1 2 3 4 5 6    char[i] a b a b a b c   next -1 0 0 1 2 3 4   nextval -1 0 -1 0 -1 0 4   一、过程： 求next值： 1.两个固定值：char[0]_next&#x3D;-1; char[1]_next&#x3D;0（一个，没有匹配的，长度为0） 2.开始求：char[2]匹配出错，前面a!&#x3D;b（两组字符不同），故ne">
-<meta property="og:type" content="article">
-<meta property="og:title" content="线性结构：字符串——KMP算法">
-<meta property="og:url" content="https://zhang0224gz.github.io/2021/12/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP/index.html">
+  <title>Flutter</title>
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://zhang0224gz.github.io/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="i 0 1 2 3 4 5 6    char[i] a b a b a b c   next -1 0 0 1 2 3 4   nextval -1 0 -1 0 -1 0 4   一、过程： 求next值： 1.两个固定值：char[0]_next&#x3D;-1; char[1]_next&#x3D;0（一个，没有匹配的，长度为0） 2.开始求：char[2]匹配出错，前面a!&#x3D;b（两组字符不同），故ne">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release1.9.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=L9C2">
-<meta property="article:published_time" content="2021-12-11T07:51:52.920Z">
-<meta property="article:modified_time" content="2021-12-17T15:01:47.531Z">
+<meta property="article:published_time" content="2021-12-29T12:23:27.423Z">
+<meta property="article:modified_time" content="2021-12-29T12:23:46.708Z">
 <meta property="article:author" content="zhang0224gz">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://csdnimg.cn/release/blog_editor_html/release1.9.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=L9C2">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP/index.html">
+  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -347,42 +343,20 @@
 
   
   
-<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
-  <div class="slimContent">
-    <nav id="toc" class="article-toc">
-      <h3 class="toc-title">文章目录</h3>
-      
-    </nav>
-  </div>
-</aside>
-
 <main class="main" role="main">
   <div class="content">
-  <article id="post-数据结构/KMP" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-数据结构/Untitled" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
-      
-        
-  
-    <h1 class="article-title" itemprop="name">
-      线性结构：字符串——KMP算法
-    </h1>
-  
-
       
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/12/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP/" class="article-date">
-	  <time datetime="2021-12-11T07:51:52.920Z" itemprop="datePublished">2021-12-11</time>
+	<a href="/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/" class="article-date">
+	  <time datetime="2021-12-29T12:23:27.423Z" itemprop="datePublished">2021-12-29</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-  </span>
-
         
 
         
@@ -394,119 +368,13 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <table>
-<thead>
-<tr>
-<th align="center">i</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">char[i]</td>
-<td>a</td>
-<td>b</td>
-<td>a</td>
-<td>b</td>
-<td>a</td>
-<td>b</td>
-<td>c</td>
-</tr>
-<tr>
-<td align="center">next</td>
-<td>-1</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td align="center">nextval</td>
-<td>-1</td>
-<td>0</td>
-<td>-1</td>
-<td>0</td>
-<td>-1</td>
-<td>0</td>
-<td>4</td>
-</tr>
-</tbody></table>
-<p><strong>一、过程：</strong><br> <strong>求next值：</strong><br> 1.两个固定值：char[0]_next=-1; char[1]_next=0（一个，没有匹配的，长度为0）<br> 2.开始求：char[2]匹配出错，前面a!=b（两组字符不同），故next=0(重头开始）<br>   char[3]匹配出错，前面有aba, a(char[3]前面的a)和a（匹配必从第一个开始）相同，字符a长度为1，故next=1<br>   char[4]匹配出错，前面有abab,ab和ab相同，长度为2，故next=2<br>   char[5]匹配出错，前面有ababa，aba和aba(123和345)相同，长度为3，故next=3<br>   char[6]匹配出错，前面有ababab,abab和abab(1234和3456)相同,长度为4，故next=4<br> <strong>求nextval值：</strong><br> 1.一个固定值：char[0]_nextval=-1<br> 2.开始求：char[1]_next=0(char[0]=a), a!=b,所以nextval=char[1]_next<br>   char[2]_next=0(char[0]=a),a==a,所以nextval=char[0]_nextval<br>   同理可得……</p>
-<p><strong>二、总结：<br> 求next的值：</strong><br> 看当前字符的前面的一组字符是否有相似的一组字符（开头开始）与之相同，取其最大长度作为next的值<br> <strong>求nextval值（修正值）：</strong><br> 当前字符的next值(索引值)所指向的字符是否和当前字符相同：相同则修正值为当前字符的next值所指向的字符的修正值；不同则去当前字符的next值</p>
-<p><strong>三、例子再来一个：</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td>a</td>
-<td>b</td>
-<td>c</td>
-<td>a</td>
-<td>b</td>
-<td>c</td>
-<td>a</td>
-<td>b</td>
-<td>a</td>
-<td>a</td>
-</tr>
-<tr>
-<td>next</td>
-<td>-1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>2</td>
-<td>3</td>
-<td>4</td>
-<td>5</td>
-<td>1</td>
-</tr>
-<tr>
-<td>nextval</td>
-<td>-1</td>
-<td>0</td>
-<td>0</td>
-<td>-1</td>
-<td>0</td>
-<td>0</td>
-<td>-1</td>
-<td>0</td>
-<td>5</td>
-<td>1</td>
-</tr>
-</tbody></table>
-<p><strong>求next值：</strong>next0=-1,next1=0<br>   a!=b,next2=0; abc不可能(ab!=bc),next3=0;<br>   0==3,next4=1; 01==34,next5=2;012==345,next6=3;<br>   abca==abca(1234==3456),next7=4; 01234==34567,next8=5<br>   1==8,next9=1<br> <strong>求nextval值：</strong>nextval0=-1<br>   b!=char[next1]=a, nextval=next1=0<br>   c!=char[next2]=a, nextval=next2=0<br>   a==char[next3]=a,nextval=nextval0=-1<br>   同理可得……</p>
-<p> 这个思路也可以：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43919400/article/details/103736457">(7条消息) KMP算法中计算next值和nextval的值_threecat.up的博客-CSDN博客_kmp算法next修正值计算方法<img src="https://csdnimg.cn/release/blog_editor_html/release1.9.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=L9C2" alt=" ">https://blog.csdn.net/qq_43919400/article/details/103736457</a></p>
-
+        
       
     </div>
     <div class="article-footer">
@@ -515,7 +383,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://zhang0224gz.github.io/2021/12/11/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/KMP/" title="线性结构：字符串——KMP算法" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/11/数据结构/KMP/</a>
+      <a href="https://zhang0224gz.github.io/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/" title="" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/29/数据结构/Untitled/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -561,24 +429,11 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/12/22/Python/%E7%BB%86%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" title="细小知识点"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/12/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="数据结构笔记"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" title="一些小知识点"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
-    
-    <li class="toggle-toc">
-      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
-        <span>[&nbsp;</span><span>文章目录</span>
-        <i class="text-collapsed icon icon-anchor"></i>
-        <i class="text-in icon icon-close"></i>
-        <span>]</span>
-      </a>
-    </li>
     
   </ul>
   
