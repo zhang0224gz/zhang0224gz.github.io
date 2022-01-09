@@ -17,21 +17,36 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>第二，三，四章 线性表 | Flutter</title>
-  <meta name="description" content="字符串：线性表特例 多维数组：线性表推广（严格不是） 线性表（表）：具有相同类型的数据元素的有限序列 -&gt; 将元素类型限制为字符：字符串（串）：零个或多个字符组成的有限序列 串长：串中所包含的字符个数 空串：长度为 0 的串 子串：串中任意个连续的字符组成的子序列(包含空串)主串：包含子串的串子串的位置：子串的第一个字符在主串中的序号 串的存储结构 字符串通常采用顺序存储，即用数组存储 模式">
+  <title>评价类1：层次分析法 | Flutter</title>
+  <meta name="description" content="层次分析法（The Analytic Hierarchy Process即 AHP) 最基础的模型之一，最主要用于解决评价类问题（例如：选择哪种方案最好、哪位运动员或者员工表现的更优秀） 评价类问题关键字：确定评价指标，形成评价体系 解决评价类问题，首先想到的三个问题： （1）我们评价的目标是什么？ （2）我们为了达到这个目标有哪几种可选的方案？ （3）评价的准则或者指标是什么？（我们根据什么东">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第二，三，四章 线性表">
-<meta property="og:url" content="https://zhang0224gz.github.io/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
+<meta property="og:title" content="评价类1：层次分析法">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="字符串：线性表特例 多维数组：线性表推广（严格不是） 线性表（表）：具有相同类型的数据元素的有限序列 -&gt; 将元素类型限制为字符：字符串（串）：零个或多个字符组成的有限序列 串长：串中所包含的字符个数 空串：长度为 0 的串 子串：串中任意个连续的字符组成的子序列(包含空串)主串：包含子串的串子串的位置：子串的第一个字符在主串中的序号 串的存储结构 字符串通常采用顺序存储，即用数组存储 模式">
+<meta property="og:description" content="层次分析法（The Analytic Hierarchy Process即 AHP) 最基础的模型之一，最主要用于解决评价类问题（例如：选择哪种方案最好、哪位运动员或者员工表现的更优秀） 评价类问题关键字：确定评价指标，形成评价体系 解决评价类问题，首先想到的三个问题： （1）我们评价的目标是什么？ （2）我们为了达到这个目标有哪几种可选的方案？ （3）评价的准则或者指标是什么？（我们根据什么东">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-28T07:14:34.053Z">
-<meta property="article:modified_time" content="2021-12-29T12:52:45.783Z">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/层次分析法1.jpg">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/11.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/12.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/13.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/14.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/15.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/19.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/层次分析法2.jpg">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/20.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/21.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/22.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/23.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/25.png">
+<meta property="og:image" content="c:/Users/zhangguozhi/Desktop/图片/26.png">
+<meta property="article:published_time" content="2022-01-07T11:08:39.548Z">
+<meta property="article:modified_time" content="2022-01-09T05:29:20.232Z">
 <meta property="article:author" content="zhang0224gz">
 <meta property="article:tag" content="笔记">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/zhangguozhi/Desktop/图片/层次分析法1.jpg">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/index.html">
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/index.html">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -219,7 +234,7 @@
   <div class="widget">
     <h3 class="widget-title">分类</h3>
     <div class="widget-body">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">7</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -248,7 +263,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -264,13 +279,43 @@
             
             <div class="item-inner">
               <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/" class="title">评价类1：层次分析法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-07T11:08:39.548Z" itemprop="datePublished">2022-01-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" class="title">智能车基础知识</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-05T08:13:52.956Z" itemprop="datePublished">2022-01-05</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
                 
               </p>
               <p class="item-title">
-                <a href="/2021/12/29/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Untitled/" class="title">(no title)</a>
+                <a href="/2022/01/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" class="title">计算机组成原理</a>
               </p>
               <p class="item-date">
-                <time datetime="2021-12-29T12:23:27.423Z" itemprop="datePublished">2021-12-29</time>
+                <time datetime="2022-01-02T08:37:04.897Z" itemprop="datePublished">2022-01-02</time>
               </p>
             </div>
           </li>
@@ -294,43 +339,13 @@
             
             <div class="item-inner">
               <p class="item-category">
-                
+                <a class="category-link" href="/categories/CET/">CET</a>
               </p>
               <p class="item-title">
-                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E8%80%83%E8%AF%95/" class="title">(no title)</a>
+                <a href="/2021/12/27/%E8%8B%B1%E8%AF%AD/%E6%96%B0%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">新核心知识点</a>
               </p>
               <p class="item-date">
-                <time datetime="2021-12-28T07:47:11.987Z" itemprop="datePublished">2021-12-28</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-              </p>
-              <p class="item-title">
-                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="title">第二，三，四章 线性表</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2021-12-28T07:14:34.053Z" itemprop="datePublished">2021-12-28</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
-              </p>
-              <p class="item-title">
-                <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/" class="title">第五章 树和二叉树</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2021-12-28T05:23:23.691Z" itemprop="datePublished">2021-12-28</time>
+                <time datetime="2021-12-27T06:29:35.146Z" itemprop="datePublished">2021-12-27</time>
               </p>
             </div>
           </li>
@@ -350,21 +365,21 @@
   <div class="slimContent">
     <nav id="toc" class="article-toc">
       <h3 class="toc-title">文章目录</h3>
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-number">1.</span> <span class="toc-text">模式匹配</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-BF%E7%AE%97%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">-&gt; BF算法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-KMP%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">-&gt; KMP算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E6%AE%8A%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number"></span> <span class="toc-text">特殊矩阵的压缩存储</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%AF%B9%E7%A7%B0%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">0.1.</span> <span class="toc-text">-&gt; 对称矩阵的压缩存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E4%B8%89%E8%A7%92%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">0.2.</span> <span class="toc-text">-&gt; 三角矩阵的压缩存储</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%AF%B9%E8%A7%92%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number">0.3.</span> <span class="toc-text">-&gt; 对角矩阵的压缩存储</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%AD%98%E5%82%A8"><span class="toc-number"></span> <span class="toc-text">稀疏矩阵的压缩存储</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E4%B8%89%E5%85%83%E7%BB%84%E9%A1%BA%E5%BA%8F%E8%A1%A8"><span class="toc-number">0.1.</span> <span class="toc-text">-&gt; 三元组顺序表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%8D%81%E5%AD%97%E9%93%BE%E8%A1%A8"><span class="toc-number">0.2.</span> <span class="toc-text">-&gt; 十字链表</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E5%9B%BE"><span class="toc-number">1.</span> <span class="toc-text">第一步：建立层次结构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E5%BB%BA%E7%AB%8B%E6%9D%83%E9%87%8D%E8%A1%A8%E6%A0%BC"><span class="toc-number">2.</span> <span class="toc-text">第二步：建立权重表格</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#gt-%E6%B1%82%E5%87%BA%E6%8C%87%E6%A0%87%E6%9D%83%E9%87%8D%E5%92%8C%E6%96%B9%E6%A1%88%E6%9D%83%E9%87%8D"><span class="toc-number">2.0.1.</span> <span class="toc-text">-&gt; 求出指标权重和方案权重</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9A%E7%9B%B4%E6%8E%A5%E6%89%93%E5%88%86%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">法一：直接打分法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%88%86%E8%80%8C%E6%B2%BB%E4%B9%8B%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">法二：分而治之法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E4%BD%BF%E7%94%A8%E7%A8%8B%E5%BA%A6%E6%89%93%E5%88%86%E8%A1%A8%EF%BC%8C%E5%A1%AB%E5%86%99%E5%88%A4%E6%96%AD%E7%9F%A9%E9%98%B5"><span class="toc-number">2.2.1.</span> <span class="toc-text">第一步：使用程度打分表，填写判断矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">2.2.2.</span> <span class="toc-text">第二步：一致性检验</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E4%B8%80%E8%87%B4%E7%9F%A9%E9%98%B5"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">-&gt; 一致矩阵</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E7%9F%A9%E9%98%B5%E4%B9%8B%E9%97%B4%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.2.2.</span> <span class="toc-text">-&gt; 矩阵之间关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E4%B8%80%E8%87%B4%E6%80%A7%E6%A3%80%E9%AA%8C"><span class="toc-number">2.2.2.3.</span> <span class="toc-text">-&gt; 一致性检验</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9D%83%E9%87%8D"><span class="toc-number">2.2.3.</span> <span class="toc-text">第三步：计算权重</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E7%AE%97%E6%9C%AF%E5%B9%B3%E5%9D%87%E6%B3%95"><span class="toc-number">2.2.3.1.</span> <span class="toc-text">-&gt; 算术平均法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%87%A0%E4%BD%95%E5%B9%B3%E5%9D%87%E6%B3%95"><span class="toc-number">2.2.3.2.</span> <span class="toc-text">-&gt;几何平均法</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E7%89%B9%E5%BE%81%E5%80%BC%E6%B3%95"><span class="toc-number">2.2.3.3.</span> <span class="toc-text">-&gt; 特征值法</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E8%AE%A1%E7%AE%97%E5%90%84%E6%96%B9%E6%A1%88%E5%BE%97%E5%88%86"><span class="toc-number">3.</span> <span class="toc-text">第三步：计算各方案得分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%80%E9%99%90%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">局限性</span></a></li></ol>
     </nav>
   </div>
 </aside>
 
 <main class="main" role="main">
   <div class="content">
-  <article id="post-数据结构/线性表" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-数学建模/层次分析法" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      第二，三，四章 线性表
+      评价类1：层次分析法
     </h1>
   
 
@@ -372,14 +387,14 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" class="article-date">
-	  <time datetime="2021-12-28T07:14:34.053Z" itemprop="datePublished">2021-12-28</time>
+	<a href="/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/" class="article-date">
+	  <time datetime="2022-01-07T11:08:39.548Z" itemprop="datePublished">2022-01-07</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="icon icon-folder"></i>
-    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
   </span>
 
         
@@ -398,56 +413,51 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <p>字符串：线性表特例</p>
-<p>多维数组：线性表推广（严格不是）</p>
-<p>线性表（表）：具有相同类型的数据元素的有限序列</p>
-<p>-&gt; 将元素类型限制为字符：字符串（串）：零个或多个字符组成的有限序列</p>
-<p>串长：串中所包含的字符个数</p>
-<p>空串：长度为 0 的串</p>
-<p>子串：串中任意个连续的字符组成的子序列(包含空串)<br>主串：包含子串的串<br>子串的位置：子串的第一个字符在主串中的序号</p>
-<p>串的存储结构</p>
-<p>字符串通常采用顺序存储，即用数组存储</p>
-<h4 id="模式匹配"><a href="#模式匹配" class="headerlink" title="模式匹配"></a>模式匹配</h4><h5 id="gt-BF算法"><a href="#gt-BF算法" class="headerlink" title="-&gt; BF算法"></a>-&gt; BF算法</h5><p>模式匹配：在主串 S 中寻找子串 T 的过程，T 也称为模式</p>
-<p>如果匹配成功，返回 T 在 S 中的位置；否则返回 0</p>
-<p>模式匹配问题有什么特点？</p>
-<p>（1） 算法的一次执行时间：问题规模通常很大，常常在大量信息中进行匹配</p>
-<p>（2） 算法改进所取得的积累效益：模式匹配操作经常被调用，执行频率高</p>
-<h5 id="gt-KMP算法"><a href="#gt-KMP算法" class="headerlink" title="-&gt; KMP算法"></a>-&gt; KMP算法</h5><p>数组的存储结构</p>
-<p>如何存储（多维）数组呢？</p>
-<p>数组没有插入和删除操作，所以，不用预留空间，适合采用顺序存储</p>
-<p>按行优先：先存储行号较小的元素，行号相同者先存储列号较小的元素</p>
-<p>按列优先：先存储列号较小的元素，列号相同者先存储行号较小的元素 </p>
-<h3 id="特殊矩阵的压缩存储"><a href="#特殊矩阵的压缩存储" class="headerlink" title="特殊矩阵的压缩存储"></a>特殊矩阵的压缩存储</h3><p>什么是特殊矩阵？</p>
-<p> 特殊矩阵：矩阵中很多值相同的元素并且它们的分布有一定的规律</p>
-<p>特殊矩阵如何压缩存储？</p>
-<p>为值相同的元素分配一个存储空间</p>
-<p>特殊矩阵压缩存储后有什么要求吗？</p>
-<p>保证<strong>随机存取</strong>，即在O(1)时间内寻址</p>
-<h5 id="gt-对称矩阵的压缩存储"><a href="#gt-对称矩阵的压缩存储" class="headerlink" title="-&gt; 对称矩阵的压缩存储"></a>-&gt; 对称矩阵的压缩存储</h5><p>如何压缩存储对称矩阵呢？    只存储下三角部分的元素</p>
-<p>aij 在一维数组中的下标    k = i×(i-1)/2+ j-1</p>
-<p> 对称矩阵压缩存储后的寻址方法</p>
-<p>对于下三角中的元素aij（i ≥ j）：k＝i×(i-1)/2＋j -1</p>
-<p>对于上三角中的元素aij（i＜j），因为aij＝aji，则 k＝j×(j-1)/2＋i -1</p>
-<h5 id="gt-三角矩阵的压缩存储"><a href="#gt-三角矩阵的压缩存储" class="headerlink" title="-&gt; 三角矩阵的压缩存储"></a>-&gt; 三角矩阵的压缩存储</h5><p>如何压缩存储三角矩阵呢？</p>
-<p>下（上）三角部分的元素；相同的常数只存储一个</p>
-<p> 下三角矩阵压缩存储后的寻址方法</p>
-<p>对于下三角中的元素aij（i ≥ j）：k＝i×(i -1)/2 + j-1</p>
-<p>对于上三角中的元素aij（i＜j）：k＝n×(n + 1)/2</p>
-<h5 id="gt-对角矩阵的压缩存储"><a href="#gt-对角矩阵的压缩存储" class="headerlink" title="-&gt; 对角矩阵的压缩存储"></a>-&gt; 对角矩阵的压缩存储</h5><p>对角矩阵：所有非零元素都集中在以<strong>主对角线为中心</strong>的带状区域中，所有其他元素都为零 </p>
-<h3 id="稀疏矩阵的压缩存储"><a href="#稀疏矩阵的压缩存储" class="headerlink" title="稀疏矩阵的压缩存储"></a>稀疏矩阵的压缩存储</h3><p>什么是稀疏矩阵？</p>
-<p> 稀疏矩阵：矩阵中有很多零元素，并且分布没有规律</p>
-<p>稀疏矩阵如何压缩存储？</p>
-<p>只存储非零元素，零元素不分配存储空间</p>
-<p>如何只存储非零元素？</p>
-<p> 三元组：（行号，列号，非零元素值）</p>
-<h5 id="gt-三元组顺序表"><a href="#gt-三元组顺序表" class="headerlink" title="-&gt; 三元组顺序表"></a>-&gt; 三元组顺序表</h5><p> 三元组表：将稀疏矩阵的非零元素对应的三元组所构成的集合，按行优先的顺序排列成一个线性表</p>
-<h5 id="gt-十字链表"><a href="#gt-十字链表" class="headerlink" title="-&gt; 十字链表"></a>-&gt; 十字链表</h5>
+        <p><img src="C:\Users\zhangguozhi\Desktop\图片\层次分析法1.jpg" alt="层次分析法1"></p>
+<p><strong>层次分析法（The Analytic Hierarchy Process即 AHP)</strong></p>
+<p>最基础的模型之一，最主要用于解决<strong>评价类问题</strong>（例如：选择哪种方案最好、哪位运动员或者员工表现的更优秀）</p>
+<p>评价类问题关键字：确定评价指标，形成评价体系</p>
+<p>解决评价类问题，首先想到的<strong>三个问题</strong>：</p>
+<p>（1）我们评价的<strong>目标</strong>是什么？</p>
+<p>（2）我们为了达到这个目标有哪几种可选的<strong>方案</strong>？</p>
+<p>（3）评价的<strong>准则</strong>或者指标是什么？（我们根据什么东西来评价好坏）</p>
+<p> （1）优先选择知网（或者万方，百度学术，谷歌学术等平台）搜索相关文件</p>
+<p> （2）和小组成员来场头脑风暴+在平台上搜索别人或者专家的看法</p>
+<p><strong>虫部落-快搜：</strong><a target="_blank" rel="noopener" href="https://search.chongbuluo.com/">https://search.chongbuluo.com/</a></p>
+<p><strong>搜索优先级：谷歌&gt;微信&gt;知乎</strong></p>
+<h2 id="第一步：建立层次结构图"><a href="#第一步：建立层次结构图" class="headerlink" title="第一步：建立层次结构图"></a>第一步：建立层次结构图</h2><p>​    -&gt; 通过题目找出目标、方案和准则</p>
+<p><img src="C:\Users\zhangguozhi\Desktop\图片\11.png" alt="11"></p>
+<h2 id="第二步：建立权重表格"><a href="#第二步：建立权重表格" class="headerlink" title="第二步：建立权重表格"></a>第二步：建立权重表格</h2><img src="C:\Users\zhangguozhi\Desktop\图片\12.png" alt="12" style="zoom:50%;" />
+
+<h4 id="gt-求出指标权重和方案权重"><a href="#gt-求出指标权重和方案权重" class="headerlink" title="-&gt; 求出指标权重和方案权重"></a>-&gt; 求出指标权重和方案权重</h4><h3 id="法一：直接打分法"><a href="#法一：直接打分法" class="headerlink" title="法一：直接打分法"></a>法一：直接打分法</h3><h3 id="法二：分而治之法"><a href="#法二：分而治之法" class="headerlink" title="法二：分而治之法"></a>法二：分而治之法</h3><p>-&gt; 一次性考虑不周，两个两个指标进行比较，最终根据两两比较的结果来推算出权重</p>
+<h4 id="第一步：使用程度打分表，填写判断矩阵"><a href="#第一步：使用程度打分表，填写判断矩阵" class="headerlink" title="第一步：使用程度打分表，填写判断矩阵"></a>第一步：使用程度打分表，填写判断矩阵</h4><p>  计算指标权重的<br><img src="C:\Users\zhangguozhi\Desktop\图片\13.png" alt="13"></p>
+<p>计算同一指标下方案间权重的<br><img src="C:\Users\zhangguozhi\Desktop\图片\14.png" alt="14"></p>
+<p>出现问题：几个方案会出现逻辑矛盾（不一致现象：A&gt;B,A=C,B&gt;C）</p>
+<h4 id="第二步：一致性检验"><a href="#第二步：一致性检验" class="headerlink" title="第二步：一致性检验"></a>第二步：一致性检验</h4><p>-&gt; 判断矩阵和一致矩阵对比</p>
+<h5 id="gt-一致矩阵"><a href="#gt-一致矩阵" class="headerlink" title="-&gt; 一致矩阵"></a>-&gt; 一致矩阵</h5><img src="C:\Users\zhangguozhi\Desktop\图片\15.png" alt="15" style="zoom:50%;" />
+引理1：一致矩阵A各行成比例，所以矩阵的秩为1，故一致矩阵有一个特征值为n（tr(A)=a11+……+ann），其余特征值为0；对应特征向量为第一行各元素取反，即第一列
+![18](C:\Users\zhangguozhi\Desktop\图片\18.png)
+
+<p>引理2：n阶正互反矩阵A为一致矩阵时，最大特征值为n<br>        当不是一致矩阵时，最大特征值&gt;n</p>
+<p><img src="C:\Users\zhangguozhi\Desktop\图片\19.png" alt="19"></p>
+<h5 id="gt-矩阵之间关系"><a href="#gt-矩阵之间关系" class="headerlink" title="-&gt; 矩阵之间关系"></a>-&gt; 矩阵之间关系</h5><p><img src="C:\Users\zhangguozhi\Desktop\图片\层次分析法2.jpg" alt="层次分析法2"></p>
+<h5 id="gt-一致性检验"><a href="#gt-一致性检验" class="headerlink" title="-&gt; 一致性检验"></a>-&gt; 一致性检验</h5><p><img src="C:\Users\zhangguozhi\Desktop\图片\20.png" alt="20"></p>
+<p>CR &gt; 0.1 如何修正？往一致矩阵上调整~~~</p>
+<h4 id="第三步：计算权重"><a href="#第三步：计算权重" class="headerlink" title="第三步：计算权重"></a>第三步：计算权重</h4><p><img src="C:\Users\zhangguozhi\Desktop\图片\21.png" alt="21"><br>    PS:选一列进行计算</p>
+<h5 id="gt-算术平均法"><a href="#gt-算术平均法" class="headerlink" title="-&gt; 算术平均法"></a>-&gt; 算术平均法</h5><p><img src="C:\Users\zhangguozhi\Desktop\图片\22.png" alt="22"></p>
+<h5 id="gt-几何平均法"><a href="#gt-几何平均法" class="headerlink" title="-&gt;几何平均法"></a>-&gt;几何平均法</h5><p><img src="C:\Users\zhangguozhi\Desktop\图片\23.png" alt="23"></p>
+<h5 id="gt-特征值法"><a href="#gt-特征值法" class="headerlink" title="-&gt; 特征值法"></a>-&gt; 特征值法</h5><p>求判断矩阵最大特征值和其特征向量，将其归一化处理</p>
+<p><img src="C:\Users\zhangguozhi\Desktop\图片\25.png" alt="25"></p>
+<h2 id="第三步：计算各方案得分"><a href="#第三步：计算各方案得分" class="headerlink" title="第三步：计算各方案得分"></a>第三步：计算各方案得分</h2><p><img src="C:\Users\zhangguozhi\Desktop\图片\26.png" alt="26"></p>
+<h2 id="局限性"><a href="#局限性" class="headerlink" title="局限性"></a>局限性</h2><p>（1）评价的决策层不能太多，太多的话n会很大，判断矩阵和一致矩阵差异<strong>可能会很大。</strong></p>
+<p>（2）如果决策层中指标的<strong>数据是已知的</strong>，那么我们如何利用这些数据来使得评价的更加准确呢？</p>
+
       
     </div>
     <div class="article-footer">
@@ -456,7 +466,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://zhang0224gz.github.io/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E8%A1%A8/" title="第二，三，四章 线性表" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/28/数据结构/线性表/</a>
+      <a href="https://zhang0224gz.github.io/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/" title="评价类1：层次分析法" target="_blank" rel="external">https://zhang0224gz.github.io/2022/01/07/数学建模/层次分析法/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -502,13 +512,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E8%80%83%E8%AF%95/" title="(no title)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91/" title="第五章 树和二叉树"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="智能车基础知识"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
