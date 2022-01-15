@@ -1,416 +1,430 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang=zh>
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PTA 数据结构 | Flutter</title>
+  <meta name="description" content="第一章 绪论判断题1-1 数据元素是数据的最小单位。F(数据项) 1-2 数据的逻辑结构是指数据的各数据项之间的逻辑关系。F（数据元素之间） 1-3 数据结构概念包括数据之间的逻辑结构、数据在计算机中的存储方式和数据的运算三个方面。T 1-4 数据结构的抽象操作的定义与具体实现有关。F 1-5 算法和程序没有区别，在数据结构中二者是通用的。F 1-6 数据结构包括数据对象集以及它们的逻辑结构和物理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PTA 数据结构">
+<meta property="og:url" content="https://zhang0224gz.github.io/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第一章 绪论判断题1-1 数据元素是数据的最小单位。F(数据项) 1-2 数据的逻辑结构是指数据的各数据项之间的逻辑关系。F（数据元素之间） 1-3 数据结构概念包括数据之间的逻辑结构、数据在计算机中的存储方式和数据的运算三个方面。T 1-4 数据结构的抽象操作的定义与具体实现有关。F 1-5 算法和程序没有区别，在数据结构中二者是通用的。F 1-6 数据结构包括数据对象集以及它们的逻辑结构和物理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images.ptausercontent.com/120">
+<meta property="og:image" content="https://images.ptausercontent.com/126">
+<meta property="og:image" content="https://images.ptausercontent.com/127">
+<meta property="og:image" content="https://images.ptausercontent.com/ad667c00-6889-433b-bdf2-b1d9a96bec1e.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/e122d5ef-767a-423f-82a0-14bbcc18825f.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/c1a5c52a-448f-46bb-9c61-5688b7d306b8.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/a64046f3-222c-4958-8600-e2d020453271.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/7947c101-35e9-4ceb-9a51-9673c1bf196f.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/4c3bef68-2151-4262-bc8b-6c40256896e6.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/78c342db-c3bf-49a0-a3b3-da56609b5390.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/165b8021-8357-409c-9ba9-b9efa4a88265.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/7f1bd3ff-1afe-485d-93b0-d8e0c45ee0d2.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/cee123ff-02e5-4b1f-a6bf-21d596a840ee.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/0b5c8056-4b7d-48f9-ba3c-7801b163535a.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/950ed850-7ef2-4c11-8018-83e66a085b17.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/6a2a95ba-ce80-4b4d-bdd6-567570816b13.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/7818ff4f-c9ba-4494-a537-2a086343fdca.JPG">
+<meta property="og:image" content="https://images.ptausercontent.com/282">
+<meta property="og:image" content="https://images.ptausercontent.com/8e806676-2e1b-4981-a92b-28688f1dbf41.png">
+<meta property="article:published_time" content="2021-12-04T15:24:25.366Z">
+<meta property="article:modified_time" content="2021-12-28T05:33:59.130Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="PTA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images.ptausercontent.com/120">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
 	
-	<!-- title -->
-	
-	<title>
-	
-		PTA 数据结构 | 
-	 
-	Hexo
-	</title>
-	
-	<!-- keywords,description -->
-	 
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
 
-	<!-- favicon -->
-	
-	<link rel="shortcut icon" href="/favicon.ico">
-	
-
-
-	<!-- search -->
-	<script>
-		var searchEngine = "https://www.google.com/search?q=";
-		if(typeof searchEngine == "undefined" || searchEngine == null || searchEngine == ""){
-			searchEngine = "https://www.google.com/search?q=";
-		}
-		var homeHost = "wujun234.github.io";
-		if(typeof homeHost == "undefined" || homeHost == null || homeHost == ""){
-			homeHost = window.location.host;
-		}
-	</script>
-
-
-	
-<link rel="stylesheet" href="/css/main.css">
-
-	
-<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
-
-	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
-
-
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-
-	
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
-
-	
-<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
-
-	
-<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
-
-	
-<script src="/js/main.js"></script>
-
-	
-		
-<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
-
-		
-<script src="https://cdn.jsdelivr.net/npm/valine@v1.4.14/dist/Valine.min.js"></script>
-
-	
-	
-		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-	
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-</head>
-
-<body>
-	<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?3efe99c287df5a1d6f0d02d187e403c1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-<header id="header">
-    <a id="title" href="/" class="logo">Hexo</a>
-
-	<ul id="menu">
-		<li class="menu-item">
-			<a href="/about" class="menu-item-link">ABOUT</a>
-		</li>
-	
-
-	
-
-		<li class="menu-item">
-			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
-				UidGenerator
-			</a>
-		</li>
-		<li class="menu-item">
-			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
-				<i class="fa fa-github fa-2x"></i>
-			</a>
-		</li>
-	</ul>
+    </nav>
+  </div>
 </header>
 
-	
-<div id="sidebar">
-	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
-	
-	<div id="site-toc">
-		<input id="search-input" class="search-input" type="search" placeholder="按回车全站搜索">
-		<div id="tree">
-			
-
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										Python
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2022/01/15/Python/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E4%BB%A3%E7%A0%81/">
-                     
-										    实验课代码
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2022/01/15/Python/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BB%A3%E7%A0%81/">
-                     
-										    数据处理代码
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/22/Python/%E7%BB%86%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
-                     
-										    细小知识点
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/11/27/hello-world/">
-                     
-										    hello-world
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数学建模
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2022/01/10/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/TOPSIS/">
-                     
-										    TOPSIS
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/">
-                     
-										    层次分析法
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2022/01/11/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/">
-                     
-										    线性规划
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										数据结构
-									</a>
-									
-							<ul>
-								<li class="file active">
-									<a href="/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA/">
-                     
-										    PTA
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/28/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%B8%80%E4%BA%9B%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/">
-                     
-										    一些小知识点
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/09/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                     
-										    数据结构
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										智能车
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
-                     
-										    基础知识
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										英语
-									</a>
-									
-							<ul>
-								<li class="file">
-									<a href="/2021/12/06/%E8%8B%B1%E8%AF%AD/CET4--%E4%BD%9C%E6%96%87/">
-                     
-										    CET4--作文
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/06/%E8%8B%B1%E8%AF%AD/CET4--%E7%BF%BB%E8%AF%91/">
-                     
-										    CET4--翻译
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/06/%E8%8B%B1%E8%AF%AD/CET4--%E8%AF%8D%E6%B1%87/">
-                     
-										    CET4--词汇
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/27/%E8%8B%B1%E8%AF%AD/%E6%96%B0%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/">
-                     
-										    新核心知识点
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-								</li>
-								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2022/01/02/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/">
-                     
-										    计算机组成
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/">
-                     
-										    静态博客的建立
-                     
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-		</div>
-	</div>
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
 </div>
 
-	<!-- 引入正文 -->
-	<div id="content">
-		<h1 id="article-title">
-	PTA 数据结构
-</h1>
-<div class="article-meta">
-	
-	<span>zhang0224gz</span>
-	<span>2021-12-04 23:24:25</span>
-		<div id="article-categories">
     
-		<span>Categories：</span>
-            
-                
-                    <span>
-                        <i class="fa fa-folder" aria-hidden="true">
-                        <a href="/categories/数据结构/">数据结构</a>
-                        </i>
-                      
-                    </span>
-                
-            
-    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
 
     
-		<span>Tags：</span>
-            
-                
-                    <span>
-                        <i class="fa fa-tag" aria-hidden="true">
-                        <a href="/tags/PTA/">PTA</a>
-                        </i>
-                    </span>
-                
-            
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTA/" rel="tag">PTA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
     
-		</div>
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/PTA/" style="font-size: 13px;">PTA</a> <a href="/tags/SET4/" style="font-size: 13.5px;">SET4</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 14px;">笔记</a>
+    </div>
+  </div>
 
-</div>
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
 
-<div id="article-content">
-	<h3 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets?tab=1">第一章 绪论</a></h3><h4 id="判断题"><a href="#判断题" class="headerlink" title="判断题"></a>判断题</h4><p>1-1</p>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/15/Python/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E4%BB%A3%E7%A0%81/" class="title">实验课代码</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-15T10:33:10.359Z" itemprop="datePublished">2022-01-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/15/Python/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BB%A3%E7%A0%81/" class="title">数据处理代码</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-15T10:30:47.874Z" itemprop="datePublished">2022-01-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/11/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" class="title">最优化方法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-11T14:14:05.578Z" itemprop="datePublished">2022-01-11</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/10/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/TOPSIS/" class="title">评价类2：TOPSIS法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-10T12:59:45.476Z" itemprop="datePublished">2022-01-10</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/" class="title">评价类1：层次分析法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-07T11:08:39.548Z" itemprop="datePublished">2022-01-07</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-%E7%BB%AA%E8%AE%BA"><span class="toc-number">1.</span> <span class="toc-text">第一章 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98"><span class="toc-number">1.1.</span> <span class="toc-text">判断题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A2-9-2-13%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">选择题（错题：2-9,2-13）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A4-1-4-4-4-6%EF%BC%8C4-7%EF%BC%8C4-10%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">填空题（错题：4-1, 4-4, 4-6，4-7，4-10）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98"><span class="toc-number">1.4.</span> <span class="toc-text">编程题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-1-%E6%B1%82%E6%9C%80%E5%B0%8F%E5%80%BC%E5%92%8C%E6%AC%A1%E5%B0%8F%E5%80%BC-25-%E5%88%86"><span class="toc-number">1.4.1.</span> <span class="toc-text">7-1 求最小值和次小值 (25 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2-%E6%B1%82%E7%B4%A0%E6%95%B0%E4%B8%AA%E6%95%B0-30-%E5%88%86"><span class="toc-number">1.4.2.</span> <span class="toc-text">7-2 求素数个数 (30 分)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%BA%BF%E6%80%A7%E8%A1%A8"><span class="toc-number">2.</span> <span class="toc-text">第二章 线性表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A1-2-1-4-1-15-1-17%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">判断题（错题：1-2,1-4,1-15,1-17）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2"><span class="toc-number">2.1.1.</span> <span class="toc-text">1-2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4"><span class="toc-number">2.1.2.</span> <span class="toc-text">1-4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-15"><span class="toc-number">2.1.3.</span> <span class="toc-text">1-15</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-17"><span class="toc-number">2.1.4.</span> <span class="toc-text">1-17</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98-%E9%94%99%E9%A2%98%EF%BC%9A2-10-2-13-2-16-2-20"><span class="toc-number">2.2.</span> <span class="toc-text">选择题(错题：2-10,2-13,2-16,2-20)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-10"><span class="toc-number">2.2.1.</span> <span class="toc-text">2-10</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-13"><span class="toc-number">2.2.2.</span> <span class="toc-text">2-13</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-16"><span class="toc-number">2.2.3.</span> <span class="toc-text">2-16</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-20"><span class="toc-number">2.2.4.</span> <span class="toc-text">2-20</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="toc-number">2.3.</span> <span class="toc-text">填空题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%A1%AB%E7%A9%BA%E9%A2%98"><span class="toc-number">2.4.</span> <span class="toc-text">程序填空题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98"><span class="toc-number">2.5.</span> <span class="toc-text">函数题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-%E5%8D%95%E9%93%BE%E8%A1%A8%E9%80%86%E7%BD%AE-10-%E5%88%86"><span class="toc-number">2.5.1.</span> <span class="toc-text">6-2 单链表逆置* (10 分)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98-1"><span class="toc-number">2.6.</span> <span class="toc-text">编程题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2-%E6%B1%82%E4%B8%A4%E4%B8%AA%E4%B8%80%E5%85%83%E5%A4%9A%E9%A1%B9%E5%BC%8F%E7%9A%84%E5%92%8C-20-%E5%88%86"><span class="toc-number">2.6.1.</span> <span class="toc-text">7-2 求两个一元多项式的和 (20 分)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%A0%88%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number">3.</span> <span class="toc-text">第三章 栈和列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A1-10%EF%BC%89"><span class="toc-number">3.1.</span> <span class="toc-text">判断题（错题：1-10）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E9%80%89%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A2-2%E3%80%812-18%EF%BC%89"><span class="toc-number">3.2.</span> <span class="toc-text">单选题（错题：2-2、2-18）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2"><span class="toc-number">3.2.1.</span> <span class="toc-text">2-2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-18"><span class="toc-number">3.2.2.</span> <span class="toc-text">2-18</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A4-3%EF%BC%89"><span class="toc-number">3.3.</span> <span class="toc-text">填空题（错题：4-3）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98-1"><span class="toc-number">3.4.</span> <span class="toc-text">函数题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-jmu-ds-%E8%88%9E%E4%BC%B4%E9%97%AE%E9%A2%98-20-%E5%88%86"><span class="toc-number">3.4.1.</span> <span class="toc-text">6-3 jmu-ds-舞伴问题 (20 分)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98-2"><span class="toc-number">3.5.</span> <span class="toc-text">编程题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-1-%E9%93%B6%E8%A1%8C%E4%B8%9A%E5%8A%A1%E9%98%9F%E5%88%97%E7%AE%80%E5%8D%95%E6%A8%A1%E6%8B%9F-25-%E5%88%86"><span class="toc-number">3.5.1.</span> <span class="toc-text">7-1 银行业务队列简单模拟 (25 分)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E4%B8%B2%E5%92%8C%E6%95%B0%E7%BB%84"><span class="toc-number">4.</span> <span class="toc-text">第四章 串和数组</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98-1"><span class="toc-number">4.1.</span> <span class="toc-text">判断题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98-%E9%94%99%E9%A2%98%EF%BC%9A2-3-2-6-2-9-2-13"><span class="toc-number">4.2.</span> <span class="toc-text">选择题(错题：2-3,2-6,2-9,2-13)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3"><span class="toc-number">4.2.1.</span> <span class="toc-text">2-3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-6"><span class="toc-number">4.2.2.</span> <span class="toc-text">2-6</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-9"><span class="toc-number">4.2.3.</span> <span class="toc-text">2-9</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-13-1"><span class="toc-number">4.2.4.</span> <span class="toc-text">2-13</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%BA%94%E7%AB%A0-%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-number">5.</span> <span class="toc-text">第五章 树和二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text">选择题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4"><span class="toc-number">5.1.1.</span> <span class="toc-text">2-4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-5"><span class="toc-number">5.1.2.</span> <span class="toc-text">2-5</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-7"><span class="toc-number">5.1.3.</span> <span class="toc-text">2-7</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-10-1"><span class="toc-number">5.1.4.</span> <span class="toc-text">2-10</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98-1"><span class="toc-number">5.2.</span> <span class="toc-text">填空题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3"><span class="toc-number">5.2.1.</span> <span class="toc-text">4-3</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%A1%AB%E7%A9%BA%E9%A2%98-1"><span class="toc-number">5.3.</span> <span class="toc-text">程序填空题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98-2"><span class="toc-number">5.4.</span> <span class="toc-text">函数题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1-%E6%B1%82%E4%BA%8C%E5%8F%89%E6%A0%91%E9%AB%98%E5%BA%A6-20-%E5%88%86"><span class="toc-number">5.4.1.</span> <span class="toc-text">6-1 求二叉树高度 (20 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86-25-%E5%88%86"><span class="toc-number">5.4.2.</span> <span class="toc-text">6-2 二叉树的遍历 (25 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-%E5%85%88%E5%BA%8F%E8%BE%93%E5%87%BA%E5%8F%B6%E7%BB%93%E7%82%B9-15-%E5%88%86"><span class="toc-number">5.4.3.</span> <span class="toc-text">6-3 先序输出叶结点 (15 分)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98-3"><span class="toc-number">5.5.</span> <span class="toc-text">编程题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#7-1-%E6%A0%B9%E6%8D%AE%E5%90%8E%E5%BA%8F%E5%92%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%E8%BE%93%E5%87%BA%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86-25-%E5%88%86"><span class="toc-number">5.5.1.</span> <span class="toc-text">7-1 根据后序和中序遍历输出先序遍历 (25 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-2-%E7%8E%A9%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91-25-%E5%88%86"><span class="toc-number">5.5.2.</span> <span class="toc-text">7-2 玩转二叉树 (25 分)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AD%E7%AB%A0-%E5%9B%BE"><span class="toc-number">6.</span> <span class="toc-text">第六章 图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98-2"><span class="toc-number">6.1.</span> <span class="toc-text">判断题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-2-1"><span class="toc-number">6.1.1.</span> <span class="toc-text">1-2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-5"><span class="toc-number">6.1.2.</span> <span class="toc-text">1-5</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6"><span class="toc-number">6.1.3.</span> <span class="toc-text">1-6</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-14"><span class="toc-number">6.1.4.</span> <span class="toc-text">1-14</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98-1"><span class="toc-number">6.2.</span> <span class="toc-text">选择题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-1"><span class="toc-number">6.2.1.</span> <span class="toc-text">2-1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-2-1"><span class="toc-number">6.2.2.</span> <span class="toc-text">2-2</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-3-1"><span class="toc-number">6.2.3.</span> <span class="toc-text">2-3</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-4-1"><span class="toc-number">6.2.4.</span> <span class="toc-text">2-4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-8"><span class="toc-number">6.2.5.</span> <span class="toc-text">2-8</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-15"><span class="toc-number">6.2.6.</span> <span class="toc-text">2-15</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-16-1"><span class="toc-number">6.2.7.</span> <span class="toc-text">2-16</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-18-1"><span class="toc-number">6.2.8.</span> <span class="toc-text">2-18</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-19"><span class="toc-number">6.2.9.</span> <span class="toc-text">2-19</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-20-1"><span class="toc-number">6.2.10.</span> <span class="toc-text">2-20</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E5%A1%AB%E7%A9%BA%E9%A2%98-2"><span class="toc-number">6.3.</span> <span class="toc-text">程序填空题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98-3"><span class="toc-number">6.4.</span> <span class="toc-text">函数题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1-%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5%E5%AD%98%E5%82%A8%E5%9B%BE%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86-20-%E5%88%86"><span class="toc-number">6.4.1.</span> <span class="toc-text">6-1 邻接矩阵存储图的深度优先遍历 (20 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-%E9%82%BB%E6%8E%A5%E8%A1%A8%E5%AD%98%E5%82%A8%E5%9B%BE%E7%9A%84%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86-20-%E5%88%86"><span class="toc-number">6.4.2.</span> <span class="toc-text">6-2 邻接表存储图的广度优先遍历 (20 分)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98-4"><span class="toc-number">6.5.</span> <span class="toc-text">编程题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%83%E7%AB%A0-%E6%9F%A5%E6%89%BE"><span class="toc-number">7.</span> <span class="toc-text">第七章 查找</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A1-1-1-4-1-6%EF%BC%89"><span class="toc-number">7.1.</span> <span class="toc-text">判断题（错题：1-1,1-4,1-6）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-1"><span class="toc-number">7.1.1.</span> <span class="toc-text">1-1</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-4-1"><span class="toc-number">7.1.2.</span> <span class="toc-text">1-4</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#1-6-1"><span class="toc-number">7.1.3.</span> <span class="toc-text">1-6</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98-%E9%94%99%E9%A2%98%EF%BC%9A2-9-2-10"><span class="toc-number">7.2.</span> <span class="toc-text">选择题(错题：2-9,2-10)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-9-1"><span class="toc-number">7.2.1.</span> <span class="toc-text">2-9</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-10-2"><span class="toc-number">7.2.2.</span> <span class="toc-text">2-10</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98%EF%BC%88%E9%94%99%E9%A2%98%EF%BC%9A4-1%EF%BC%89"><span class="toc-number">7.3.</span> <span class="toc-text">填空题（错题：4-1）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-1"><span class="toc-number">7.3.1.</span> <span class="toc-text">4-1</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98-4"><span class="toc-number">7.4.</span> <span class="toc-text">函数题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE-20-%E5%88%86"><span class="toc-number">7.4.1.</span> <span class="toc-text">6-1 二分查找 (20 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-%E7%BA%BF%E6%80%A7%E6%8E%A2%E6%B5%8B%E6%B3%95%E7%9A%84%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0-20-%E5%88%86"><span class="toc-number">7.4.2.</span> <span class="toc-text">6-2 线性探测法的查找函数 (20 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E7%9A%84%E6%8F%92%E5%85%A5-20-%E5%88%86"><span class="toc-number">7.4.3.</span> <span class="toc-text">6-3 有序数组的插入 (20 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-%E5%88%9B%E5%BB%BA%E5%93%88%E5%B8%8C%E8%A1%A8%E5%8F%8A%E6%9F%A5%E6%89%BE-%E6%8B%89%E9%93%BE%E6%B3%95-10-%E5%88%86"><span class="toc-number">7.4.4.</span> <span class="toc-text">6-4 创建哈希表及查找(拉链法) (10 分)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98-5"><span class="toc-number">7.5.</span> <span class="toc-text">编程题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%8E%92%E5%BA%8F"><span class="toc-number">8.</span> <span class="toc-text">第八章 排序</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%A4%E6%96%AD%E9%A2%98-3"><span class="toc-number">8.1.</span> <span class="toc-text">判断题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%89%E6%8B%A9%E9%A2%98-%E9%94%99%E9%A2%98%EF%BC%9A2-6-2-11-2-12-2-13"><span class="toc-number">8.2.</span> <span class="toc-text">选择题(错题：2-6,2-11,2-12,2-13)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#2-6-1"><span class="toc-number">8.2.1.</span> <span class="toc-text">2-6</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-11"><span class="toc-number">8.2.2.</span> <span class="toc-text">2-11</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A1%AB%E7%A9%BA%E9%A2%98-2"><span class="toc-number">8.3.</span> <span class="toc-text">填空题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-3-1"><span class="toc-number">8.3.1.</span> <span class="toc-text">4-3</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%A2%98-5"><span class="toc-number">8.4.</span> <span class="toc-text">函数题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#6-1-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-15-%E5%88%86"><span class="toc-number">8.4.1.</span> <span class="toc-text">6-1 快速排序 (15 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-2-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F-10-%E5%88%86"><span class="toc-number">8.4.2.</span> <span class="toc-text">6-2 冒泡排序 (10 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-3-%E7%AE%80%E5%8D%95%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F-10-%E5%88%86"><span class="toc-number">8.4.3.</span> <span class="toc-text">6-3 简单选择排序 (10 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-4-%E5%A0%86%E6%8E%92%E5%BA%8F-10-%E5%88%86"><span class="toc-number">8.4.4.</span> <span class="toc-text">6-4 堆排序 (10 分)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-5-%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F-10-%E5%88%86"><span class="toc-number">8.4.5.</span> <span class="toc-text">6-5 归并排序 (10 分)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E7%A8%8B%E9%A2%98-6"><span class="toc-number">8.5.</span> <span class="toc-text">编程题</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-数据结构/PTA" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PTA 数据结构
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA/" class="article-date">
+	  <time datetime="2021-12-04T15:24:25.366Z" itemprop="datePublished">2021-12-04</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/PTA/" rel="tag">PTA</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="第一章-绪论"><a href="#第一章-绪论" class="headerlink" title="第一章 绪论"></a><a target="_blank" rel="noopener" href="https://pintia.cn/problem-sets?tab=1">第一章 绪论</a></h3><h4 id="判断题"><a href="#判断题" class="headerlink" title="判断题"></a>判断题</h4><p>1-1</p>
 <p>数据元素是数据的最小单位。F(数据项)</p>
 <p>1-2</p>
 <p>数据的逻辑结构是指数据的各数据项之间的逻辑关系。F（数据元素之间）</p>
@@ -1414,78 +1428,240 @@ var _hmt = _hmt || [];
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment">struct Info</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    string name;</span></span><br><span class="line"><span class="comment">    int zan;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">int main()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int n1,n2,avg=0;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;n1;</span></span><br><span class="line"><span class="comment">    string guanzhu[n1];</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;n1; i++)</span></span><br><span class="line"><span class="comment">        cin&gt;&gt;guanzhu[i];</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;n2;</span></span><br><span class="line"><span class="comment">    Info dianzan[n2],temp[n2];</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;n2; i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        cin&gt;&gt;dianzan[i].name&gt;&gt;dianzan[i].zan;</span></span><br><span class="line"><span class="comment">        avg+=dianzan[i].zan;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    avg /= n2;</span></span><br><span class="line"><span class="comment">    int flag=1,k=0;</span></span><br><span class="line"><span class="comment">    for(int i=0; i&lt;n2; i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        for(int j=0; j&lt;n1; j++)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            if(guanzhu[j]==dianzan[i].name)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                flag=0;</span></span><br><span class="line"><span class="comment">                break;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        if(flag&amp;&amp;dianzan[i].zan&gt;avg)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            temp[k++]=dianzan[i];</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        flag=1;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    if(k==0)cout&lt;&lt;&quot;Bing Mei You&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    else</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        for(int i=0; i&lt;k-1; i++)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            int mini=i;</span></span><br><span class="line"><span class="comment">            for(int j=i+1; j&lt;k; j++)</span></span><br><span class="line"><span class="comment">            &#123;</span></span><br><span class="line"><span class="comment">                if(temp[j].name&lt;temp[mini].name)mini=j;</span></span><br><span class="line"><span class="comment">            &#125;</span></span><br><span class="line"><span class="comment">            if(mini!=i)swap(temp[mini],temp[i]);</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        for(int i=0; i&lt;k; i++)</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;temp[i].name&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;set&gt;</span></span><br><span class="line"><span class="comment">#include&lt;map&gt;</span></span><br><span class="line"><span class="comment">using namespace std;</span></span><br><span class="line"><span class="comment">struct Info</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    string name;</span></span><br><span class="line"><span class="comment">    int zan;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">struct List</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    Info dianzan[10000];</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">int Partition(List &amp;l,int first,int last)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int i=first,j=last;</span></span><br><span class="line"><span class="comment">    while(i&lt;j)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        while(i&lt;j&amp;&amp;l.dianzan[i].name&lt;=l.dianzan[j].name)j--;</span></span><br><span class="line"><span class="comment">        if(i&lt;j)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            swap(l.dianzan[i],l.dianzan[j]);</span></span><br><span class="line"><span class="comment">            i++;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">        while(i&lt;j&amp;&amp;l.dianzan[i].name&lt;l.dianzan[j].name)i++;</span></span><br><span class="line"><span class="comment">        if(i&lt;j)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            swap(l.dianzan[i],l.dianzan[j]);</span></span><br><span class="line"><span class="comment">            j--;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    return i;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">void quicksort(List&amp;l,int first,int last)</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    if(first&gt;=last)return;</span></span><br><span class="line"><span class="comment">    else</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        int mid=Partition(l,first,last);</span></span><br><span class="line"><span class="comment">        quicksort(l,first,mid-1);</span></span><br><span class="line"><span class="comment">        quicksort(l,mid+1,last);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">int main()</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">    int n1,n2,zan,sum=0,flag=1,k=0;</span></span><br><span class="line"><span class="comment">    string name;</span></span><br><span class="line"><span class="comment">    List l;</span></span><br><span class="line"><span class="comment">    set&lt;string&gt; guanzhu;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;n1;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;n1;i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        cin&gt;&gt;name;</span></span><br><span class="line"><span class="comment">        guanzhu.insert(name);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    cin&gt;&gt;n2;</span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;n2;i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        cin&gt;&gt;name&gt;&gt;zan;</span></span><br><span class="line"><span class="comment">        sum+=zan;</span></span><br><span class="line"><span class="comment">        if(guanzhu.find(name)==guanzhu.end())</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            l.dianzan[k].name=name;</span></span><br><span class="line"><span class="comment">            l.dianzan[k++].zan=zan;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    sum/=n2;</span></span><br><span class="line"><span class="comment">    quicksort(l,0,k);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    for(int i=0;i&lt;k;i++)</span></span><br><span class="line"><span class="comment">    &#123;</span></span><br><span class="line"><span class="comment">        if(l.dianzan[i].zan&gt;=sum)</span></span><br><span class="line"><span class="comment">        &#123;</span></span><br><span class="line"><span class="comment">            cout&lt;&lt;l.dianzan[i].name&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">            flag=0;</span></span><br><span class="line"><span class="comment">        &#125;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    if(flag)cout&lt;&lt;&quot;Bing Mei You&quot;&lt;&lt;endl;</span></span><br><span class="line"><span class="comment">    return 0;</span></span><br><span class="line"><span class="comment">&#125;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n,m,i,j,k=<span class="number">0</span>,s=<span class="number">0</span>,f=<span class="number">0</span>,a,fag=<span class="number">0</span>;</span><br><span class="line">	<span class="built_in">string</span> s1,s2;</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;p;</span><br><span class="line">	<span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;p1;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s1;</span><br><span class="line">		p[s1]=<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">	<span class="keyword">int</span> c[m];</span><br><span class="line">	<span class="keyword">char</span> b[m][<span class="number">10</span>];</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;s2&gt;&gt;a;</span><br><span class="line">		s=s+a;</span><br><span class="line">		<span class="keyword">if</span>(p.find(s2)==p.end())</span><br><span class="line">		&#123;</span><br><span class="line">		     <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="keyword">sizeof</span>(s2);j++)</span><br><span class="line">		     &#123;</span><br><span class="line">		     	b[k][j]=s2[j];</span><br><span class="line">			 &#125;</span><br><span class="line">			 c[k]=a;</span><br><span class="line">			 k++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			p[s2]=a;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	s=s/m;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;k;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(c[i]&gt;s)</span><br><span class="line">		&#123;</span><br><span class="line">		    p1.insert(b[i]);</span><br><span class="line">		    f++;</span><br><span class="line">			fag=<span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(fag==<span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;Bing Mei You&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">set</span>&lt;<span class="built_in">string</span>&gt;::iterator it;</span><br><span class="line">		<span class="keyword">for</span>(it=p1.begin();it!=p1.end();it++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;*it&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2021/12/04/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA/" title="PTA 数据结构" target="_blank" rel="external">https://zhang0224gz.github.io/2021/12/04/数据结构/PTA/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
 </div>
 
 
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2021/12/06/%E8%8B%B1%E8%AF%AD/CET4--%E8%AF%8D%E6%B1%87/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  SET4-词汇
-              </a>
-            
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2021/12/06/%E8%8B%B1%E8%AF%AD/CET4--%E8%AF%8D%E6%B1%87/" title="SET4-词汇"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/" title="静态博客的创建"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="item right">
-            
-              <a href="/2021/12/04/%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%BB%BA%E7%AB%8B/">
-                静态博客的创建
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
         </div>
     </div>
-
-
-
-	<div id="vcomments"></div>
-
-
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
 <script>
-	
-		// 评论
-		new Valine({
-			el: '#vcomments',
-			appId: '',
-			appKey: '',
-			placeholder: '请输入评论',
-			path: window.location.pathname,
-			avatar: 'retro',
-			highlight: false,
-      recordIP: true,
-      enableQQ: true,
-			requiredFields: ['nick','mail']
-		})
-	
-	
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
-	</div>
-	<div id="footer">
-	<p>
-	©2019-<span id="footerYear"></span> 
-	<a href="/">zhang0224gz</a> 
-	
-	
-		|
-		<span id="busuanzi_container_site_pv">
-			pv
-			<span id="busuanzi_value_site_pv"></span>
-		</span>
-		|
-		<span id="busuanzi_container_site_uv"> 
-			uv
-			<span id="busuanzi_value_site_uv"></span>
-		</span>
-	
-	<br>
-	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
-	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
-	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
-	</p>
-</div>
-<script type="text/javascript"> 
-	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
 </script>
-	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
 </body>
 </html>
