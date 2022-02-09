@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>基础知识1 | Flutter</title>
+  <meta name="description" content="常见原件电阻和电容贴片电容(不分+,-)，钽电容(分+,-) 固态电解电容(用于主板)   电阻、电容的标号： 电容：1μF &#x3D; 1,000nF &#x3D; 1,000,000pF 【103】，即10 x 10^3皮法 &#x3D; 10纳法；  计算方法：前两位数字代表有效数字，第三位代表10的n次幂（也可以理解为在有效数字后面有几个0），单位是皮法。   前3位数字是容量代码，字母是额定电压代码(耐压值) 字母">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础知识1">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/02/07/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="常见原件电阻和电容贴片电容(不分+,-)，钽电容(分+,-) 固态电解电容(用于主板)   电阻、电容的标号： 电容：1μF &#x3D; 1,000nF &#x3D; 1,000,000pF 【103】，即10 x 10^3皮法 &#x3D; 10纳法；  计算方法：前两位数字代表有效数字，第三位代表10的n次幂（也可以理解为在有效数字后面有几个0），单位是皮法。   前3位数字是容量代码，字母是额定电压代码(耐压值) 字母">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/527e1ede7e744c38b75ed28314abfd87.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_14,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200530160728106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1dpbGxpYW1fWmhhbmdfQ1NETg==,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/709e4ef4c52e4d7a8be971ced8a05c03.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_14,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/26afa2e2ea36417396e21e412ceac4d7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/379e3cd7ff514ac085a330f4c6551234.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/9f2bddcb887f417498c43954173a04ea.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fbb8592586944ab0b17e8ab968acf452.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_12,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2586a61e564d401babcd325b02297c0a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_12,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7e8d8dcfacf342029c4741a9f92c5238.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_7,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b7cda89d038844fabf928f91436732b5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_17,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/5339c8c100aa4474b5c4ed675bb881e7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_10,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b555ee94b9984ee28bd17808cd1bf560.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-02-07T14:39:13.103Z">
+<meta property="article:modified_time" content="2022-02-09T14:22:30.648Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/527e1ede7e744c38b75ed28314abfd87.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_14,color_FFFFFF,t_70,g_se,x_16">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/02/07/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/PTA/" rel="tag">PTA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a><span class="tag-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/PTA/" style="font-size: 13px;">PTA</a> <a href="/tags/SET4/" style="font-size: 13.5px;">SET4</a> <a href="/tags/%E7%AC%94%E8%AE%B0/" style="font-size: 14px;">笔记</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/07/%E5%86%99%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%A6%E5%8F%B7/" class="title">一些符号</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-07T14:53:29.603Z" itemprop="datePublished">2022-02-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/07/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/" class="title">基础知识1</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-07T14:39:13.103Z" itemprop="datePublished">2022-02-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/15/Python/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E4%BB%A3%E7%A0%81/" class="title">实验课代码</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-15T10:33:10.359Z" itemprop="datePublished">2022-01-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/15/Python/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%BB%A3%E7%A0%81/" class="title">22服创代码</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-15T10:30:47.874Z" itemprop="datePublished">2022-01-15</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/01/11/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E7%BA%BF%E6%80%A7%E8%A7%84%E5%88%92/" class="title">最优化方法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-01-11T14:14:05.578Z" itemprop="datePublished">2022-01-11</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E5%8E%9F%E4%BB%B6"><span class="toc-number">1.</span> <span class="toc-text">常见原件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%B5%E9%98%BB%E5%92%8C%E7%94%B5%E5%AE%B9"><span class="toc-number">1.1.</span> <span class="toc-text">电阻和电容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%9E%81%E7%AE%A1LED"><span class="toc-number">1.2.</span> <span class="toc-text">二极管LED</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%9C%82%E9%B8%A3%E5%99%A8"><span class="toc-number">1.3.</span> <span class="toc-text">蜂鸣器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%92%E6%AF%8D%E3%80%81%E6%8E%92%E9%92%88"><span class="toc-number">1.4.</span> <span class="toc-text">排母、排针</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%84%8A%E6%8E%A5%E5%B7%A5%E5%85%B7"><span class="toc-number">2.</span> <span class="toc-text">焊接工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%84%8A%E7%AE%B1"><span class="toc-number">2.1.</span> <span class="toc-text">焊箱</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%BE%E9%A6%99"><span class="toc-number">2.2.</span> <span class="toc-text">松香</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%86%E4%B8%9D"><span class="toc-number">2.3.</span> <span class="toc-text">细丝</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%B8%E9%94%A1%E5%99%A8"><span class="toc-number">2.4.</span> <span class="toc-text">吸锡器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IAR%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">IAR安装和使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">4.</span> <span class="toc-text">C语言基础知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%92%8C%E5%9C%B0%E5%9D%80"><span class="toc-number">4.1.</span> <span class="toc-text">内存和地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">4.2.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%96%E9%83%A8%E5%8F%98%E9%87%8F%E5%92%8C%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0"><span class="toc-number">4.3.</span> <span class="toc-text">外部变量和外部函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E5%8E%9F%E7%90%86%E5%8F%8A%E5%BA%94%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">中断原理及应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F"><span class="toc-number">5.0.1.</span> <span class="toc-text">中断服务程序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E7%89%87%E6%9C%BA%E4%B8%AD%E9%87%8D%E8%A6%81%E4%B8%AD%E6%96%AD"><span class="toc-number">5.0.2.</span> <span class="toc-text">单片机中重要中断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%8E%E6%A0%B7%E7%83%A7%E5%BD%95%E7%A8%8B%E5%BA%8F"><span class="toc-number">6.</span> <span class="toc-text">怎样烧录程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GPIO"><span class="toc-number">7.</span> <span class="toc-text">GPIO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UART%E4%B8%B2%E5%8F%A3"><span class="toc-number">8.</span> <span class="toc-text">UART串口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AD%E9%87%87%E9%9B%86-%E7%94%B5%E7%A3%81%E7%BB%84"><span class="toc-number">9.</span> <span class="toc-text">AD采集(电磁组)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PIT%E5%AE%9A%E6%97%B6%E4%B8%AD%E6%96%AD"><span class="toc-number">10.</span> <span class="toc-text">PIT定时中断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#STM"><span class="toc-number">11.</span> <span class="toc-text">STM</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%A0%E7%A9%BA%E6%AF%94%EF%BC%88%E9%AB%98%E7%94%B5%E5%B9%B3%E7%9A%84%E6%97%B6%E9%97%B4%E5%8D%A0%E6%80%BB%E6%97%B6%E9%97%B4%E7%9A%84%E6%AF%94%E4%BE%8B%EF%BC%89"><span class="toc-number">11.0.1.</span> <span class="toc-text">占空比（高电平的时间占总时间的比例）</span></a></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-智能车/基础知识1" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基础知识1
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/02/07/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/" class="article-date">
+	  <time datetime="2022-02-07T14:39:13.103Z" itemprop="datePublished">2022-02-07</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E7%AC%94%E8%AE%B0/" rel="tag">笔记</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/02/07/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="常见原件"><a href="#常见原件" class="headerlink" title="常见原件"></a>常见原件</h2><h3 id="电阻和电容"><a href="#电阻和电容" class="headerlink" title="电阻和电容"></a>电阻和电容</h3><p>贴片电容(不分+,-)，钽电容(分+,-)</p>
+<p>固态电解电容(用于主板)</p>
+<img src="https://img-blog.csdnimg.cn/527e1ede7e744c38b75ed28314abfd87.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 67%;" />
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/William_Zhang_CSDN/article/details/106442414">电阻、电容的标号</a>：</p>
+<p>电容：1μF = 1,000nF = 1,000,000pF</p>
+<p>【103】，即10 x 10^3皮法 = 10纳法；</p>
+<blockquote>
+<p>计算方法：前两位数字代表有效数字，第三位代表10的n次幂（也可以理解为在有效数字后面有几个0），单位是皮法。</p>
+</blockquote>
+<blockquote>
+<p>前3位数字是容量代码，字母是额定电压代码(耐压值)</p>
+<p>字母C表示额定电压为16V(C型耐压16V),字母A表示额定电压为10V(A型耐压10V)</p>
+</blockquote>
+<p>107C是 100UF 16V，107A是100UF 10F</p>
+<p>电阻：1MΩ=1,000KΩ=1,000,000Ω</p>
+<ol>
+<li>数字索位标称法（一般矩形片状电阻采用这种标称法）</li>
+</ol>
+<blockquote>
+<p>数字索位标称法就是在电阻体上用三位数字来标明其阻值。它的第一位和第二位为有效数字，第三位表示在有效数字后面所加“0”的个数。这一位不会出现字母。</p>
+</blockquote>
+<p>例如：【472】表示“4700Ω”；【151】表示“150Ω”。 如果是小数。则用“R”表示“小数点”。并占用一位有效数字，其余两位是有效数字。例如：【2R4】表示“2.4Ω”；【R15】表示“0.15Ω”。</p>
+<ol start="2">
+<li><p>色环标称法（一般圆柱形固定电阻采用这种标称法）<br>　　色环电阻大多采用三环、四环（有时五环、六环）标明其阻值，原理都一样。</p>
+<p>​    <img src="https://img-blog.csdnimg.cn/20200530160728106.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1dpbGxpYW1fWmhhbmdfQ1NETg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+</li>
+</ol>
+<blockquote>
+<p>颜色表示：<br>从左到右，前三列为有效数字，第四列为倍数，第五列为误差，第六列为温度系数。</p>
+</blockquote>
+<p>例如：【蓝灰橙银】表示“68kΩ”，误差±10%</p>
+<h3 id="二极管LED"><a href="#二极管LED" class="headerlink" title="二极管LED"></a>二极管LED</h3><p>有正有负，有线的一边为负极</p>
+<h3 id="蜂鸣器"><a href="#蜂鸣器" class="headerlink" title="蜂鸣器"></a>蜂鸣器</h3><p>调车使用，有问题可以响</p>
+<h3 id="排母、排针"><a href="#排母、排针" class="headerlink" title="排母、排针"></a>排母、排针</h3><h2 id="焊接工具"><a href="#焊接工具" class="headerlink" title="焊接工具"></a>焊接工具</h2><h3 id="焊箱"><a href="#焊箱" class="headerlink" title="焊箱"></a>焊箱</h3><h3 id="松香"><a href="#松香" class="headerlink" title="松香"></a>松香</h3><p>焊芯片，自动分开防止短路</p>
+<h3 id="细丝"><a href="#细丝" class="headerlink" title="细丝"></a>细丝</h3><h3 id="吸锡器"><a href="#吸锡器" class="headerlink" title="吸锡器"></a>吸锡器</h3><p>排针孔堵了</p>
+<h2 id="IAR安装和使用"><a href="#IAR安装和使用" class="headerlink" title="IAR安装和使用"></a>IAR安装和使用</h2><p>Ctrl+Shift+F 快捷键唤出查找功能-&gt;查找之后再go to defination</p>
+<p>Ctrl+T 格式化</p>
+<h2 id="C语言基础知识"><a href="#C语言基础知识" class="headerlink" title="C语言基础知识"></a>C语言基础知识</h2><h3 id="内存和地址"><a href="#内存和地址" class="headerlink" title="内存和地址"></a>内存和地址</h3><p>内存是以字节为单位的存储空间</p>
+<p>有底到顶：机械码、代码-&gt;静态变量-&gt;全局变量-&gt;堆区(指针）-&gt;栈区(main函数中的)</p>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span>	<span class="keyword">char</span>			int8; <span class="comment">// 8 bits</span></span><br><span class="line"><span class="keyword">typedef</span>	<span class="keyword">short</span>	<span class="keyword">int</span>		int16; <span class="comment">// 16bits</span></span><br><span class="line"><span class="keyword">typedef</span>	<span class="keyword">long</span>	<span class="keyword">int</span>		int32; <span class="comment">//32 bits</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>  <span class="keyword">char</span>	uint8;	<span class="comment">//8 bits</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>  <span class="keyword">short</span> <span class="keyword">int</span> uint8;<span class="comment">// 16 bits</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>  <span class="keyword">long</span> <span class="keyword">int</span>  uint8;<span class="comment">// 32 bits</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span>  <span class="keyword">long</span> <span class="keyword">long</span> uint8;<span class="comment">// 64 bits</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="外部变量和外部函数"><a href="#外部变量和外部函数" class="headerlink" title="外部变量和外部函数"></a>外部变量和外部函数</h3><p>文件之间调用</p>
+<blockquote>
+<p>关键字extern:</p>
+<p>当extern不与“C”在一起修饰变量和函数时，如在头文件中：extern int g_Int : 它的作用就是声明函数或全局变量的作用范围的关键字，其声明的函数和变量可以在本模块或者其他模块中使用。！！！它是一个声明不是一个定义。</p>
+</blockquote>
+<p>栗子：B模块（编译单元）要是引用模块（编译单元）A中定义的全局变量或函数时，它只要包含A模块的头文件即可，在编译阶段，模块B虽然找不到该函数或变量，但它不会报错，它会在连接时从模块A生成的目标代码中找到此函数。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//include.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;include.h&quot;</span></span></span><br><span class="line"><span class="keyword">int</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> b=<span class="number">5</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//include.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> _INCLUDE_H_	<span class="comment">//防止嵌套，造成资源浪费</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _INCLUDE_H_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> a;</span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">int</span> b;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sum</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//主函数异步编译多个不同代码，使用关键词</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> </span></span><br><span class="line"><span class="comment">//想编译的写1，不想编译的写0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;include.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;a&lt;&lt;<span class="string">&quot;+&quot;</span>&lt;&lt;b&lt;&lt;<span class="string">&quot;=&quot;</span>&lt;&lt;sum(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="中断原理及应用"><a href="#中断原理及应用" class="headerlink" title="中断原理及应用"></a>中断原理及应用</h2><h4 id="中断服务程序"><a href="#中断服务程序" class="headerlink" title="中断服务程序"></a><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B8%AD%E6%96%AD%E6%9C%8D%E5%8A%A1%E7%A8%8B%E5%BA%8F/10510195">中断服务程序</a></h4><blockquote>
+<p>中断服务程序，处理器处理“急件”，可理解为是一种服务，是通过执行事先编好的某个特定的程序来完成的，这种处理“急件”的程序被称为——中断服务程序。</p>
+</blockquote>
+<blockquote>
+<p>与每类I/O设备相关的进程都有一个靠近内存底部的地址，称作<strong>中断向量</strong>。 <strong>它包括中断服务程序的入口地址</strong>。<br>当中央处理器正在处理内部数据时，外界发生了紧急情况，要求CPU暂停当前的工作转去处理这个紧急事件。处理完毕后，再回到原来被中断的地址，继续原来的工作，<strong>这样的过程称为中断。实现这一功能的部件称为中断系统</strong>，<strong>申请CPU中断的请求源称为中断源</strong>，单片机的中断系统一般允许多个中断源，当多个中断源同时向CPU请求中断时，就存在一个中断优先权的问题。通常根据中断源的优先级别，优先处理最紧急事件的中断请求源，即最先响应级别最高的中断请求。</p>
+</blockquote>
+<p>1、中断标识码（中断类型号）：由硬件（通常是中断控制器）产生，以标识不同的中断源。</p>
+<p>2、中断向量：早期的微机系统中将由硬件产生的中断标识码（中断源的识别标志，可用来<strong>形成相应的中断服务程序的入口地址或存放中断服务程序的首地址）称为中断向量</strong>。<strong>在某些计算机中，中断向量的位置存放一条跳转到中断服务程序入口地址的跳转指令</strong>。</p>
+<p>3、中断向量地址：存储中断向量的存储单元地址。</p>
+<p>4、中断：在计算机执行程序的过程中，当出现异常情况或者特殊请求时，计算机停止现行的程序的运行，转而对这些异常处理或者特殊请求的处理，处理结束后再返回到现行程序的中断处，继续执行原程序。</p>
+<p> <strong>存放：存放中断服务程序的入口地址，来存放中断向量（共256个），称这一片内存区为中断向量表。</strong></p>
+<p><strong>跳转：</strong>跳转到中断服务程序的入口地址，在AVR或ARM微处理器中，中断向量的大小也是4个字节，但其中存放的不是中断程服务程序的入口地址，而是可执行的代码。当响应中断时，硬件自动执行相应中断向量处的跳转代码，然后跳转到具体的中断服务程序的入口地址。</p>
+<p>  综上所述：中断向量的地址一定是 中断服务程序的入口地址的地址，但中断向量不一定就是中断服务程序的入口地址。</p>
+<h4 id="单片机中重要中断"><a href="#单片机中重要中断" class="headerlink" title="单片机中重要中断"></a>单片机中重要中断</h4><p>PID定时中断：</p>
+<p>对于时间进行精准的控制，定时进入中断服务程序完成某个任务</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="number">1.</span>关总中断</span><br><span class="line">    <span class="number">2.</span>中断初始化(中断开启):</span><br><span class="line">    PID中断初始化(<span class="number">4</span>个PID定时器用哪个:一般只使用一个，定时的时间:<span class="number">10</span>ms进入一次)</span><br><span class="line">    <span class="number">3.</span>开启中断</span><br><span class="line">    <span class="number">4.</span>使能(使其能工作)</span><br><span class="line">    <span class="number">5.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>串口接收中断：</p>
+<p>由单片机通过蓝牙串口接收到信息时，做出对应的反应(调车使用)</p>
+<p>中断一多就有中断优先级问题……</p>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1fJ411K7bk?spm_id_from=333.999.0.0">https://www.bilibili.com/video/BV1fJ411K7bk?spm_id_from=333.999.0.0</a></p>
+<h2 id="怎样烧录程序"><a href="#怎样烧录程序" class="headerlink" title="怎样烧录程序"></a>怎样烧录程序</h2><p>硬件准备：1.主板 2.核心板 3.下载器</p>
+<p>软件准备：IAR</p>
+<img src="https://img-blog.csdnimg.cn/709e4ef4c52e4d7a8be971ced8a05c03.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_14,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:67%;" />
+
+<p>不要插反</p>
+<img src="https://img-blog.csdnimg.cn/26afa2e2ea36417396e21e412ceac4d7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 67%;" />
+
+<img src="https://img-blog.csdnimg.cn/379e3cd7ff514ac085a330f4c6551234.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 80%;" />
+
+<img src="https://img-blog.csdnimg.cn/9f2bddcb887f417498c43954173a04ea.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 67%;" />
+
+<h2 id="GPIO"><a href="#GPIO" class="headerlink" title="GPIO"></a>GPIO</h2><p>概念：通用型之输入输出的简称，其接脚可以供使用者由程控自由使用，PIN脚依现实考量可作为通用输入GPI或通用输出GPO或通用输入输出GPIO。对于输入，一定可以通过读取某个寄存器来确定引脚电位的高低；对于输出，一定可以通过写入某个寄存器来让这个引脚输出高电位或者低电位；对于其他特殊功能，则有另外的寄存器来控制它</p>
+<img src="https://img-blog.csdnimg.cn/fbb8592586944ab0b17e8ab968acf452.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:67%;" />
+
+<p>主要：引脚（即排针）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GPIO初始化	gpio_init(port,dir,state)</span><br><span class="line">	port/ptxn端口号，dir引脚方向(<span class="number">0</span>=输入,<span class="number">1</span>=输出)，state引脚初始状态(<span class="number">0</span>=低电平,<span class="number">1</span>=高电平)</span><br><span class="line">设置引脚状态  gpio_set(ptxn,state)</span><br><span class="line">获取引脚状态  gpio_get(ptxn)</span><br></pre></td></tr></table></figure>
+
+<h2 id="UART串口"><a href="#UART串口" class="headerlink" title="UART串口"></a>UART串口</h2><p>概念：串行接口(Serial Interface)是指数据一位一位地顺序传送</p>
+<p>​        有线串口：usb转ttl的模块；</p>
+<p>​        蓝牙串口更适用于调试；</p>
+<img src="https://img-blog.csdnimg.cn/2586a61e564d401babcd325b02297c0a.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_12,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 67%;" />
+
+<p>硬件：1.USB to TTL模块 2.KEA板 3.下载器</p>
+<p><strong>!！注意：硬件连接时，下载器拔掉3.3V跳线帽</strong></p>
+<img src="https://img-blog.csdnimg.cn/7e8d8dcfacf342029c4741a9f92c5238.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_7,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:67%;" />
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UART初始化 uart_init(uartn,band_rate)</span><br><span class="line">    UARTn通道，band_rate波特率(数据传输的速度：<span class="number">9600</span> <span class="number">11400</span>……)</span><br><span class="line">UART串口打印 uartPrintf(UARTn uartn,<span class="keyword">char</span> *pcFmt....)</span><br><span class="line">虚拟示波器 uart_sendware(UARTn uartn,<span class="keyword">void</span> *wareaddr,uint32 waresize)</span><br><span class="line">串口接收中断 uart_rx_irq_en</span><br></pre></td></tr></table></figure>
+
+<h2 id="AD采集-电磁组"><a href="#AD采集-电磁组" class="headerlink" title="AD采集(电磁组)"></a>AD采集(电磁组)</h2><p>概念：模拟信号(Analog signal) -&gt; 数字信号(Digital signal)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">初始化 ADC_Init(ch,bit)</span><br><span class="line">    ch采集通道，bit采集位数</span><br><span class="line">单次采集 adc_once(adcn_ch)</span><br><span class="line">    adcn_ch ADC通道</span><br><span class="line">均值滤波 adc_ave(adcn_ch,N)</span><br><span class="line">    adcn_ch ADC通道,N均值滤波次数(范围:<span class="number">0</span>~<span class="number">255</span>)</span><br><span class="line">    其他滤波算法：中位值平均滤波算法、卡尔曼滤波算法……</span><br></pre></td></tr></table></figure>
+
+<h2 id="PIT定时中断"><a href="#PIT定时中断" class="headerlink" title="PIT定时中断"></a>PIT定时中断</h2><p>软件上执行时间一致，但在硬件上(电容、电阻跑久了温度会升高，时间发生变化会导致周期变化)时间不一致</p>
+<p>概念：定时器实际上是计数器，它通过累计已知时间间隔的个数来计算时间。被累积的时间间隔若是系统时钟，计数器就变成了定时器。（周期性地做某一件事……）</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">初始化 PIT_Init(uSChannel_No,freq)</span><br><span class="line">    uSChannel_No PIT通道端口号<span class="number">0</span>、<span class="number">1</span>,freq定时器频率</span><br><span class="line">中断服务函数 PIT0_ISR(uSChannel_No)</span><br><span class="line">中断使能 pit_irq_en(uSChannel_No)</span><br></pre></td></tr></table></figure>
+
+<h2 id="STM"><a href="#STM" class="headerlink" title="STM"></a>STM</h2><p>PWM波驱使电机转动和舵机打角</p>
+<p>编码器测速（轮胎转的速度）</p>
+<img src="https://img-blog.csdnimg.cn/b7cda89d038844fabf928f91436732b5.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_17,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 67%;" />
+
+<h4 id="占空比（高电平的时间占总时间的比例）"><a href="#占空比（高电平的时间占总时间的比例）" class="headerlink" title="占空比（高电平的时间占总时间的比例）"></a>占空比（高电平的时间占总时间的比例）</h4><img src="https://img-blog.csdnimg.cn/5339c8c100aa4474b5c4ed675bb881e7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_10,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:67%;" />
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FTM模块初始化 FTM_PWM_init(ftm,ch,freq,duty)</span><br><span class="line">    ftm PWM模块，ch通道，freq频率，duty占空比(<span class="number">0</span><span class="number">-1000</span> 可以调节FTM_PRECISON这个系数)</span><br><span class="line">设置占空比 FTM_PWM_Duty</span><br><span class="line">计数模块初始化 ftm_count_init</span><br><span class="line">获取计数值 ftm_count_get</span><br><span class="line">清空计数值 ftm_count_clean</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/b555ee94b9984ee28bd17808cd1bf560.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>初始化以及其他一些功能函数写在.c文件，服务函数统一写在Isr.c</p>
+<p>！注意：串口打印和虚拟示波器不能同时使用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 1</span></span><br><span class="line"><span class="comment">//GPIO</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	DisableInterrupts;</span><br><span class="line">    gpio_init(GPI0,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    gpio_init(GPI1,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(gpio_get(PIG1)==<span class="number">0</span>)gpio_set(GPI1,<span class="number">1</span>);</span><br><span class="line">    EnableInterrupts;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 0</span></span><br><span class="line"><span class="comment">//串口</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DisableInterrupts;</span><br><span class="line">    uart_init(UARTR0,<span class="number">9600</span>);</span><br><span class="line">    <span class="keyword">int</span> pulse[<span class="number">2</span>];</span><br><span class="line">    pulse[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    pulse[<span class="number">1</span>]=<span class="number">100</span>;</span><br><span class="line">    uartPrintf(UARTR0,<span class="string">&quot;ok\n&quot;</span>);</span><br><span class="line">    EnableInterrupts;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//串口打印时需注释掉虚拟示波器</span></span><br><span class="line">       <span class="comment">//uart_sendware(UARTR0,&amp;pulse,sizeof(pulse));</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 0</span></span><br><span class="line"><span class="comment">//串口接收中断</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DisableInterrupts;</span><br><span class="line">    uart_init(UARTR0,<span class="number">9600</span>);</span><br><span class="line">    gpio_init(PIG0,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    gpio_init(PIG1,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    gpio_init(PIG2,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    gpio_init(PIG3,<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">    uart_rx_irq_en(UARTR0);<span class="comment">//rx接收，tx发放-&gt;isr.c</span></span><br><span class="line">    EnableInterrupts;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 0</span></span><br><span class="line"><span class="comment">//AD采集</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DisableInterrupts;</span><br><span class="line">    uart_init(UARTR0,<span class="number">9600</span>);</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    ADC_Init(ADC_CHANNEL_AD6,ADC_12BIT);</span><br><span class="line">    EnableInterrupts;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        val=adc_once(ADC_CHANNEL_AD6);</span><br><span class="line">        <span class="comment">//val=adc_ave(ADC_CHANNEL_AD6);//均值滤波</span></span><br><span class="line">        uart_sendware(UARTR0,&amp;val,<span class="keyword">sizeof</span>(val));     </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 0</span></span><br><span class="line"><span class="comment">//PIT定时中断</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DisableInterrupts;</span><br><span class="line">    PIT_Init(PIT_CHANNEL0,<span class="number">1</span>);</span><br><span class="line">    uart_init(UARTR0,<span class="number">9600</span>);</span><br><span class="line">    PIT_IRQ_EN(PIT_CHANNEL0);</span><br><span class="line">    EnableInterrupts;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 0</span></span><br><span class="line"><span class="comment">//FTM</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    DisableInterrupts;</span><br><span class="line">    PIT_Init(PIT_CHANNEL0,<span class="number">1</span>);</span><br><span class="line">    uart_init(UARTR0,<span class="number">9600</span>);</span><br><span class="line">    FTM_PWM_init(CFTM0,FTM_CH1,<span class="number">50</span>,<span class="number">10</span>);</span><br><span class="line">    ftm_count_init(CFTM1);</span><br><span class="line">    PIT_IRQ_EN(PIT_CNANNEL0);</span><br><span class="line">    EnableInterrupts;</span><br><span class="line">&#125;     </span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span>   </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> 0</span></span><br><span class="line"><span class="comment">//FTM</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PIT0_ISR</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//清除中断标志位</span></span><br><span class="line">    PIT-&gt;CHANNEL[<span class="number">0</span>].TFLG = PIT_TFLG_TIF_MASK;</span><br><span class="line">    uartPrintf(UARTR0,<span class="string">&quot;%d\n&quot;</span>,ftm_count_get(CFTM1));</span><br><span class="line">    ftm_count_clean(CFTM1);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">elif</span> 1</span></span><br><span class="line"><span class="comment">//PIT定时中断</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">PIT0_isr</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//清除中断标志位</span></span><br><span class="line">    PIT-&gt;CHANNEL[<span class="number">0</span>].TFLG = PIT_TFLG_TIF_MASK;</span><br><span class="line">    uartPrintf(UARTR0,<span class="string">&quot;%d\n&quot;</span>,<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/02/07/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%861/" title="基础知识1" target="_blank" rel="external">https://zhang0224gz.github.io/2022/02/07/智能车/基础知识1/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/02/07/%E5%86%99%E5%8D%9A%E5%AE%A2%E4%B8%AD%E7%9A%84%E4%B8%80%E4%BA%9B%E7%AC%A6%E5%8F%B7/" title="一些符号"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/01/15/Python/%E5%AE%9E%E9%AA%8C%E8%AF%BE%E4%BB%A3%E7%A0%81/" title="实验课代码"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
