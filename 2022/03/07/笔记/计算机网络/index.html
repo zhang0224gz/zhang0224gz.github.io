@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>计算机网络 | Flutter</title>
+  <meta name="description" content="《计算机网络》第一章概述21世纪的重要特征：数字化、网络化、信息化；21世纪是一个以网络为核心的信息时代。 三大类网络：电信网络、有线电视网络、计算机网络 Internet中文译名：因特网、互联网(Internet是由数量极大的各种计算机网络互联起来的) 互联网的基本特点：连通性和共享  “互联网+”是一种新的经济形态：互联网+各个传统行业  负面影响：计算机病毒、恶意攻击 1.1 互联网概述-&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="《计算机网络》第一章概述21世纪的重要特征：数字化、网络化、信息化；21世纪是一个以网络为核心的信息时代。 三大类网络：电信网络、有线电视网络、计算机网络 Internet中文译名：因特网、互联网(Internet是由数量极大的各种计算机网络互联起来的) 互联网的基本特点：连通性和共享  “互联网+”是一种新的经济形态：互联网+各个传统行业  负面影响：计算机病毒、恶意攻击 1.1 互联网概述-&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/72bb908767874ccdb2637cbbcd3bbb78.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/f98e56aebddb411591f5b8bd7cf61f04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/3fd8087b1a3c4dda9c663d933d26c3fc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/0ec3c886f98f47e1b52ad9d4e790aa0f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/7bc97f6aff60401e874b2410f36548f6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/b7090931c70c474d8bf1ad559ea2180c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/d3edc94928e54ef295191162fac9f187.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/500db8c103a144848ab6edb5b55fca9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/e718b399d3ba43eda51035f6bd501c1f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c2599b4eaf8e4d2b86857a346726c085.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="file:///C:/Users/zhangguozhi/Documents/Tencent%20Files/2251787923/Image/C2C/CB3400B7D9860BEDB72E7246FA324994.jpg">
+<meta property="og:image" content="file:///C:/Users/zhangguozhi/Documents/Tencent%20Files/2251787923/Image/C2C/FA92560D1B024CEBC7F69801A41B0BA1.jpg">
+<meta property="og:image" content="c:/Users/zhangguozhi/AppData/Roaming/Typora/typora-user-images/image-20220313172435556.png">
+<meta property="og:image" content="file:///C:/Users/zhangguozhi/Documents/Tencent%20Files/2251787923/Image/C2C/D003E960D76BBD7D5A545C43473C3991.jpg">
+<meta property="og:image" content="file:///C:/Users/zhangguozhi/Documents/Tencent%20Files/2251787923/Image/C2C/705EAC67EFCC95F1B2435B0FDE9A492E.jpg">
+<meta property="article:published_time" content="2022-03-07T14:44:31.675Z">
+<meta property="article:modified_time" content="2022-03-21T15:07:53.289Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/72bb908767874ccdb2637cbbcd3bbb78.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%9D%E5%A7%8B%E5%8C%96/">初始化</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 13px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/20/%E6%95%99%E8%B5%84/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E5%92%8C%E8%83%BD%E5%8A%9B/" class="title">教育学--模块一 教育基础知识和基本原理</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-20T12:36:20.872Z" itemprop="datePublished">2022-03-20</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="title">计算机网络</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-07T14:44:31.675Z" itemprop="datePublished">2022-03-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E7%BC%96%E7%A0%81%E5%AD%A6/" class="title">密码编码学</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-03-01T08:50:06.823Z" itemprop="datePublished">2022-03-01</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/23/%E5%88%B7%E9%A2%98/%E8%93%9D%E6%A1%A5/" class="title">蓝桥杯题目</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-23T10:00:54.461Z" itemprop="datePublished">2022-02-23</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/02/17/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E4%B8%89%E5%A4%A9%E8%AE%A1%E5%88%92/" class="title">三天</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-02-17T10:39:42.831Z" itemprop="datePublished">2022-02-17</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%8B"><span class="toc-number">1.</span> <span class="toc-text">《计算机网络》</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">第一章概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E4%BA%92%E8%81%94%E7%BD%91%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 互联网概述</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E3%80%81%E4%BA%92%E8%81%94%E7%BD%91%E3%80%81%E4%B8%BB%E6%9C%BA"><span class="toc-number">1.1.1.0.0.1.</span> <span class="toc-text">-&gt; 计算机网络、互联网、主机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E4%BA%92%E8%81%94%E7%BD%91%E5%9F%BA%E7%A1%80%E7%BB%93%E6%9E%84%E4%B8%89%E4%B8%AA%E5%8F%91%E5%B1%95%E9%98%B6%E6%AE%B5"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">1. 互联网基础结构三个发展阶段</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-internet-Internet%E3%80%81ISP"><span class="toc-number">1.1.1.1.0.1.</span> <span class="toc-text">-&gt; internet&#x2F;Internet、ISP</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E6%A0%87%E5%87%86%E5%8C%96%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">2. 互联网的标准化工作</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-RFC"><span class="toc-number">1.1.1.2.0.1.</span> <span class="toc-text">-&gt; RFC</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 互联网的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-%E8%BE%B9%E7%BC%98%E9%83%A8%E5%88%86-%E5%AE%A2%E6%88%B7-%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%B9%E5%BC%8F%E3%80%81P2P"><span class="toc-number">1.1.2.0.0.1.</span> <span class="toc-text">-&gt; 边缘部分(客户-服务器方式、P2P)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-%E6%A0%B8%E5%BF%83%E9%83%A8%E5%88%86-%E7%94%B5%E8%B7%AF%E4%BA%A4%E6%8D%A2%E3%80%81%E6%8A%A5%E6%96%87%E4%BA%A4%E6%8D%A2%E3%80%81%E5%88%86%E7%BB%84%E4%BA%A4%E6%8D%A2"><span class="toc-number">1.1.2.0.0.2.</span> <span class="toc-text">-&gt; 核心部分(电路交换、报文交换、分组交换)</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E7%B1%BB%E5%88%AB"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 计算机网络的类别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.4 计算机网络的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87-%E9%80%9F%E7%8E%87%E3%80%81%E5%B8%A6%E5%AE%BD%E3%80%81%E5%90%9E%E5%90%90%E9%87%8F%E3%80%81%E6%97%B6%E5%BB%B6"><span class="toc-number">1.1.4.0.0.1.</span> <span class="toc-text">-&gt; 性能指标(速率、带宽、吞吐量、时延)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">1.1.4.1.</span> <span class="toc-text">性能指标</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9D%9E%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-number">1.1.4.2.</span> <span class="toc-text">非性能指标</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.5 计算机网络的体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-ISO%E5%92%8COSI-RM"><span class="toc-number">1.1.5.1.</span> <span class="toc-text">1. ISO和OSI&#x2F;RM</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%BB%84%E6%88%90%E8%A6%81%E7%B4%A0"><span class="toc-number">1.1.5.2.</span> <span class="toc-text">2. 网络协议的组成要素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E5%85%B7%E6%9C%89%E4%BA%94%E5%B1%82%E5%8D%8F%E8%AE%AE%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84-%E4%BB%8E%E4%B8%8B%E5%88%B0%E4%B8%8A"><span class="toc-number">1.1.5.3.</span> <span class="toc-text">3. 具有五层协议的体系结构(从下到上)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E4%B8%80%E4%BA%9B%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.6 一些概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-%E5%AE%9E%E4%BD%93%E3%80%81%E5%8D%8F%E8%AE%AE"><span class="toc-number">1.1.6.0.0.1.</span> <span class="toc-text">-&gt; 实体、协议</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82"><span class="toc-number">1.2.</span> <span class="toc-text">第二章 物理层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.2.0.1.</span> <span class="toc-text">物理层的主要任务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E4%BC%A0%E8%BE%93%E5%92%8C%E5%B9%B6%E8%A1%8C%E4%BC%A0%E8%BE%93"><span class="toc-number">1.2.0.2.</span> <span class="toc-text">串行传输和并行传输</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1"><span class="toc-number">1.2.0.3.</span> <span class="toc-text">数据通信</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.0.3.1.</span> <span class="toc-text">数据通信系统模型</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.2.0.4.</span> <span class="toc-text">术语</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gt-%E6%95%B0%E6%8D%AE%E3%80%81%E4%BF%A1%E5%8F%B7%E3%80%81%E7%A0%81%E5%85%83"><span class="toc-number">1.2.0.4.0.1.</span> <span class="toc-text">-&gt; 数据、信号、码元</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%BF%A1%E9%81%93%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">1.2.0.4.1.</span> <span class="toc-text">信道的概念</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-笔记/计算机网络" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      计算机网络
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="article-date">
+	  <time datetime="2022-03-07T14:44:31.675Z" itemprop="datePublished">2022-03-07</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="《计算机网络》"><a href="#《计算机网络》" class="headerlink" title="《计算机网络》"></a>《计算机网络》</h1><h2 id="第一章概述"><a href="#第一章概述" class="headerlink" title="第一章概述"></a>第一章概述</h2><p>21世纪的重要特征：<strong>数字化、网络化、信息化</strong>；21世纪是一个<strong>以网络为核心</strong>的信息时代。</p>
+<p>三大类网络：电信网络、有线电视网络、<strong>计算机网络</strong></p>
+<p>Internet中文译名：因特网、互联网(Internet是由数量极大的各种计算机网络互联起来的)</p>
+<p>互联网的基本特点：<strong>连通性和共享</strong></p>
+<blockquote>
+<p>“互联网+”是一种新的经济形态：互联网+各个传统行业</p>
+</blockquote>
+<p>负面影响：计算机病毒、恶意攻击</p>
+<h3 id="1-1-互联网概述"><a href="#1-1-互联网概述" class="headerlink" title="1.1 互联网概述"></a>1.1 互联网概述</h3><h6 id="gt-计算机网络、互联网、主机"><a href="#gt-计算机网络、互联网、主机" class="headerlink" title="-&gt; 计算机网络、互联网、主机"></a>-&gt; 计算机网络、互联网、主机</h6><p><strong>计算机网络</strong>(简称网络)是由若干**节点(node)<strong>和连接这些节点的</strong>链路(link)**组成</p>
+<blockquote>
+<p>把分布在不同地理位置的独立自主的计算机系统用通信线路连接起来。在通行协议控制下实现资源共享的新型计算机系统</p>
+<p>组成：若干主机、一个通信子网、一系列协议</p>
+</blockquote>
+<p><strong>互联网</strong>(网络的网络network of network)有多个网络通过一些路由器相互连接起来，构成一个覆盖范围更大的计算机网络，即<strong>将原本孤立的网络联结起来</strong></p>
+<p><img src="https://img-blog.csdnimg.cn/72bb908767874ccdb2637cbbcd3bbb78.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p><strong>主机</strong>(host)是与网络相连的计算机 –&gt; 边缘部分，给用户提供服务(终端：使用服务，像手机)</p>
+<blockquote>
+<p>网络把许多计算机连接在一起，而互联网则把许多网络通过一些<strong>路由器</strong>(路由器是特殊的计算机，但它不是主机)连接在一起。</p>
+<p>主机在边缘部分是为用户进行信息处理的，和其他主机通过网络交换信息；路由器是用来转发分组，即进行分组交换的</p>
+</blockquote>
+<h4 id="1-互联网基础结构三个发展阶段"><a href="#1-互联网基础结构三个发展阶段" class="headerlink" title="1. 互联网基础结构三个发展阶段"></a>1. 互联网基础结构三个发展阶段</h4><h6 id="gt-internet-Internet、ISP"><a href="#gt-internet-Internet、ISP" class="headerlink" title="-&gt; internet/Internet、ISP"></a>-&gt; internet/Internet、ISP</h6><ul>
+<li><p>单个网络ARPANET(美国DOD国防部)同互联网发展的过程</p>
+<ul>
+<li>internet互<strong>连</strong>网是一个通用名词，泛指由多个计算机网络互联而成的计算机网络。通行协议是任意的。</li>
+<li>Internet互<strong>联</strong>网/因特网是一个专用名词，指当前全球最大、最开放的、由众多网络相互连接而成的特定互连网。通行协议是TCP/IP协议族，其前身是美国ARPANET</li>
+</ul>
+</li>
+<li><p>建成三级结构的互联网：主干网、地区网、校园网/企业网</p>
+</li>
+<li><p>全球范围的多层次ISP结构的互联网</p>
+<ul>
+<li><p>ISP互联网服务提供商(Internet Service Provider)，如中国电信、联通、移动，从互联网管理机构申请到许多IP地址，且拥有通信线路以及路由器等连网设备。用户需向ISP缴纳费用租用IP地址进行上网。</p>
+</li>
+<li><p>IXP互联网交换点(Internet eXchange Point)，为更快的转发分组和高效利用网络资源</p>
+<p><img src="https://img-blog.csdnimg.cn/f98e56aebddb411591f5b8bd7cf61f04.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+</li>
+<li><p>WWW万维网(World Wide Web)，方便广大非网络专业人员对网络的使用</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="2-互联网的标准化工作"><a href="#2-互联网的标准化工作" class="headerlink" title="2. 互联网的标准化工作"></a>2. 互联网的标准化工作</h4><p>互联网在指定其标准的最大特点是<strong>面向公众</strong>，所有标准都是以RFC的形式在互联网上发表</p>
+<ul>
+<li>RFC请求评论(Request For Comments) 工程部和学术部通过收集对协议的评论 –&gt; 标准</li>
+</ul>
+<h6 id="gt-RFC"><a href="#gt-RFC" class="headerlink" title="-&gt; RFC"></a>-&gt; RFC</h6><h3 id="1-2-互联网的组成"><a href="#1-2-互联网的组成" class="headerlink" title="1.2 互联网的组成"></a>1.2 互联网的组成</h3><h6 id="gt-边缘部分-客户-服务器方式、P2P"><a href="#gt-边缘部分-客户-服务器方式、P2P" class="headerlink" title="-&gt; 边缘部分(客户-服务器方式、P2P)"></a>-&gt; 边缘部分(客户-服务器方式、P2P)</h6><ol>
+<li><p>边缘部分 ：由所有连接在互联网上的<strong>主机</strong>组成，用户直接使用/接触的(向用户提供服务的)，用来进行通信和资源共享</p>
+<p>计算机通信是计算机中的进程(即运行着的程序)之间的通信。计算机网络采用的通信方式是客户-服务器方式、P2P</p>
+<p>（1）客户-服务器方式</p>
+<p>服务器被动等待，客户主动发出任务(正常)</p>
+<p>客户是服务器请求方，服务器是服务提供方。服务器请求方和服务提供方都要使用网络核心部分所提供的服务。</p>
+<p>例子：发邮件、网上查资料</p>
+<blockquote>
+<p>以上所说的客户和服务器本来都指的是计算机进程(软件)</p>
+<p>使用计算机的人是计算机的“用户”(user)</p>
+<p>运行客户程序的机器称为client(客户机/客户端)，运行服务器程序的机器称为server(服务器/服务器端)</p>
+</blockquote>
+<p>（2）对等连接方式peer-to-peer</p>
+<p>两台主机在通信时，并不区分哪一个是服务请求方和哪一个是服务提供方。只要两台主机都运行了对等连接软件(P2P软件)，就可以进行平等的对等连接通信，双方都可以下载对方已经存储在硬盘中的共享文档。</p>
+<blockquote>
+<p>P2P引起的版权问题：P2P服务器并不会储存和提供资源，它只会保存一个索引index用来找到拥有该资源的人。用户通过下载P2P软件，在服务器的指引下找到真正拥有资源的人来获取资料</p>
+</blockquote>
+<p><img src="https://img-blog.csdnimg.cn/3fd8087b1a3c4dda9c663d933d26c3fc.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+</li>
+</ol>
+<h6 id="gt-核心部分-电路交换、报文交换、分组交换"><a href="#gt-核心部分-电路交换、报文交换、分组交换" class="headerlink" title="-&gt; 核心部分(电路交换、报文交换、分组交换)"></a>-&gt; 核心部分(电路交换、报文交换、分组交换)</h6><ol>
+<li><p>核心部分 ：由大量<strong>网络</strong>和连接这些网络的路由器组成，是为边缘部分提供服务服务的(提供连通性和交换)</p>
+<p>网络核心部分起特殊作用的是路由器，它是一种专用计算机(不叫主机)，是实现分组交换的关键构件，其任务是转发收到的分组(核心部分重要功能)。</p>
+<p><img src="https://img-blog.csdnimg.cn/0ec3c886f98f47e1b52ad9d4e790aa0f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>(1)电路交换</p>
+<p>双方接通形成一条专用的物理通路，不使用挂断归还给予他人使用。</p>
+<p>电路交换：建立连接(占用通信资源) –&gt; 通话(一直占用通信资源) –&gt; 释放连接(归还通信资源)</p>
+<p>特点：独占性、语音服务、线路使用效率较低(2人一说&lt;50%)</p>
+<p>(2)报文交换</p>
+<p>按序</p>
+<p>(3)分组交换</p>
+<p><img src="https://img-blog.csdnimg.cn/7bc97f6aff60401e874b2410f36548f6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>分组独立发，先发不一定先到</p>
+<blockquote>
+<p>以观看电影为例，我们发出看电影的请求，服务器会将电影的数据(很大)切割成一小块一小块块(分组)再放进链路中，数据被路由器接受并选择合适的路再继续发送下去，最终将数据全部放送到用户手机(终端)中。</p>
+<p>所以有一个现象：加载中的转圈(等待序号)，既是分发数据的延时，也是数据在路上开了小差(只有按先后序排列回原本的大数据才能看电影，且各小块数据送达的时间是随机的)。</p>
+<p>开了小差：乱丢错</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="1-3-计算机网络的类别"><a href="#1-3-计算机网络的类别" class="headerlink" title="1.3 计算机网络的类别"></a>1.3 计算机网络的类别</h3><ul>
+<li>按照网络的作用范围分类<ul>
+<li>广域网WAN    几十到几千公里(跨国)</li>
+<li>城域网MAN    5~50km(城市)</li>
+<li>局域网LAN      1km(学校、企业)</li>
+<li>个人区域网PAN  10m</li>
+<li>微微网     蓝牙</li>
+</ul>
+</li>
+<li>按照网络的使用者分类<ul>
+<li>公共网    电信公司建造的大型网络，日常使用的网络</li>
+<li>专用网    部门</li>
+</ul>
+</li>
+<li>用来把用户接入到互联网的网络<ul>
+<li>接入网AN(Access Network)本地接入网/居民接入网</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-4-计算机网络的性能"><a href="#1-4-计算机网络的性能" class="headerlink" title="1.4 计算机网络的性能"></a>1.4 计算机网络的性能</h3><h6 id="gt-性能指标-速率、带宽、吞吐量、时延"><a href="#gt-性能指标-速率、带宽、吞吐量、时延" class="headerlink" title="-&gt; 性能指标(速率、带宽、吞吐量、时延)"></a>-&gt; 性能指标(速率、带宽、吞吐量、时延)</h6><h4 id="性能指标"><a href="#性能指标" class="headerlink" title="性能指标"></a>性能指标</h4><ol>
+<li><p>速率(数据率、比特率) –&gt; 网络技术中指数据的<strong>传输</strong>速率</p>
+<ul>
+<li><p>比特：信息论中使用的信息量的单位(二进制数字的0或1)</p>
+</li>
+<li><p>速率单位：bit/s(bps) , B/s</p>
+<p>k = 1000 (k千, M兆, G吉, T太, P拍, E艾, Z泽, Y尧)</p>
+<blockquote>
+<p>现实生活中提到网络的速率，往往指的是<strong>额定速率或标称速率</strong>，并不是网络上实际运行的速率</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>带宽 –&gt; 计算机网络中表示网络中某通道传送数据的能力(时域称谓)</p>
+<ul>
+<li><p>网络带宽指单位时间内数字信道所能传送的“<strong>最高</strong>数据率”</p>
+</li>
+<li><p>带宽单位：bit/s</p>
+<blockquote>
+<p>某个信号具有的频带宽度(例广播)，即该信号所包含的各种不同频率成分所占据的<strong>频率范围</strong>(带宽=高频-低频)，单位是<strong>赫</strong>(频域称谓)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>吞吐量 –&gt; 单位时间内通过某个网络的<strong>实际</strong>数据量</p>
+<ul>
+<li><p>吞吐量受网络的带宽或网络的额定速率的限制，且取决于实际情况</p>
+</li>
+<li><p>例一：额定速率为100 Gbit/s，是吞吐量的绝对上限值，实际吞吐量可能&lt;=100 Mbit/s</p>
+</li>
+<li><p>例二：主机A和服务器B接入互联网的链路速率为100Mbit/s和 1Gbit/s，但主机A只能从服务器A那最大接收自己的速率100Mbit/s。若100个用户连接到服务器B，则服务器B的链路容量将被用户平分成每人10Mbit/s的带宽。这是主机A连接到服务器B的吞吐量只有10Mbit/s。</p>
+<blockquote>
+<p>当互联网某处发生严重堵塞，主机A接收不到服务器B发来的数据，吞吐量降为0。</p>
+<p>故日常交的宽带费用只保证某个路由器之间的数据传输速率，进入互联网之后就取决于互联网的流量分布(用户无法控制)</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>时延 <strong>latency</strong></p>
+<p>（1）发送时延/传输时延 –&gt;机器内部的发送器(网络适配器)</p>
+<img src="https://img-blog.csdnimg.cn/b7090931c70c474d8bf1ad559ea2180c.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:33%;" />
+
+<blockquote>
+<p>数据块长度：观看电影1GB ； 发送速率：每次传多少数据</p>
+</blockquote>
+<p>（2）传播时延 –&gt;机器外部 从一个节点到另一个节点</p>
+<img src="https://img-blog.csdnimg.cn/d3edc94928e54ef295191162fac9f187.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:33%;" />
+
+<blockquote>
+<p>信道长度：数据传输的距离 ； 电磁波在信道上的传播速率：定值，依所用介质而定</p>
+</blockquote>
+<p>（3）处理时延 –&gt; 主机/路由器收到分组要分析首部、提取数据部分、进行差错检验或查找转发表</p>
+<p>（4）排队时延 –&gt; 路由器内部分组排队等待处理和在接口等待转发</p>
+<img src="https://img-blog.csdnimg.cn/500db8c103a144848ab6edb5b55fca9d.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:50%;" /></li>
+<li><p>利用率(信道利用率和网络利用率)</p>
+<img src="https://img-blog.csdnimg.cn/e718b399d3ba43eda51035f6bd501c1f.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:50%;" /></li>
+</ol>
+<h4 id="非性能指标"><a href="#非性能指标" class="headerlink" title="非性能指标"></a>非性能指标</h4><p>费用、质量、标准化、可靠性、可扩展性和可升级性、易于管理和维护</p>
+<h3 id="1-5-计算机网络的体系结构"><a href="#1-5-计算机网络的体系结构" class="headerlink" title="1.5 计算机网络的体系结构"></a>1.5 计算机网络的体系结构</h3><p>计算机网络的体系结构定义：计算机网络的各层及其协议的集合<br>                                –&gt; 只讲层与层逻辑关系(面)，不讲一层一层实现的细节(点)</p>
+<p><strong>实现：</strong>计算网络的体系结构就是这个计算机网络及其构件所完成的功能的精确定义。强调的是，<strong>这些功能究竟是用何种硬件或软件完成的</strong>，则是一个遵循这种体系结构的<strong>实现(implementation)的问题</strong></p>
+<blockquote>
+<p>体系结构是抽象的，而是现实是具体的，是真正在运行的计算机的软件和硬件</p>
+</blockquote>
+<h4 id="1-ISO和OSI-RM"><a href="#1-ISO和OSI-RM" class="headerlink" title="1. ISO和OSI/RM"></a>1. ISO和OSI/RM</h4><p>ISO：国际标准化组织 International Standard Organization</p>
+<p>OSI/RM：开放系统互联基本参考模型 Open Systems Interconnection Reference Model</p>
+<h4 id="2-网络协议的组成要素"><a href="#2-网络协议的组成要素" class="headerlink" title="2. 网络协议的组成要素"></a>2. 网络协议的组成要素</h4><p>为进行网络中的数据交换而建立的规则、标准或约定成为网络协议，简称协议</p>
+<ul>
+<li>语法：结构、格式问题 –&gt; 数据结构</li>
+<li>语义：功能问题 –&gt; 实现什么功能</li>
+<li>同步：事件发生的先后次序</li>
+</ul>
+<h4 id="3-具有五层协议的体系结构-从下到上"><a href="#3-具有五层协议的体系结构-从下到上" class="headerlink" title="3. 具有五层协议的体系结构(从下到上)"></a>3. 具有五层协议的体系结构(从下到上)</h4><img src="https://img-blog.csdnimg.cn/c2599b4eaf8e4d2b86857a346726c085.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom:50%;" />
+
+<ol>
+<li><p>TCP/IP 四层结构 –&gt; 商业标准(真正应用)</p>
+<p>Application:7,6,5 ; Transport: 4 ; Network: 3 ; Network Access: 2,1</p>
+<blockquote>
+<p>该体系只关心网络的互相连接，并不关心局域网的构建(2,1)</p>
+</blockquote>
+</li>
+<li><p>OSI模型 –&gt; 学术/国际标准</p>
+<p>（1）Physical：规定信号和介质</p>
+<p>（2）Data Link：帧、介质的访问控制</p>
+<p>（3）Network：路径的选择</p>
+<p>（4）Transport：流控，保证可靠性</p>
+<p>（5）Session：控制会话</p>
+<p>（6）Presentation：通用的数据格式，语法</p>
+<p>（7）Application：0,1转化用户可使用的</p>
+<blockquote>
+<p>功能冗余，复杂</p>
+</blockquote>
+</li>
+<li><p>具有五层协议的体系结构 –&gt;教科书标准(不存在)</p>
+<p>为了能网络的相互连接，并关心局域网(小网)的构建。将TCP/IP 四层结构Application，Transport，Network和OSI模型Data Link，Physical合并成了教科版的五层协议结构。</p>
+<ul>
+<li>主机1向主机2发送数据</li>
+</ul>
+<img src="file:///C:\Users\zhangguozhi\Documents\Tencent Files\2251787923\Image\C2C\CB3400B7D9860BEDB72E7246FA324994.jpg" alt="img" style="zoom:50%;" /></li>
+</ol>
+<blockquote>
+<p>主机1接收到”今天吃面的消息”从应用层开始从上到下在上一层的基础上进行逐层加密，通过介质传输到另一端再从下到上逐层进行解密将”今天吃面“显示给主机2</p>
+</blockquote>
+<h3 id="1-6-一些概念"><a href="#1-6-一些概念" class="headerlink" title="1.6 一些概念"></a>1.6 一些概念</h3><h6 id="gt-实体、协议"><a href="#gt-实体、协议" class="headerlink" title="-&gt; 实体、协议"></a>-&gt; 实体、协议</h6><ul>
+<li><p>实体：可发送或接受的硬件或软件进程(任务管理器中的皆是软件进程)</p>
+</li>
+<li><p>协议：控制<strong>两个对等实体</strong>进行通信的<strong>规则</strong>的集合</p>
+<ul>
+<li><p>两个对等实体：网络层1-&gt; 网络层2，网络层1 &lt;- 网络层2</p>
+<p>！注意：这只是逻辑通信(水平)，真正的通信是垂直通信(上文)</p>
+<blockquote>
+<p>协议是水平的(对等实体之间的通信规则)，服务是垂直的(能被上一层看见)</p>
+<p>在协议的控制下，两个对等实体间的通信使得本层能够为上一层<strong>提供服务</strong>。要实现本层协议，还需要使用下面一层所提<strong>供的服务</strong>。(只看见服务，看不见协议)</p>
+<p>IP协议支持最强</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<img src="file:///C:\Users\zhangguozhi\Documents\Tencent Files\2251787923\Image\C2C\FA92560D1B024CEBC7F69801A41B0BA1.jpg" alt="img" style="zoom: 50%;" />
+
+<ul>
+<li>应用层的任务是通过应用进程间的交互来完成特定网络应用。应用层协议定义的是应用进程间通信和交互规则。此进程指主机中正在运行的程序。<strong>报文是应用层交互的数据单元。</strong></li>
+</ul>
+<h2 id="第二章-物理层"><a href="#第二章-物理层" class="headerlink" title="第二章 物理层"></a>第二章 物理层</h2><p><strong>通信、难处理</strong></p>
+<p>物理层考虑的是怎样才能在连接各种计算机的传输媒体上<strong>传输数据比特流</strong>（传输媒体本身并不属于物理层的范围）</p>
+<p>物理层的作用是尽可能地<strong>屏蔽传输媒体和通信手段的差异</strong>，使物理层上面的数据链路层感觉不到差异，使其只需要考虑如何完成本层协议和服务。</p>
+<p>物理层的协议，常称为物理层<strong>规程</strong>（使用更早的原因）</p>
+<h4 id="物理层的主要任务"><a href="#物理层的主要任务" class="headerlink" title="物理层的主要任务"></a>物理层的主要任务</h4><p>![img](file:///C:\Users\zhangguozhi\Documents\Tencent Files\2251787923\Image\C2C\098F803DF348A6A4BF8C2277AC14BA6D.jpg)</p>
+<p>BIOS/POST 通电自检，确保硬件是否准备好</p>
+<h4 id="串行传输和并行传输"><a href="#串行传输和并行传输" class="headerlink" title="串行传输和并行传输"></a>串行传输和并行传输</h4><p>数据在计算机内部多采用并行传输方式。但数据在通信线路(传输媒体)上的传输方式一般都是串行传输(经济)，即逐个比特按照时间顺序传输。因此，物理层还要完成传输方式的转换。</p>
+<p>PC数字信号(离散，失真小)，电话模拟信号(连续)–&gt;有空查一下</p>
+<h4 id="数据通信"><a href="#数据通信" class="headerlink" title="数据通信"></a>数据通信</h4><h5 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h5><p>![img](file:///C:\Users\zhangguozhi\Documents\Tencent Files\2251787923\Image\C2C\7B300FF0AC73B7B2135180FD8A5B8434.jpg)</p>
+<h4 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h4><h6 id="gt-数据、信号、码元"><a href="#gt-数据、信号、码元" class="headerlink" title="-&gt; 数据、信号、码元"></a>-&gt; 数据、信号、码元</h6><ul>
+<li><p>通信的目的就是传送消息(message)。话音、文字、图像、视频等都是消息</p>
+</li>
+<li><p>数据(data)：运送消息的实体</p>
+<p><strong>数据是信息的载体</strong>，信息是有用的数据</p>
+</li>
+<li><p>信号：数据的电子的/电磁的表现</p>
+<p>模拟信号(用户线)、数字信号(中继线)</p>
+<blockquote>
+<p>物质、能量和信息是构成客观世界的三要素</p>
+<p>1.消息、信息、信号的区别<br>消息的定义：是指包含信息的语言，文字和图像等，可表达客观事物和主观思维活动的状态<br>信号：是把消息变换成电信号，声信号等适合信道传输的物理量</p>
+<p>那什么是信息呢?<br>1）指事物中包含的内容<br>2）是事物在运动状态或存在形式上的不确定性的描述（即不确定性越大，信息越多）</p>
+<p>信息与消息的关系是什么？<br><strong>消息是信息的载体，包含关系</strong></p>
+<p>消息与信号的联系是什么？<br>信号是把消息转换成电信号等，然后在信道上面传输，所以<strong>信号是消息的运载工具</strong></p>
+<ul>
+<li>数据和信息之间是相互联系的。数据是反映客观事物属性的记录，<strong>是信息的具体表现形式</strong>。数据经过加工处理之后，就成为信息；而信息需要经过数字化转变成数据才能存储和传输。</li>
+<li>数据=信息+数据冗余</li>
+</ul>
+</blockquote>
+</li>
+<li><p>码元(code)：一个时间域(时间段)表示离散数值的基本波型(表示数字信号的基本模型) &lt;– 数字信号</p>
+<p><strong>码元是数据的载体</strong>（一个码元可以携带1bit，多个码元也可以携带1bit，1个码元也可以携带多个bit）</p>
+<p><strong>数据上存在上限</strong>（受物理介质的限制(数据传输速率)、受码元携带数据的限制(通信:码元 &lt;- 调制解调；计算机:数据–&gt;理想：一个码元带更多的数据)）</p>
+</li>
+</ul>
+<p><img src="C:\Users\zhangguozhi\AppData\Roaming\Typora\typora-user-images\image-20220313172435556.png" alt="image-20220313172435556">  </p>
+<blockquote>
+<p>波的类型：高电平1、低电平0（2类码元)</p>
+<p>一共有7个码元（4个低电平，3个高电平）</p>
+<p>芯片：负逻辑(高电平0、低电平1)–&gt;减耗(高电平多费电：功耗)</p>
+</blockquote>
+<blockquote>
+<p>数据是信息的载体，码元是数据的载体</p>
+</blockquote>
+<h5 id="信道的概念"><a href="#信道的概念" class="headerlink" title="信道的概念"></a>信道的概念</h5><p>信道(channel)：一般用来表示向某一个方向传送信息的媒体，与电路并不等同</p>
+<p>​                （一条通信电路包含：一条发送信道和一条接收信道）</p>
+<ul>
+<li><p>通信双方信息交互的三种基本方式：</p>
+<ul>
+<li><p>单向通信/单工通信：一个方向的通信，无反向交互（电视广播）</p>
+</li>
+<li><p>双向交替通信/双工通信：可双方交互，但不能同时发送/接收</p>
+<p>（！注意：“单工电台”指的是双向交替通信）</p>
+</li>
+<li><p>双向同时通信/全双工通信：双方可同时发送和接收            </p>
+</li>
+</ul>
+</li>
+<li><p>信源的信号常称为<strong>基带信号(基本频带信号)</strong> –&gt; 计算机输出的代表各种文字图像文件的数据信号</p>
+<p>​    基带信号包含许多的低频分量和直流分量，而许多信道并不能传输这些分量 –&gt; 对基带信号进行<strong>调制</strong></p>
+<p>调制分类：</p>
+<ul>
+<li><p>基带调制：</p>
+<p>由于是把数字信号转换为另一种形式的数字信号，又叫做<strong>编码</strong></p>
+<p>仅对基带信号的波形进行变换 –&gt; 与信道特征相适应，信号仍为基带信号</p>
+<img src="file:///C:\Users\zhangguozhi\Documents\Tencent Files\2251787923\Image\C2C\D003E960D76BBD7D5A545C43473C3991.jpg" alt="img" style="zoom:33%;" /></li>
+<li><p>带通调制：</p>
+<p>使用<strong>载波(carrier)</strong> 进行调制，把基带信号的<strong>频率范围</strong>搬移到较高的频段，并转为模拟信号 –&gt; 更好在模拟信道传输</p>
+<img src="file:///C:\Users\zhangguozhi\Documents\Tencent Files\2251787923\Image\C2C\705EAC67EFCC95F1B2435B0FDE9A492E.jpg" alt="img" style="zoom: 33%;" /></li>
+</ul>
+</li>
+<li><p>信道的极限容量</p>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络" target="_blank" rel="external">https://zhang0224gz.github.io/2022/03/07/笔记/计算机网络/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/03/20/%E6%95%99%E8%B5%84/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E5%92%8C%E8%83%BD%E5%8A%9B/" title="教育学--模块一 教育基础知识和基本原理"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E7%BC%96%E7%A0%81%E5%AD%A6/" title="密码编码学"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
