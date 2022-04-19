@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>《计算机网络》——第二章 物理层 | Flutter</title>
+  <meta name="description" content="通信、难处理 物理层考虑的是怎样才能在连接各种计算机的传输媒体上传输数据比特流（传输媒体本身并不属于物理层的范围） 物理层的作用是尽可能地屏蔽传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到差异，使其只需要考虑如何完成本层协议和服务。 物理层的协议，常称为物理层规程（使用更早的原因） 物理层的主要任务 BIOS&#x2F;POST 通电自检，确保硬件是否准备好 串行传输和并行传输数据在计算机内部多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《计算机网络》——第二章 物理层">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/03/28/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%89%A9%E7%90%86%E5%B1%82/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="通信、难处理 物理层考虑的是怎样才能在连接各种计算机的传输媒体上传输数据比特流（传输媒体本身并不属于物理层的范围） 物理层的作用是尽可能地屏蔽传输媒体和通信手段的差异，使物理层上面的数据链路层感觉不到差异，使其只需要考虑如何完成本层协议和服务。 物理层的协议，常称为物理层规程（使用更早的原因） 物理层的主要任务 BIOS&#x2F;POST 通电自检，确保硬件是否准备好 串行传输和并行传输数据在计算机内部多">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/098F803DF348A6A4BF8C2277AC14BA6D.jpg">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/7B300FF0AC73B7B2135180FD8A5B8434.jpg">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220313172435556.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/D003E960D76BBD7D5A545C43473C3991.jpg">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/705EAC67EFCC95F1B2435B0FDE9A492E.jpg">
+<meta property="og:image" content="https://img-blog.csdn.net/20180624163626210?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlYm9ybl9MZWU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
+<meta property="article:published_time" content="2022-03-28T15:40:41.892Z">
+<meta property="article:modified_time" content="2022-04-03T06:16:10.678Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="计算机网络">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/098F803DF348A6A4BF8C2277AC14BA6D.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/03/28/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%89%A9%E7%90%86%E5%B1%82/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 13.5px;">初始化</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 13px;">刷题</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13.5px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 14px;">蓝桥杯</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" class="title">两个蓝牙的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-18T02:16:09.468Z" itemprop="datePublished">2022-04-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="title">总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">涉及的C/C++的知识点</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" class="title">慎终追远(转载)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T00:42:02.098Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="title">摄像头--信标</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%A9%E7%90%86%E5%B1%82%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.</span> <span class="toc-text">物理层的主要任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E8%A1%8C%E4%BC%A0%E8%BE%93%E5%92%8C%E5%B9%B6%E8%A1%8C%E4%BC%A0%E8%BE%93"><span class="toc-number">2.</span> <span class="toc-text">串行传输和并行传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1"><span class="toc-number">3.</span> <span class="toc-text">数据通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F%E6%A8%A1%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">数据通信系统模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD"><span class="toc-number">3.2.</span> <span class="toc-text">术语</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E6%95%B0%E6%8D%AE%E3%80%81%E4%BF%A1%E5%8F%B7%E3%80%81%E7%A0%81%E5%85%83"><span class="toc-number">3.2.0.1.</span> <span class="toc-text">-&gt; 数据、信号、码元</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%A1%E9%81%93%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-number">3.3.</span> <span class="toc-text">信道的概念</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#gt-%E5%9F%BA%E5%B8%A6%E8%B0%83%E5%88%B6-%E5%B8%A6%E9%80%9A%E8%B0%83%E5%88%B6%EF%BC%8C"><span class="toc-number">3.3.0.1.</span> <span class="toc-text">-&gt; 基带调制&#x2F;带通调制，</span></a></li></ol></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-笔记/计算机网络/第二章 物理层" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《计算机网络》——第二章 物理层
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/03/28/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%89%A9%E7%90%86%E5%B1%82/" class="article-date">
+	  <time datetime="2022-03-28T15:40:41.892Z" itemprop="datePublished">2022-03-28</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/28/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%89%A9%E7%90%86%E5%B1%82/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p><strong>通信、难处理</strong></p>
+<p>物理层考虑的是怎样才能在连接各种计算机的传输媒体上<strong>传输数据比特流</strong>（传输媒体本身并不属于物理层的范围）</p>
+<p>物理层的作用是尽可能地<strong>屏蔽传输媒体和通信手段的差异</strong>，使物理层上面的数据链路层感觉不到差异，使其只需要考虑如何完成本层协议和服务。</p>
+<p>物理层的协议，常称为物理层<strong>规程</strong>（使用更早的原因）</p>
+<h2 id="物理层的主要任务"><a href="#物理层的主要任务" class="headerlink" title="物理层的主要任务"></a>物理层的主要任务</h2><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/098F803DF348A6A4BF8C2277AC14BA6D.jpg" alt="img"></p>
+<p>BIOS/POST 通电自检，确保硬件是否准备好</p>
+<h2 id="串行传输和并行传输"><a href="#串行传输和并行传输" class="headerlink" title="串行传输和并行传输"></a>串行传输和并行传输</h2><p>数据在计算机内部多采用并行传输方式。但数据在通信线路(传输媒体)上的传输方式一般都是串行传输(经济)，即逐个比特按照时间顺序传输。因此，物理层还要完成传输方式的转换。</p>
+<p>PC数字信号(离散，失真小)，电话模拟信号(连续)–&gt;有空查一下</p>
+<h2 id="数据通信"><a href="#数据通信" class="headerlink" title="数据通信"></a>数据通信</h2><h3 id="数据通信系统模型"><a href="#数据通信系统模型" class="headerlink" title="数据通信系统模型"></a>数据通信系统模型</h3><p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/7B300FF0AC73B7B2135180FD8A5B8434.jpg" alt="img"></p>
+<h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><h5 id="gt-数据、信号、码元"><a href="#gt-数据、信号、码元" class="headerlink" title="-&gt; 数据、信号、码元"></a>-&gt; 数据、信号、码元</h5><ul>
+<li><p>通信的目的就是传送消息(message)。话音、文字、图像、视频等都是消息</p>
+</li>
+<li><p>数据(data)：运送消息的实体</p>
+<p><strong>数据是信息的载体</strong>，信息是有用的数据</p>
+</li>
+<li><p>信号：数据的电子的/电磁的表现</p>
+<p>模拟信号(用户线)、数字信号(中继线)</p>
+<blockquote>
+<p>物质、能量和信息是构成客观世界的三要素</p>
+<p>1.消息、信息、信号的区别<br>消息的定义：是指包含信息的语言，文字和图像等，可表达客观事物和主观思维活动的状态<br>信号：是把消息变换成电信号，声信号等适合信道传输的物理量</p>
+<p>那什么是信息呢?<br>1）指事物中包含的内容<br>2）是事物在运动状态或存在形式上的不确定性的描述（即不确定性越大，信息越多）</p>
+<p>信息与消息的关系是什么？<br><strong>消息是信息的载体，包含关系</strong></p>
+<p>消息与信号的联系是什么？<br>信号是把消息转换成电信号等，然后在信道上面传输，所以<strong>信号是消息的运载工具</strong></p>
+<ul>
+<li>数据和信息之间是相互联系的。数据是反映客观事物属性的记录，<strong>是信息的具体表现形式</strong>。数据经过加工处理之后，就成为信息；而信息需要经过数字化转变成数据才能存储和传输。</li>
+<li>数据=信息+数据冗余</li>
+</ul>
+</blockquote>
+</li>
+<li><p>码元(code)：一个时间域(时间段)表示离散数值的基本波型(表示数字信号的基本模型) &lt;– 数字信号</p>
+<p><strong>码元是数据的载体</strong>（一个码元可以携带1bit，多个码元也可以携带1bit，1个码元也可以携带多个bit）</p>
+<p><strong>数据上存在上限</strong>（受物理介质的限制(数据传输速率)、受码元携带数据的限制(通信:码元 &lt;- 调制解调；计算机:数据–&gt;理想：一个码元带更多的数据)）</p>
+</li>
+</ul>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220313172435556.png" alt="image-20220313172435556">  </p>
+<blockquote>
+<p>波的类型：高电平1、低电平0（2类码元)</p>
+<p>一共有7个码元（4个低电平，3个高电平）</p>
+<p>芯片：负逻辑(高电平0、低电平1)–&gt;减耗(高电平多费电：功耗)</p>
+</blockquote>
+<blockquote>
+<p>数据是信息的载体，码元是数据的载体</p>
+</blockquote>
+<h3 id="信道的概念"><a href="#信道的概念" class="headerlink" title="信道的概念"></a>信道的概念</h3><h5 id="gt-基带调制-带通调制，"><a href="#gt-基带调制-带通调制，" class="headerlink" title="-&gt; 基带调制/带通调制，"></a>-&gt; 基带调制/带通调制，</h5><p>信道(channel)：一般用来表示向某一个方向传送信息的媒体，与电路并不等同</p>
+<p>​                （一条通信电路包含：一条发送信道和一条接收信道）</p>
+<ul>
+<li><p>通信双方信息交互的三种基本方式</p>
+<ul>
+<li><p><strong>单向通信/单工通信</strong>：一个方向的通信，无反向交互（电视广播）</p>
+</li>
+<li><p><strong>双向交替通信/双工通信</strong>：可双方交互，但不能同时发送/接收</p>
+<p>（！注意：“单工电台”指的是双向交替通信）</p>
+</li>
+<li><p><strong>双向同时通信/全双工通信</strong>：双方可同时发送和接收            </p>
+</li>
+</ul>
+</li>
+<li><p>信源的信号常称为<strong>基带信号(基本频带信号，高低电平)</strong> –&gt; 计算机输出的代表各种文字图像文件的数据信号</p>
+<p>​    基带信号包含许多的低频分量和直流分量，而许多信道并不能传输这些分量 –&gt; 对基带信号进行<strong>调制</strong></p>
+<p>调制分类：</p>
+<ul>
+<li><p><strong>基带调制：</strong></p>
+<p>由于是把数字信号转换为另一种形式的数字信号，又叫做<strong>编码</strong></p>
+<p>仅对基带信号的波形进行变换 –&gt; 与信道特征相适应，信号仍为基带信号</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/D003E960D76BBD7D5A545C43473C3991.jpg" alt="img" style="zoom:33%;" /></li>
+<li><p><strong>带通调制：</strong></p>
+<p>使用<strong>载波(carrier)</strong> 进行调制，把基带信号的<strong>频率范围</strong>搬移到较高的频段，并转为模拟信号 –&gt; 更好在模拟信道传输</p>
+<p>​                （频带变宽，使用的频带窄）</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/705EAC67EFCC95F1B2435B0FDE9A492E.jpg" alt="img" style="zoom: 33%;" />
+
+<ul>
+<li><p>有没有相位移动</p>
+</li>
+<li><p>二元调制法：只有两个状态</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Reborn_Lee/article/details/80792078">多元调制法</a>：正交振幅调制QAM（一个码元携带更多的二进制位）</p>
+<p>​    如图，由于4bit编码共有16种不同的组合，因此这16个点中的每一个点可对应于一种4bit的编码</p>
+</li>
+</ul>
+<img src="https://img-blog.csdn.net/20180624163626210?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1JlYm9ybl9MZWU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img" style="zoom: 50%;" />
+
+<p>​        若每一个码元可表示的<strong>比特数越多</strong>，则在接收端进行解调时，要<strong>正确识别每一种状态就越困难</strong>。</p>
+</li>
+</ul>
+</li>
+<li><p>信道的极限容量（上界/上限）</p>
+<p>寻找提高数据传输速率的途径</p>
+<p>只要从失真的波形中能够识别出来原来的信号，那么失真对通信质量可视为无影响。</p>
+<p>非理想信道：码元传输的速率越高，信号传输的距离越远，噪声干扰越大或传输媒体质量越差，在接收端的波形的失真就越严重。</p>
+<p><strong>限制码元在信道上的传输速率的因素：</strong></p>
+<ul>
+<li><p>信道能够通过的频率范围</p>
+<p>码间串扰：具体的信道所能通过的频率范围总是有限的，而信道中存在许多的高频分量不能通过信道。如果信号中的高频分量在传输中衰减，导致不能区分每个码元之间的所占清晰时间界限。–&gt; 一串码元模糊而无法识别</p>
+<p>为了避免码间串扰，码元的传输速率存在上限值。–&gt; <strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43627631/article/details/111240359">奈氏准则</a></strong></p>
+<blockquote>
+<p>奈氏准则：</p>
+<p>​    理想低通信道的最高码元传输速率 = 2W（Baud）</p>
+<p>​    理想带通信道的最高码元传输速率 = W（Baud）</p>
+<p>​        W是带宽，Baud是单位：波特（一秒传x个码元）</p>
+<p>如何判断理想低通信道？</p>
+<p>​    人的说话的信道（300-3400Hz），其他都是理想带通信道</p>
+<p>不能单依靠带宽判断，还要看其高低频</p>
+<p>​    1MHz 带通</p>
+<p>​    2kHz : 0.001M或0.003M 要分情况（没太懂……）</p>
+</blockquote>
+<p><strong>线限制了带宽，限制其1秒能跑多少码元</strong></p>
+<p><strong>人关心的是信息的传输速率（1秒传了多少比特）</strong></p>
+</li>
+<li><p>信噪比</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/03/28/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E7%89%A9%E7%90%86%E5%B1%82/" title="《计算机网络》——第二章 物理层" target="_blank" rel="external">https://zhang0224gz.github.io/2022/03/28/笔记/计算机网络/第二章 物理层/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/03/28/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/" title="《计算机网络》——第三章 数据链路层"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/03/21/%E5%88%B7%E9%A2%98/%E8%93%9D%E6%A1%A5%E7%9F%A5%E8%AF%86%E7%82%B9/" title="蓝桥云课"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

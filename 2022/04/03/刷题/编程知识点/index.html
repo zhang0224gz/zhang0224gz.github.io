@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>涉及的C/C++的知识点 | Flutter</title>
+  <meta name="description" content="1.二维数组作为函数参数传入静态数组（维数确定）二维数组作为函数的参数，实参可以直接使用二维数组名，在被调用函数中可以定义形参所有维数的大小，也可以省略以为大小的说明。例如： 12void find（char a[3][10]）;void find (char a[ ][10]);  也可以使用数组指针来作为函数参数，例如： 1void find （char (*p)[10]);  但是不能像下面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="涉及的C&#x2F;C++的知识点">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.二维数组作为函数参数传入静态数组（维数确定）二维数组作为函数的参数，实参可以直接使用二维数组名，在被调用函数中可以定义形参所有维数的大小，也可以省略以为大小的说明。例如： 12void find（char a[3][10]）;void find (char a[ ][10]);  也可以使用数组指针来作为函数参数，例如： 1void find （char (*p)[10]);  但是不能像下面">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125310025.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125429394.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125521787.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165311052.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165404225.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165503001.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165532571.png">
+<meta property="article:published_time" content="2022-04-03T04:00:52.435Z">
+<meta property="article:modified_time" content="2022-04-19T01:12:35.335Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="刷题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125310025.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 13.5px;">初始化</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 13px;">刷题</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13.5px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 14px;">蓝桥杯</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" class="title">两个蓝牙的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-18T02:16:09.468Z" itemprop="datePublished">2022-04-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="title">总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">涉及的C/C++的知识点</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" class="title">慎终追远(转载)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T00:42:02.098Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="title">摄像头--信标</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%BD%9C%E4%B8%BA%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E4%BC%A0%E5%85%A5"><span class="toc-number">1.</span> <span class="toc-text">1.二维数组作为函数参数传入</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E6%95%B0%E7%BB%84%EF%BC%88%E7%BB%B4%E6%95%B0%E7%A1%AE%E5%AE%9A%EF%BC%89"><span class="toc-number">1.1.</span> <span class="toc-text">静态数组（维数确定）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E6%95%B0%E7%BB%84%EF%BC%88%E7%BB%B4%E6%95%B0%E4%B8%8D%E7%A1%AE%E5%AE%9A%EF%BC%89"><span class="toc-number">1.2.</span> <span class="toc-text">动态数组（维数不确定）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C-Code-%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E6%95%B0%E7%BB%84%E5%86%85%E5%AD%98%E7%9A%84%E5%85%AD%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">C++ Code:动态分配数组内存的六种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%88%A9%E7%94%A8%E2%80%9Cmalloc-free%E2%80%9D%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="toc-number">1.3.1.</span> <span class="toc-text">1、利用“malloc-free”动态分配一维数组：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%A9%E7%94%A8%E2%80%9Cmalloc-free%E2%80%9D%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="toc-number">1.3.2.</span> <span class="toc-text">2、利用“malloc-free”动态分配二维数组：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%A9%E7%94%A8%E2%80%9Cnew-delete%E2%80%9D%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E4%B8%80%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="toc-number">1.3.3.</span> <span class="toc-text">3、利用“new-delete”动态分配一维数组：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%88%A9%E7%94%A8%E2%80%9Cnew-delete%E2%80%9D%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="toc-number">1.3.4.</span> <span class="toc-text">4、利用“new-delete”动态分配二维数组：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%88%A9%E7%94%A8%E2%80%9Cnew-delete%E2%80%9D%E5%8A%A8%E6%80%81%E5%88%86%E9%85%8D%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%EF%BC%9A"><span class="toc-number">1.3.5.</span> <span class="toc-text">5、利用“new-delete”动态分配二维数组：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%88%A9%E7%94%A8while%E7%9A%84%E6%9E%81%E5%85%B6%E7%AE%80%E5%8D%95%E8%BE%93%E5%85%A5%E5%AE%9E%E7%8E%B0%E6%B1%82%E5%92%8C%E3%80%81%E6%B1%82%E5%B9%B3%E5%9D%87%E4%B9%8B%E7%B1%BB%E7%AE%97%E6%B3%95%EF%BC%9A"><span class="toc-number">1.3.6.</span> <span class="toc-text">6、利用while的极其简单输入实现求和、求平均之类算法：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E6%B1%82%E9%80%86%E7%9F%A9%E9%98%B5"><span class="toc-number">2.</span> <span class="toc-text">2.求逆矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%8C%E5%88%97%E5%BC%8F%E7%9A%84%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.</span> <span class="toc-text">行列式的计算方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%B9%E8%A7%92%E7%BA%BF%E6%B3%95"><span class="toc-number">2.1.1.</span> <span class="toc-text">1.对角线法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%BB%A3%E6%95%B0%E4%BD%99%E5%AD%90%E5%BC%8F%E6%B3%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">2.代数余子式法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%AD%89%E4%BB%B7%E8%BD%AC%E5%8C%96%E6%B3%95"><span class="toc-number">2.1.3.</span> <span class="toc-text">3.等价转化法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%80%86%E5%BA%8F%E6%B3%95"><span class="toc-number">2.1.4.</span> <span class="toc-text">4.逆序法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">2.1.5.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%EF%BC%8C%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84"><span class="toc-number">3.</span> <span class="toc-text">3.函数返回一个数组，二维数组</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">4.头文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#include-lt-stdlib-h-gt"><span class="toc-number">4.1.</span> <span class="toc-text">#include&lt;stdlib.h&gt;</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#include-lt-math-h-gt"><span class="toc-number">4.2.</span> <span class="toc-text">#include&lt;math.h&gt;</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81-%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.1.</span> <span class="toc-text">1、 三角函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E5%8F%8D%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.2.</span> <span class="toc-text">2 、反三角函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E3%80%81%E5%8F%8C%E6%9B%B2%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0"><span class="toc-number">4.2.3.</span> <span class="toc-text">3 、双曲三角函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E3%80%81%E6%8C%87%E6%95%B0%E4%B8%8E%E5%AF%B9%E6%95%B0"><span class="toc-number">4.2.4.</span> <span class="toc-text">4 、指数与对数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E3%80%81%E5%8F%96%E6%95%B4"><span class="toc-number">4.2.5.</span> <span class="toc-text">5 、取整</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E3%80%81%E7%BB%9D%E5%AF%B9%E5%80%BC"><span class="toc-number">4.2.6.</span> <span class="toc-text">6 、绝对值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E3%80%81%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-number">4.2.7.</span> <span class="toc-text">7 、标准化浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%E3%80%81%E5%8F%96%E6%95%B4%E4%B8%8E%E5%8F%96%E4%BD%99"><span class="toc-number">4.2.8.</span> <span class="toc-text">8 、取整与取余</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E3%80%81%E5%85%B6%E4%BB%96"><span class="toc-number">4.2.9.</span> <span class="toc-text">9 、其他</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E5%85%B3%E4%BA%8E%E6%A8%A1%E5%8F%96%E4%BD%99"><span class="toc-number">5.</span> <span class="toc-text">5.关于模取余</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-刷题/编程知识点" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      涉及的C/C++的知识点
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+	  <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="1-二维数组作为函数参数传入"><a href="#1-二维数组作为函数参数传入" class="headerlink" title="1.二维数组作为函数参数传入"></a>1.二维数组作为函数参数传入</h1><h2 id="静态数组（维数确定）"><a href="#静态数组（维数确定）" class="headerlink" title="静态数组（维数确定）"></a>静态数组（维数确定）</h2><p>二维数组作为函数的参数，实参可以直接使用二维数组名，在被调用函数中可以定义形参所有维数的大小，也可以省略以为大小的说明。例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> find（<span class="keyword">char</span> a[<span class="number">3</span>][<span class="number">10</span>]）;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find</span> <span class="params">(<span class="keyword">char</span> a[ ][<span class="number">10</span>])</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>也可以使用数组指针来作为函数参数，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> find （<span class="keyword">char</span> (*p)[<span class="number">10</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>但是不能像下面这样使用，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> find（<span class="keyword">char</span> a[ ][ ]）;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find</span> <span class="params">(<span class="keyword">char</span> a[<span class="number">3</span>][ ])</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>因为从实参传递来的是数组的起始地址，如果在形参中不说明列数，编译器将无法定位元素的的位置。</p>
+<p>栗子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">range</span><span class="params">(<span class="keyword">char</span> str[ ][<span class="number">100</span>])</span></span>;<span class="comment">//传进二维数组</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> str[<span class="number">8</span>][<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)</span><br><span class="line">        gets(str[i]);</span><br><span class="line">    range(str);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>,str[i]);</span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">range</span><span class="params">(<span class="keyword">char</span> str[ ][<span class="number">100</span>])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">char</span> temp[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span><span class="number">-1</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">8</span>-i<span class="number">-1</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">strcmp</span>(str[j],str[j+<span class="number">1</span>])&gt;<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">strcpy</span>(temp,str[j]);</span><br><span class="line">                <span class="built_in">strcpy</span>(str[j],str[j+<span class="number">1</span>]);</span><br><span class="line">                <span class="built_in">strcpy</span>(str[j+<span class="number">1</span>],temp);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="动态数组（维数不确定）"><a href="#动态数组（维数不确定）" class="headerlink" title="动态数组（维数不确定）"></a>动态数组（维数不确定）</h2><p>如果不确定二维数组的维数的话，我们不能使用上面的方法，可以用下面的方法：</p>
+<p>手工转变寻址方式<br>对于数组 int p[m][n];</p>
+<p>如果要取p[i][j]的值（i&gt;=0 &amp;&amp; m&lt;=0 &amp;&amp; j&gt;=0 &amp;&amp; n&lt;=0)，编译器是这样寻址的，它的地址为：<strong>p + (i*n + j)</strong> ;</p>
+<p>二维数组的定义并非一个确定的值，也就是动态数组，这时候我们如果像之前那样进行函数调用就会报错，错误提示为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[Error] cannot convert &#x27;int (*)[N]&#x27; to &#x27;int**&#x27; for argument &#x27;2&#x27; to &#x27;int threeOrder_evaluation(int, int**)&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf_int</span><span class="params">(<span class="keyword">int</span> hhh[][Dim])</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们只能这样来调用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printf_int</span><span class="params">(<span class="keyword">int</span>** hhh)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="C-Code-动态分配数组内存的六种方法"><a href="#C-Code-动态分配数组内存的六种方法" class="headerlink" title="C++ Code:动态分配数组内存的六种方法"></a>C++ Code:动态分配数组内存的六种方法</h2><h3 id="1、利用“malloc-free”动态分配一维数组："><a href="#1、利用“malloc-free”动态分配一维数组：" class="headerlink" title="1、利用“malloc-free”动态分配一维数组："></a>1、利用“malloc-free”动态分配一维数组：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span> <span class="comment">//该头文件为malloc必须 </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len;</span><br><span class="line">	<span class="keyword">int</span> *p; </span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入开辟动态数组的长度：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;len;</span><br><span class="line">	<span class="comment">//长度乘以int的正常大小，才是动态开辟的大小 </span></span><br><span class="line">	p = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(len*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请逐个输入动态数组成员：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//此处不可以写成：cin&gt;&gt;*p[i] </span></span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;p[i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;您输入的动态数组为：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;p[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//时刻记住：有malloc就要有free </span></span><br><span class="line">	<span class="built_in">free</span>(p);</span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="2、利用“malloc-free”动态分配二维数组："><a href="#2、利用“malloc-free”动态分配二维数组：" class="headerlink" title="2、利用“malloc-free”动态分配二维数组："></a>2、利用“malloc-free”动态分配二维数组：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span>  </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span> <span class="comment">//该头文件为malloc必须   </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;  </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> row,col;  </span><br><span class="line">    <span class="keyword">int</span> **p;   </span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入开辟动态数组的行 &amp; 列：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  </span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;row&gt;&gt;col; </span><br><span class="line">    <span class="comment">//开始开辟  </span></span><br><span class="line">	p = (<span class="keyword">int</span>**)<span class="built_in">malloc</span>(row*<span class="keyword">sizeof</span>(<span class="keyword">int</span>*));<span class="comment">//为数组的行开辟空间   </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)  </span><br><span class="line">	&#123;  </span><br><span class="line">	    *(p+i)=(<span class="keyword">int</span>*)<span class="built_in">malloc</span>(col*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));<span class="comment">//为数组的列开辟空间   </span></span><br><span class="line">	&#125;  </span><br><span class="line">	  </span><br><span class="line"></span><br><span class="line">	<span class="comment">//输入成员   </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请逐个输入动态数组 各行各列 成员：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)  </span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; ++j)  </span><br><span class="line">	    &#123;  </span><br><span class="line">	        <span class="comment">//此处不可以写成：cin&gt;&gt;*p[i] [j]  </span></span><br><span class="line">	        <span class="built_in">cin</span>&gt;&gt;p[i][j];  </span><br><span class="line">	    &#125;  </span><br><span class="line">	      </span><br><span class="line">	<span class="comment">//输出成员   </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;您输入的动态数组 各行各列 成员如下：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;  </span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)  </span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; ++j)  </span><br><span class="line">	    &#123;  </span><br><span class="line">	        <span class="built_in">cout</span>&lt;&lt;p[i][j];  </span><br><span class="line">	    &#125;  </span><br><span class="line"></span><br><span class="line">	<span class="comment">//时刻记住：有malloc就要有free   </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)  </span><br><span class="line">	&#123;  </span><br><span class="line">    	<span class="built_in">free</span>(*(p+i));  </span><br><span class="line"> 	&#125;   </span><br><span class="line">  </span><br><span class="line">&#125; 	      </span><br></pre></td></tr></table></figure>
+
+<h3 id="3、利用“new-delete”动态分配一维数组："><a href="#3、利用“new-delete”动态分配一维数组：" class="headerlink" title="3、利用“new-delete”动态分配一维数组："></a>3、利用“new-delete”动态分配一维数组：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入开辟数组的长度：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;len; </span><br><span class="line">	<span class="keyword">int</span> *p = <span class="keyword">new</span> <span class="keyword">int</span> [len];</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据输入 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请逐个输入数据：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;p[i];</span><br><span class="line">	 &#125; </span><br><span class="line">	 </span><br><span class="line">	<span class="comment">//数据反馈 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;您分配的动态数组为：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;p[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">	 &#125; </span><br><span class="line">	 </span><br><span class="line">	<span class="comment">//释放内存：</span></span><br><span class="line">	<span class="keyword">delete</span> []p; </span><br><span class="line"></span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="4、利用“new-delete”动态分配二维数组："><a href="#4、利用“new-delete”动态分配二维数组：" class="headerlink" title="4、利用“new-delete”动态分配二维数组："></a>4、利用“new-delete”动态分配二维数组：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> row,col;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入开辟数组的行 &amp; 列：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;row&gt;&gt;col; </span><br><span class="line">	<span class="comment">//行的开辟 </span></span><br><span class="line">	<span class="keyword">int</span> **p = <span class="keyword">new</span> <span class="keyword">int</span>*[row];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//列的开辟 </span></span><br><span class="line">		p[i] = <span class="keyword">new</span> <span class="keyword">int</span>[col];</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据输入 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请逐个输入 各行各列 数据：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; ++j) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;p[i][j];</span><br><span class="line">	 	&#125; </span><br><span class="line">	 </span><br><span class="line">	<span class="comment">//数据反馈 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;您分配的动态数组为：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; ++j) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;p[i][j]&lt;&lt;<span class="string">&quot;&quot;</span>;</span><br><span class="line">	 	&#125; </span><br><span class="line">	 </span><br><span class="line">	<span class="comment">//释放内存：</span></span><br><span class="line">	 </span><br><span class="line">	<span class="keyword">delete</span> []p; </span><br><span class="line"></span><br><span class="line"> &#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="5、利用“new-delete”动态分配二维数组："><a href="#5、利用“new-delete”动态分配二维数组：" class="headerlink" title="5、利用“new-delete”动态分配二维数组："></a>5、利用“new-delete”动态分配二维数组：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> row,col;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入行 &amp; 列：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;row&gt;&gt;col;</span><br><span class="line">	<span class="comment">//很复杂的结构：对于某些编译器，注意连空格都不可以忽略 </span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &gt; p(row,<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(col));</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="comment">//数据输入 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请逐一输入 各行各列 数据：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cin</span>&gt;&gt;p[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//数据输出 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;您输入的数据：&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;row; ++i)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>; j&lt;col; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">cout</span>&lt;&lt;p[i][j]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="comment">//该方法利用的是两重的vector而无需释放 </span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、利用while的极其简单输入实现求和、求平均之类算法："><a href="#6、利用while的极其简单输入实现求和、求平均之类算法：" class="headerlink" title="6、利用while的极其简单输入实现求和、求平均之类算法："></a>6、利用while的极其简单输入实现求和、求平均之类算法：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum=<span class="number">0</span>,value=<span class="number">0</span>;</span><br><span class="line">	<span class="comment">//实际上非数字就会结束循环 </span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;请输入求和数字，以*号作为结束；&quot;</span></span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;value)</span><br><span class="line">	    sum += value;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;您输入数据之和为：&quot;</span>&lt;&lt;sum&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<p>————————————————<br>版权声明：本文为CSDN博主「Errors_In_Life」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/Errors_In_Life/article/details/78889951">https://blog.csdn.net/Errors_In_Life/article/details/78889951</a></p>
+<h1 id="2-求逆矩阵"><a href="#2-求逆矩阵" class="headerlink" title="2.求逆矩阵"></a>2.求逆矩阵</h1><h2 id="行列式的计算方法"><a href="#行列式的计算方法" class="headerlink" title="行列式的计算方法"></a>行列式的计算方法</h2><h3 id="1-对角线法"><a href="#1-对角线法" class="headerlink" title="1.对角线法"></a>1.对角线法</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125310025.png" alt="image-20220403125310025" style="zoom: 67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125429394.png" alt="image-20220403125429394" style="zoom:67%;" />
+
+<blockquote>
+<p>对角线法也是三阶行列式计算使用最广泛的方法</p>
+<p>▍ 对角线法适用于二、三阶行列式，对于更高阶的行列式暂时未找到规律</p>
+</blockquote>
+<h3 id="2-代数余子式法"><a href="#2-代数余子式法" class="headerlink" title="2.代数余子式法"></a>2.代数余子式法</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403125521787.png" alt="image-20220403125521787" style="zoom:67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165311052.png" alt="image-20220403165311052" style="zoom:67%;" />
+
+<h3 id="3-等价转化法"><a href="#3-等价转化法" class="headerlink" title="3.等价转化法"></a>3.等价转化法</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165404225.png" alt="image-20220403165404225" style="zoom:67%;" />
+
+<h3 id="4-逆序法"><a href="#4-逆序法" class="headerlink" title="4.逆序法"></a>4.逆序法</h3><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165503001.png" alt="image-20220403165503001" style="zoom:67%;" />
+
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220403165532571.png" alt="image-20220403165532571" style="zoom:67%;" />
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本文讲述了四种行列式的计算方法：</p>
+<p>▍其中对角线法，是使用最简单、最广泛的方法</p>
+<p>▍代数余子式法和等价转化法，在特定情况下能极大程度上简便运算，但需要读者对行列式进行灵活地观察</p>
+<p>▍逆序数法，是一种更加基础的方法，使用起来比较复杂</p>
+<h1 id="3-函数返回一个数组，二维数组"><a href="#3-函数返回一个数组，二维数组" class="headerlink" title="3.函数返回一个数组，二维数组"></a>3.函数返回一个数组，二维数组</h1><p>与其他高级语言相比，c语言，c++ 最大的不方便之处就是 函数只能返回一个数值。若要返回一个<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E7%BB%84&spm=1001.2101.3001.7020">数组</a>，必须用到指针以及动态分配内存。</p>
+<p><strong>方法之一：返回一个结构体，结构体里面包括一个数组。</strong></p>
+<p>因为结构体运行效率略慢，这个方法我干脆不用了。</p>
+<p><strong>方法之二：利用指针函数，并结合动态内存。</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> *<span class="title">fun</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">声明一个动态数组 a;</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> a;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">用指针调用函数 <span class="keyword">int</span> *p=fun();</span><br><span class="line"></span><br><span class="line">释放该指针 <span class="built_in">free</span>(p);     (相当于释放了指针函数里面的动态数组)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>举例：下面程序返回一个一维数组</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> * <span class="title">Max</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> *a=(<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="keyword">int</span> maxNum=<span class="number">0</span>,maxIndex,i;</span><br><span class="line">    <span class="keyword">for</span> (i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">if</span> (arr[i]&gt;maxNum)</span><br><span class="line">            &#123;maxNum=arr[i];maxIndex=i+<span class="number">1</span>;&#125;</span><br><span class="line">    a[<span class="number">0</span>]=maxNum;a[<span class="number">1</span>]=maxIndex;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">2</span>]=&#123;<span class="number">5</span>,<span class="number">2</span>&#125;;<span class="comment">//a[0]=5,a[1]=2; </span></span><br><span class="line">    <span class="keyword">int</span> *b=Max(a,<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;b[%d]=%d\n&quot;</span>,i,b[i]);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">free</span>(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个程序中的max函数不仅能够返回一个数组的最大值，还能够显示这个最大值在数组中的位置。</p>
+<p>下列程序返回一个二维数组，求出一个二维数组各行的最大值以及所在位置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdio.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;stdlib.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>  **<span class="title">Max</span><span class="params">(<span class="keyword">int</span> **arr,<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> **data;</span><br><span class="line">	data=(<span class="keyword">int</span> **)<span class="built_in">malloc</span>(n*<span class="keyword">sizeof</span>(<span class="keyword">int</span> *));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		data[i]=(<span class="keyword">int</span> *)<span class="built_in">malloc</span>(<span class="number">2</span>*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> maxNum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;m;++j)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//printf(&quot;arr[%d][%d]=%d &quot;,i,j,*((int *)arr+m*i+j));</span></span><br><span class="line">			<span class="keyword">if</span> (*((<span class="keyword">int</span> *)arr+m*i+j)&gt;maxNum)</span><br><span class="line">			&#123;</span><br><span class="line">				maxNum=*((<span class="keyword">int</span> *)arr+m*i+j);</span><br><span class="line">				data[i][<span class="number">0</span>]=maxNum;data[i][<span class="number">1</span>]=j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//printf(&quot;\n&quot;);</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="keyword">return</span> data;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">2</span>][<span class="number">3</span>]=&#123;<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">9</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> **b=Max((<span class="keyword">int</span> **)a,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;the maximum num for row %d is %d\n&quot;</span>,i+<span class="number">1</span>,b[i][<span class="number">0</span>]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;the maximum num for row %d is in %d&quot;</span>,i+<span class="number">1</span>,b[i][<span class="number">1</span>]+<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>;i++)</span><br><span class="line">		<span class="built_in">free</span>(b[i]);</span><br><span class="line">	<span class="built_in">free</span>(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="4-头文件"><a href="#4-头文件" class="headerlink" title="4.头文件"></a>4.头文件</h1><h2 id="include-lt-stdlib-h-gt"><a href="#include-lt-stdlib-h-gt" class="headerlink" title="#include&lt;stdlib.h&gt;"></a>#include&lt;stdlib.h&gt;</h2><h2 id="include-lt-math-h-gt"><a href="#include-lt-math-h-gt" class="headerlink" title="#include&lt;math.h&gt;"></a>#include&lt;math.h&gt;</h2><h3 id="1、-三角函数"><a href="#1、-三角函数" class="headerlink" title="1、 三角函数"></a>1、 三角函数</h3><p>double sin(double);<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%AD%A3%E5%BC%A6">正弦</a></p>
+<p>double cos(double);<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BD%99%E5%BC%A6/73670">余弦</a></p>
+<p>double tan(double);正切</p>
+<h3 id="2-、反三角函数"><a href="#2-、反三角函数" class="headerlink" title="2 、反三角函数"></a>2 、反三角函数</h3><p>double asin (double); 结果介于[-PI/2,PI/2]</p>
+<p>double acos (double); 结果介于[0,PI]</p>
+<p>double atan (double); 反正切（主值），结果介于[-PI/2,PI/2]</p>
+<p>double atan2 (double,double); 反正切（整圆值），<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BB%93%E6%9E%9C/29394">结果</a>介于[-PI,PI]</p>
+<h3 id="3-、双曲三角函数"><a href="#3-、双曲三角函数" class="headerlink" title="3 、双曲三角函数"></a>3 、双曲三角<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%87%BD%E6%95%B0/301912">函数</a></h3><p>double sinh (double);</p>
+<p>double cosh (double);</p>
+<p>double tanh (double);</p>
+<h3 id="4-、指数与对数"><a href="#4-、指数与对数" class="headerlink" title="4 、指数与对数"></a>4 、指数与对数</h3><p>double frexp(double value,int <em>exp);这是一个将value值拆分成小数部分f和（以2为底的）指数部分exp，并返回小数部分f，即f</em>2^exp。其中f取值在0.5~1.0<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%8C%83%E5%9B%B4/33207">范围</a>或者0。</p>
+<p>double ldexp(double x,int exp);这个函数刚好跟上面那个frexp函数功能相反，它的返回值是x*2^exp</p>
+<p>double modf(double value,double *iptr);拆分value值，返回它的小数部分，iptr指向整数部分。</p>
+<p>double log (double); 以e为底的对数</p>
+<p>double log10 (double);以10为底的对数</p>
+<p><strong>double pow(double x,double y);计算x的y次幂</strong></p>
+<p>float powf(float x,float y); 功能与pow一致，只是输入与输出皆为<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0/4502724">单精度浮点数</a></p>
+<p>double exp (double);求取自然数e的幂</p>
+<p>double sqrt (double);开平方根</p>
+<h3 id="5-、取整"><a href="#5-、取整" class="headerlink" title="5 、取整"></a>5 、取整</h3><p>double ceil (double); 取上整，返回不比x小的最小整数</p>
+<p>double floor (double); 取下整，返回不比x大的最大整数，即<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%AB%98%E6%96%AF%E5%87%BD%E6%95%B0">高斯函数</a>[x]</p>
+<h3 id="6-、绝对值"><a href="#6-、绝对值" class="headerlink" title="6 、绝对值"></a>6 、绝对值</h3><p>double fabs (double);求实型的绝对值</p>
+<p>double cabs(struct complex znum);求复数的绝对值</p>
+<h3 id="7-、标准化浮点数"><a href="#7-、标准化浮点数" class="headerlink" title="7 、标准化浮点数"></a>7 、标准化浮点数</h3><p>double frexp (double f,int *p); 标准化浮点数，f = x * 2^p，已知f求x,p (x介于[0.5,1])</p>
+<p>double ldexp (double x,int p); 与frexp相反，已知x,p求f</p>
+<h3 id="8-、取整与取余"><a href="#8-、取整与取余" class="headerlink" title="8 、取整与取余"></a>8 、取整与取余</h3><p>double modf (double,double*); 将参数的整数部分通过指针回传，返回小数部分</p>
+<p>double fmod (double,double); 返回两参数相除的余数</p>
+<h3 id="9-、其他"><a href="#9-、其他" class="headerlink" title="9 、其他"></a>9 、其他</h3><p>double hypot(double x,double y);已知直角三角形两个直角边长度，求斜边长度</p>
+<p>double ldexp(double x,int exponent);计算x*（2的指数幂）</p>
+<p>double poly(double x,int degree,double coeffs []);计算多项式</p>
+<p>int matherr(struct exception *e);数学错误计算处理程序</p>
+<h1 id="5-关于模取余"><a href="#5-关于模取余" class="headerlink" title="5.关于模取余"></a>5.关于模取余</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="number">3</span>%<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//1</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="number">-3</span>%<span class="number">2</span>&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//-1</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="number">3</span>%<span class="number">-2</span>&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//1</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;<span class="number">-3</span>%<span class="number">-2</span>&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//-1</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" title="涉及的C/C++的知识点" target="_blank" rel="external">https://zhang0224gz.github.io/2022/04/03/刷题/编程知识点/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" title="总结"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" title="慎终追远(转载)"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

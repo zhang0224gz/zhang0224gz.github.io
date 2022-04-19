@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>总结 | Flutter</title>
+  <meta name="description" content="全排列\DFS(深度优先搜索算法)\堆排序算法 枚举法C(m,n)12345678910111213141516171819202122232425int n;&#x2F;&#x2F;共计N个数int m;&#x2F;&#x2F;选m个数vector&lt;int&gt; chosen;void calc(int x) &amp;#123;    if (chosen.size() &gt; m || chosen.size() + (n -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="总结">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="全排列\DFS(深度优先搜索算法)\堆排序算法 枚举法C(m,n)12345678910111213141516171819202122232425int n;&#x2F;&#x2F;共计N个数int m;&#x2F;&#x2F;选m个数vector&lt;int&gt; chosen;void calc(int x) &amp;#123;    if (chosen.size() &gt; m || chosen.size() + (n -">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220406221345009.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220406221449329.png">
+<meta property="article:published_time" content="2022-04-06T02:26:51.915Z">
+<meta property="article:modified_time" content="2022-04-19T01:10:21.665Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="蓝桥杯">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220406221345009.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 13.5px;">初始化</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 13px;">刷题</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13.5px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 14px;">蓝桥杯</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" class="title">两个蓝牙的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-18T02:16:09.468Z" itemprop="datePublished">2022-04-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="title">总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">涉及的C/C++的知识点</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" class="title">慎终追远(转载)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T00:42:02.098Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="title">摄像头--信标</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9E%9A%E4%B8%BE%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">枚举法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-m-n"><span class="toc-number">1.1.</span> <span class="toc-text">C(m,n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#A-m-n"><span class="toc-number">1.2.</span> <span class="toc-text">A(m,n)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8STL%E5%BA%93"><span class="toc-number">2.</span> <span class="toc-text">常用STL库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#stack%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.1.</span> <span class="toc-text">stack模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vector%E5%AE%B9%E5%99%A8"><span class="toc-number">2.2.</span> <span class="toc-text">vector容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%88%97-Queue"><span class="toc-number">2.3.</span> <span class="toc-text">队列 Queue</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Map-%E6%98%A0%E5%B0%84"><span class="toc-number">2.4.</span> <span class="toc-text">Map 映射</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B7%AE%E5%88%86%E4%B8%8E%E5%89%8D%E7%BC%80%E5%92%8C"><span class="toc-number">3.</span> <span class="toc-text">差分与前缀和</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C"><span class="toc-number">4.</span> <span class="toc-text">哈希</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%80%92%E6%8E%A8%E5%92%8C%E9%80%92%E5%BD%92"><span class="toc-number">5.</span> <span class="toc-text">递推和递归</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E5%88%86%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">二分法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">7.</span> <span class="toc-text">其他</span></a></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-刷题/总结" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      总结
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="article-date">
+	  <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>全排列\DFS(深度优先搜索算法)\堆排序算法</p>
+<h1 id="枚举法"><a href="#枚举法" class="headerlink" title="枚举法"></a>枚举法</h1><h2 id="C-m-n"><a href="#C-m-n" class="headerlink" title="C(m,n)"></a>C(m,n)</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n;<span class="comment">//共计N个数</span></span><br><span class="line"><span class="keyword">int</span> m;<span class="comment">//选m个数</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; chosen;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (chosen.size() &gt; m || chosen.size() + (n - x + <span class="number">1</span>) &lt; m) <span class="comment">//剪枝:超过m和选不够m</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">if</span> (x == n + <span class="number">1</span>) &#123; <span class="comment">//选够了m个数输出</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chosen.size(); i++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, chosen[i]);</span><br><span class="line">            <span class="comment">//也可以不输出，存放起来也是可以的，主要是看题目。</span></span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//选x</span></span><br><span class="line">    calc(x + <span class="number">1</span>);</span><br><span class="line">    chosen.push_back(x);</span><br><span class="line">    <span class="comment">//不选x</span></span><br><span class="line">    calc(x + <span class="number">1</span>);</span><br><span class="line">    chosen.pop_back();<span class="comment">//消除痕迹</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">     calc(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="A-m-n"><a href="#A-m-n" class="headerlink" title="A(m,n)"></a>A(m,n)</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> n; <span class="comment">//共计N个数</span></span><br><span class="line"><span class="keyword">int</span> order[<span class="number">20</span>];</span><br><span class="line"><span class="keyword">bool</span> chosen[<span class="number">20</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">calc</span><span class="params">(<span class="keyword">int</span> k)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k == n + <span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; order[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">&quot;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (chosen[i])<span class="comment">//选过跳过</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        order[k] = i;</span><br><span class="line">        chosen[i] = <span class="number">1</span>;<span class="comment">//标准搜索方式</span></span><br><span class="line">        calc(k + <span class="number">1</span>);<span class="comment">//回溯并恢复现场</span></span><br><span class="line">        chosen[i] = <span class="number">0</span>;</span><br><span class="line">        order[k] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    calc(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="常用STL库"><a href="#常用STL库" class="headerlink" title="常用STL库"></a>常用STL库</h1><h2 id="stack模板"><a href="#stack模板" class="headerlink" title="stack模板"></a>stack模板</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">top()：</span><br><span class="line"></span><br><span class="line">返回一个栈顶元素的引用，类型为 T&amp;。如果栈为空，返回值未定义。</span><br><span class="line"></span><br><span class="line">push(<span class="keyword">const</span> T&amp; obj)：</span><br><span class="line"></span><br><span class="line">可以将对象副本压入栈顶。这是通过调用底层容器的 push_back() 函数完成的。</span><br><span class="line"></span><br><span class="line">push(T&amp;&amp; obj)：</span><br><span class="line"></span><br><span class="line">以移动对象的方式将对象压入栈顶。这是通过调用底层容器的有右值引用参数的 push_back() 函数完成的。</span><br><span class="line"></span><br><span class="line">pop()：</span><br><span class="line"></span><br><span class="line">弹出栈顶元素。</span><br><span class="line"></span><br><span class="line">size()：</span><br><span class="line"></span><br><span class="line">返回栈中元素的个数。</span><br></pre></td></tr></table></figure>
+
+<h2 id="vector容器"><a href="#vector容器" class="headerlink" title="vector容器"></a>vector容器</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>   <span class="comment">//头文件</span></span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a;      <span class="comment">//定义了一个int类型的vector容器a</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b[<span class="number">100</span>]; <span class="comment">//定义了一个int类型的vector容器b组</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">rec</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    ···</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;rec&gt; c;            <span class="comment">//定义了一个rec类型的vector容器c</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it; <span class="comment">//vector的迭代器，与指针类似</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a.size()           <span class="comment">//返回实际长度（元素个数），O(1)复杂度</span></span><br><span class="line">a.empty()      <span class="comment">//容器为空返回1，否则返回0，O(1)复杂度</span></span><br><span class="line">a.clear()      <span class="comment">//把vector清空</span></span><br><span class="line">a.begin()      <span class="comment">//返回指向第一个元素的迭代器，*a.begin()与a[0]作用相同</span></span><br><span class="line">a.end()        <span class="comment">//越界访问，指向vector尾部，指向第n个元素再往后的边界</span></span><br><span class="line">a.front()      <span class="comment">//返回第一个元素的值，等价于*a.begin和a[0]</span></span><br><span class="line">a.back()       <span class="comment">//返回最后一个元素的值，等价于*--a.end()和a[size()-1]</span></span><br><span class="line">a.push_back(x) <span class="comment">//把元素x插入vector尾部</span></span><br><span class="line">a.pop_back()   <span class="comment">//删除vector中最后一个元素</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> ( <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator it=a.begin() ; it!=a.end() ; it++ )</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;*iterator&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>( <span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a.size();i++) <span class="built_in">cout</span>&lt;&lt;a[i]&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="队列-Queue"><a href="#队列-Queue" class="headerlink" title="队列 Queue"></a>队列 Queue</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">queue</span>&lt;<span class="built_in">string</span>&gt; myqueue;</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; myqueue_int;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">front()：返回 <span class="built_in">queue</span> 中第一个元素的引用。</span><br><span class="line">back()：返回 <span class="built_in">queue</span> 中最后一个元素的引用。</span><br><span class="line">push(<span class="keyword">const</span> T&amp; obj)：在 <span class="built_in">queue</span> 的尾部添加一个元素的副本。</span><br><span class="line">pop()：删除 <span class="built_in">queue</span> 中的第一个元素。</span><br><span class="line">size()：返回 <span class="built_in">queue</span> 中元素的个数。</span><br><span class="line">empty()：如果 <span class="built_in">queue</span> 中没有元素的话，返回 <span class="literal">true</span>。</span><br></pre></td></tr></table></figure>
+
+<h2 id="Map-映射"><a href="#Map-映射" class="headerlink" title="Map 映射"></a>Map 映射</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; mymap1;</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mymap2;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>看容量</span><br><span class="line"><span class="keyword">int</span> <span class="built_in">map</span>.size();<span class="comment">//查询map中有多少对元素</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">empty</span><span class="params">()</span></span>;<span class="comment">// 查询map是否为空</span></span><br><span class="line"><span class="number">2.</span>插入</span><br><span class="line"><span class="built_in">map</span>.insert(<span class="built_in">make_pair</span>(key,value));</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="built_in">map</span>.insert(<span class="built_in">pair</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;(key, value))</span><br><span class="line"><span class="comment">//或者</span></span><br><span class="line"><span class="built_in">map</span>[key]=value</span><br><span class="line"><span class="number">3.</span>取值</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="built_in">string</span>&gt; <span class="built_in">map</span>;</span><br><span class="line"><span class="comment">//如果map中没有关键字2233，使用[]取值会导致插入</span></span><br><span class="line"><span class="comment">//因此，下面语句不会报错，但会使得输出结果结果为空</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="built_in">map</span>[<span class="number">2233</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">//但是使用使用at会进行关键字检查，因此下面语句会报错</span></span><br><span class="line"><span class="built_in">map</span>.at(<span class="number">2016</span>) = <span class="string">&quot;Bob&quot;</span>;</span><br><span class="line"><span class="number">4.</span>遍历操作</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">string</span>&gt;::iterator it;</span><br><span class="line"><span class="keyword">for</span> (it = mapSet.begin(); it != mapSet.end(); ++it)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;key&quot;</span> &lt;&lt; it-&gt;first &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;value&quot;</span> &lt;&lt; it-&gt;second &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="number">5.</span>查找操作</span><br><span class="line">m.count(key)：<span class="comment">//由于map不包含重复的key，因此m.count(key)取值为0，或者1，表示是否包含。</span></span><br><span class="line">m.find(key)：<span class="comment">//返回迭代器，判断是否存在。</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="差分与前缀和"><a href="#差分与前缀和" class="headerlink" title="差分与前缀和"></a>差分与前缀和</h1><p>差分与前缀和是一对互逆的操作，常常用于处理区间问题，差分法是解决区间加减问题，前缀和是解决区间求和问题的常用办法。</p>
+<p><strong>差分法</strong>的应用主要是用于处理区间问题。当某一个数组要在很多不确定的区间，<strong>加上相同的一个数</strong>。</p>
+<p>如果我们采用差分法，将数组拆分，构造出一个新的拆分数组，通过对数组区间的端点进行加减操作，最后将数组和并就能完成原来的操作。</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220406221345009.png" alt="image-20220406221345009" style="zoom: 67%;" />
+
+<p><strong>b[1]=a[1]</strong></p>
+<p><strong>b[i] = a[i]-a[i-1]</strong></p>
+<p><strong>b[l,r] + N = b[l]+N, b[r+1]-N</strong></p>
+<p><strong>b[1]=b[1]</strong></p>
+<p><strong>b[i] = b[i]+b[i-1];</strong></p>
+<p><strong>前缀和</strong>是指某序列的前 n 项和，可以把它理解为数学上的数列的<strong>前 n 项和</strong>。</p>
+<p>如果我们采用前缀和，构造出一个前缀和数组，通过对于端点的值的减法操作就能 O(1) 的求出 [l,r] 的和。然后 N 次查询的,就将复杂度降低为 O(n)</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220406221449329.png" alt="image-20220406221449329" style="zoom:67%;" />
+
+<p><strong>a[1]=a[1];</strong></p>
+<p><strong>sum[i] += sum[i-1]+a[i]; 或 a[i]+=a[i-1];</strong></p>
+<p><strong>sum[l,r] = sum[r] - sum[l - 1]</strong></p>
+<h1 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">long</span> <span class="keyword">long</span> h = <span class="number">999983</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">131</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Hx</span><span class="params">(<span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> n = s.size();</span><br><span class="line">    <span class="keyword">int</span> sum1 = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        sum1 = sum1 * <span class="number">131</span> % h + (s[i] - <span class="string">&#x27;a&#x27;</span> + <span class="number">1</span>) % h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (sum1 + h) % h;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="递推和递归"><a href="#递推和递归" class="headerlink" title="递推和递归"></a>递推和递归</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//递推开始:从尾部开始</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=n<span class="number">-1</span>; i&gt;=<span class="number">1</span>; i--)<span class="comment">//从最后一层逆推</span></span><br><span class="line">    &#123; </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=<span class="number">1</span>; j&lt;=i; j++)</span><br><span class="line">        &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (a[i+<span class="number">1</span>][j]&gt;=a[i+<span class="number">1</span>][j+<span class="number">1</span>])</span><br><span class="line">                a[i][j]+=a[i+<span class="number">1</span>][j];     <span class="comment">//路径选择</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>  </span><br><span class="line">                a[i][j]+=a[i+<span class="number">1</span>][j+<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;a[<span class="number">1</span>][<span class="number">1</span>]&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在单调递增序列a中查找&gt;=x的数中最小的一个（即x或x的后继）</span></span><br><span class="line"><span class="keyword">while</span> (low &lt; high)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (a[mid] &gt;= x)</span><br><span class="line">        high = mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        low = mid + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在单调递增序列a中查找&lt;=x的数中最大的一个（即x或x的前驱）</span></span><br><span class="line"><span class="keyword">while</span> (low &lt; high)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> mid = (low + high + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (a[mid] &lt;= x)</span><br><span class="line">        low = mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        high = mid - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span> <span class="comment">//用于浮点数输出</span></span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">7</span>)&lt;&lt;l;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//一般使用print</span></span><br><span class="line">    <span class="comment">//printf(&quot;%x.yf&quot;,n)</span></span><br><span class="line">    <span class="comment">//其中X是固定整数长度，小数点前的整数位数不够，会在前面补0</span></span><br><span class="line">    <span class="comment">//y是保留小数位数，不够补零</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//printf(&quot;%.7f&quot;,l);</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">array</span>[]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>&#125;;<span class="comment">//定义数组array</span></span><br><span class="line">	<span class="keyword">int</span> sum = accumulate(<span class="built_in">array</span>,<span class="built_in">array</span>+size(<span class="built_in">array</span>),<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;数组的和 = &quot;</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="comment">//数组全部置0</span></span><br><span class="line"><span class="built_in">memset</span>(move, <span class="number">0</span>, <span class="keyword">sizeof</span>(move));</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">judge</span><span class="params">(Cach a,Cach b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a.avg&gt;b.avg;</span><br><span class="line">&#125;</span><br><span class="line">sort(cash,cash+n,judge);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;fixed&lt;&lt;setprecision(<span class="number">7</span>)&lt;&lt;l;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//一般使用print</span></span><br><span class="line">    <span class="comment">//printf(&quot;%x.yf&quot;,n)</span></span><br><span class="line">    <span class="comment">//其中X是固定整数长度，小数点前的整数位数不够，会在前面补0</span></span><br><span class="line">    <span class="comment">//y是保留小数位数，不够补零</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//printf(&quot;%.7f&quot;,l);</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//映射：对称的奇偶可以有一样的值</span></span><br><span class="line">from = (from - <span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">to = (to - <span class="number">1</span>)/<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" title="总结" target="_blank" rel="external">https://zhang0224gz.github.io/2022/04/06/刷题/总结/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" title="两个蓝牙的配置"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" title="涉及的C/C++的知识点"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

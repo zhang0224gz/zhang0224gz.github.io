@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>《应用密码学》——第一章 概述 | Flutter</title>
+  <meta name="description" content="1.1 信息安全与密码技术信息安全是目的，密码技术是解决方法 1.2 密码技术发展简介古典密码时期时间：古代–19世纪末 人工，未形成学科，仅能称其为密码术 近代密码时期时间：20世纪初–20世纪50年代左右 自动编码的转轮密码机：德国“艾尼格玛”ENIGMA密码机 现代密码时期时间：1949年–现在 香农的奠基性论文“保密系统的通信理论” 1.3 密码学基本概念密码学的主要任务 机密性：非授权用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《应用密码学》——第一章 概述">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.1 信息安全与密码技术信息安全是目的，密码技术是解决方法 1.2 密码技术发展简介古典密码时期时间：古代–19世纪末 人工，未形成学科，仅能称其为密码术 近代密码时期时间：20世纪初–20世纪50年代左右 自动编码的转轮密码机：德国“艾尼格玛”ENIGMA密码机 现代密码时期时间：1949年–现在 香农的奠基性论文“保密系统的通信理论” 1.3 密码学基本概念密码学的主要任务 机密性：非授权用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/accdb101870f4b57a1628013efd0d6c6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/82530aed237e476da6f8e5b5b24885f7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_18,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-03-01T08:50:06.823Z">
+<meta property="article:modified_time" content="2022-03-28T15:52:58.523Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="密码学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/accdb101870f4b57a1628013efd0d6c6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%A6%82%E8%BF%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 13.5px;">初始化</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 13px;">刷题</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13.5px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 14px;">蓝桥杯</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" class="title">两个蓝牙的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-18T02:16:09.468Z" itemprop="datePublished">2022-04-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="title">总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">涉及的C/C++的知识点</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" class="title">慎终追远(转载)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T00:42:02.098Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="title">摄像头--信标</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E4%B8%8E%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF"><span class="toc-number">1.</span> <span class="toc-text">1.1 信息安全与密码技术</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E5%AF%86%E7%A0%81%E6%8A%80%E6%9C%AF%E5%8F%91%E5%B1%95%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">1.2 密码技术发展简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E6%97%B6%E6%9C%9F"><span class="toc-number">2.1.</span> <span class="toc-text">古典密码时期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%91%E4%BB%A3%E5%AF%86%E7%A0%81%E6%97%B6%E6%9C%9F"><span class="toc-number">2.2.</span> <span class="toc-text">近代密码时期</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%B0%E4%BB%A3%E5%AF%86%E7%A0%81%E6%97%B6%E6%9C%9F"><span class="toc-number">2.3.</span> <span class="toc-text">现代密码时期</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">3.</span> <span class="toc-text">1.3 密码学基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6%E7%9A%84%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="toc-number">3.1.</span> <span class="toc-text">密码学的主要任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E7%9A%84%E4%BA%94%E5%A4%A7%E9%83%A8%E5%88%86"><span class="toc-number">3.2.</span> <span class="toc-text">密码体制的五大部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7"><span class="toc-number">3.3.</span> <span class="toc-text">密码系统的安全性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E6%94%BB%E5%87%BB%E8%80%85%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">3.4.</span> <span class="toc-text">密码攻击者常用方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95%E8%A6%81%E6%B1%82"><span class="toc-number">3.4.1.</span> <span class="toc-text">密码算法要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95%E5%AE%89%E5%85%A8%E6%80%A7%E7%9A%84%E5%9B%A0%E7%B4%A0"><span class="toc-number">3.4.2.</span> <span class="toc-text">密码算法安全性的因素</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7-1"><span class="toc-number">3.4.3.</span> <span class="toc-text">密码系统的安全性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%BE%BE%E5%88%B0%E5%AE%9E%E9%99%85%E5%AE%89%E5%85%A8%E6%80%A7%E8%A6%81%E6%BB%A1%E8%B6%B3%E7%9A%84%E5%87%86%E5%88%99"><span class="toc-number">3.4.4.</span> <span class="toc-text">达到实际安全性要满足的准则</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-%E5%AF%86%E7%A0%81%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="toc-number">4.</span> <span class="toc-text">1.4 密码系统设计的基本原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%91%E5%85%8B%E9%9C%8D%E5%A4%AB%E6%96%AF-Kerckhoffs-%E5%8E%9F%E5%88%99"><span class="toc-number">4.1.</span> <span class="toc-text">科克霍夫斯(Kerckhoffs)原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-5-%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">5.</span> <span class="toc-text">1.5 密码体制的分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%89%E7%A7%98%E9%92%A5%E6%95%B0%E9%87%8F"><span class="toc-number">5.1.</span> <span class="toc-text">按秘钥数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E5%AF%B9%E6%98%8E%E6%96%87%E4%BF%A1%E6%81%AF%E7%9A%84%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">根据对明文信息的处理方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%B9%E6%8D%AE%E6%98%AF%E5%90%A6%E8%83%BD%E8%BF%9B%E8%A1%8C%E5%8F%AF%E9%80%86%E7%9A%84%E5%8A%A0%E5%AF%86%E5%8F%98%E6%8D%A2"><span class="toc-number">5.3.</span> <span class="toc-text">根据是否能进行可逆的加密变换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">5.4.</span> <span class="toc-text">对称密码体制的优缺点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E7%A0%81%E4%BD%93%E5%88%B6%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="toc-number">5.5.</span> <span class="toc-text">非对称密码体制的优缺点</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-笔记/密码学/第一章 概述" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      《应用密码学》——第一章 概述
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%A6%82%E8%BF%B0/" class="article-date">
+	  <time datetime="2022-03-01T08:50:06.823Z" itemprop="datePublished">2022-03-01</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%A6%82%E8%BF%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="1-1-信息安全与密码技术"><a href="#1-1-信息安全与密码技术" class="headerlink" title="1.1 信息安全与密码技术"></a>1.1 信息安全与密码技术</h2><p>信息安全是目的，密码技术是解决方法</p>
+<h2 id="1-2-密码技术发展简介"><a href="#1-2-密码技术发展简介" class="headerlink" title="1.2 密码技术发展简介"></a>1.2 密码技术发展简介</h2><h3 id="古典密码时期"><a href="#古典密码时期" class="headerlink" title="古典密码时期"></a>古典密码时期</h3><p>时间：古代–19世纪末</p>
+<p>人工，未形成学科，仅能称其为密码术</p>
+<h3 id="近代密码时期"><a href="#近代密码时期" class="headerlink" title="近代密码时期"></a>近代密码时期</h3><p>时间：20世纪初–20世纪50年代左右</p>
+<p>自动编码的转轮密码机：德国“艾尼格玛”ENIGMA密码机</p>
+<h3 id="现代密码时期"><a href="#现代密码时期" class="headerlink" title="现代密码时期"></a>现代密码时期</h3><p>时间：1949年–现在</p>
+<p>香农的奠基性论文“保密系统的通信理论”</p>
+<h2 id="1-3-密码学基本概念"><a href="#1-3-密码学基本概念" class="headerlink" title="1.3 密码学基本概念"></a>1.3 密码学基本概念</h2><h3 id="密码学的主要任务"><a href="#密码学的主要任务" class="headerlink" title="密码学的主要任务"></a>密码学的主要任务</h3><ul>
+<li>机密性：非授权用户不得访问</li>
+<li>数据完整性：不允许添加，删除，篡改等</li>
+<li>鉴别：消息的来源和本身的真实性</li>
+<li>抗抵赖性：已发（先前的通信行为及其相关内容）不可以否认</li>
+</ul>
+<p>密码学两方面：密码编码学和密码分析学</p>
+<h3 id="密码体制的五大部分"><a href="#密码体制的五大部分" class="headerlink" title="密码体制的五大部分"></a>密码体制的五大部分</h3><ul>
+<li>消息空间M，即明文空间</li>
+<li>密文空间C</li>
+<li>密钥空间K：加密秘钥和解密秘钥</li>
+<li>加密算法E</li>
+<li>解密算法D</li>
+</ul>
+<p>啥啥空间：一个非常大的数据集合</p>
+<blockquote>
+<p>熵：衡量信息的不确定性<br>            max：等概率</p>
+<p>例子：算法 Y=aX+b, 秘钥 a,b  E(m)=c -&gt; 秘钥,即 f</p>
+</blockquote>
+<h3 id="密码系统的安全性"><a href="#密码系统的安全性" class="headerlink" title="密码系统的安全性"></a>密码系统的安全性</h3><h3 id="密码攻击者常用方法"><a href="#密码攻击者常用方法" class="headerlink" title="密码攻击者常用方法"></a>密码攻击者常用方法</h3><ol>
+<li>穷举（暴力攻击）</li>
+<li>统计分析 –&gt; 规律</li>
+<li>数学分析攻击 –&gt; 数学模型</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>攻击类型</th>
+<th>攻击者拥有的资源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>惟密文攻击</td>
+<td>加密算法<br/>截获的部分密文</td>
+</tr>
+<tr>
+<td>已知明文攻击</td>
+<td>加密算法<br/>截获的部分密文，和相应的明文</td>
+</tr>
+<tr>
+<td>选择明文攻击</td>
+<td>加密算法<br/>截获的部分密文；加密黑盒子，可加密任意明文得到相应的密文</td>
+</tr>
+<tr>
+<td>选择密文攻击</td>
+<td>加密算法<br/>截获的部分密文；解密黑盒子，可解密任意密文得到相应的明文</td>
+</tr>
+</tbody></table>
+<p>  当前密码算法只要抵抗住穷举攻击状态下，惟密文攻击的攻击就是成功的</p>
+<h4 id="密码算法要求"><a href="#密码算法要求" class="headerlink" title="密码算法要求"></a>密码算法要求</h4><ol>
+<li>数据复杂性：计算量</li>
+<li>处理复杂性：花费时间</li>
+<li>存储复杂性：空间大小</li>
+</ol>
+<h4 id="密码算法安全性的因素"><a href="#密码算法安全性的因素" class="headerlink" title="密码算法安全性的因素"></a>密码算法安全性的因素</h4><ol>
+<li>密码算法的保密程度</li>
+<li>之外的不安全因素（管理程度）</li>
+</ol>
+<p>密码算法的保密强度并不等价于密码系统整体的安全性。一个密码系统必须同时具备完善的技术和管理要求，才能保证整个密码系统的安全。</p>
+<h4 id="密码系统的安全性-1"><a href="#密码系统的安全性-1" class="headerlink" title="密码系统的安全性"></a>密码系统的安全性</h4><ol>
+<li><p>无条件安全性</p>
+<p>一次一密，秘钥不能重复使用 –&gt; 存储管理花费巨大，不采取</p>
+</li>
+<li><p>可证明安全性</p>
+<p>数学难题：大整数素因子分解，计算离散对数(log n = b%m，模前可能b无穷等于余数) –&gt; 解决耗费时间过大</p>
+</li>
+<li><p>计算安全性性</p>
+</li>
+</ol>
+<p>当密码系统的秘钥空间足够大时，由于攻击者受计算条件、资源限制，而且有其特定目的，若不能在希望的时间内或实际可能的条件下破译成功，则称计算上不可破译</p>
+<h4 id="达到实际安全性要满足的准则"><a href="#达到实际安全性要满足的准则" class="headerlink" title="达到实际安全性要满足的准则"></a>达到实际安全性要满足的准则</h4><ol>
+<li>实际计算量十分巨大</li>
+<li>计算时间超过被加密信息有用的生命周期</li>
+<li>破译该密码系统的费用超过被加密信息本身的价值</li>
+</ol>
+<h2 id="1-4-密码系统设计的基本原则"><a href="#1-4-密码系统设计的基本原则" class="headerlink" title="1.4 密码系统设计的基本原则"></a>1.4 密码系统设计的基本原则</h2><h3 id="科克霍夫斯-Kerckhoffs-原则"><a href="#科克霍夫斯-Kerckhoffs-原则" class="headerlink" title="科克霍夫斯(Kerckhoffs)原则"></a>科克霍夫斯(Kerckhoffs)原则</h3><p>数据安全基于秘钥而不是算法的保密性</p>
+<ul>
+<li>密码设计公开原则并不等于所有的密码在应用时都一定要公开密码算法</li>
+</ul>
+<h2 id="1-5-密码体制的分类"><a href="#1-5-密码体制的分类" class="headerlink" title="1.5 密码体制的分类"></a>1.5 密码体制的分类</h2><h3 id="按秘钥数量"><a href="#按秘钥数量" class="headerlink" title="按秘钥数量"></a>按秘钥数量</h3><table>
+<thead>
+<tr>
+<th>对称密码体制</th>
+<th>非对称密码体制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>也称单钥<del>、秘密密钥</del>……</td>
+<td>也称双钥<del>、公开密钥</del>……</td>
+</tr>
+<tr>
+<td>c=Ek(m), m=Dk(c)</td>
+<td>c=Epk(m), m=Dsk(c)</td>
+</tr>
+<tr>
+<td>DES(56 bits) –&gt; AES(128 bits)</td>
+<td>RSA –&gt; ECC</td>
+</tr>
+<tr>
+<td>O(n2) : C(2,n) = n(n-1)/2</td>
+<td>O(2n): 每人分配一个公钥一个密钥</td>
+</tr>
+<tr>
+<td>加/解密使用一样，效率高<br/>密钥管理成本高，麻烦(比如分发)</td>
+<td>加/解密使用不一样，效率低<br/>密钥管理简单</td>
+</tr>
+<tr>
+<td></td>
+<td>公钥不可解出密钥，密钥可以推出公钥</td>
+</tr>
+</tbody></table>
+<h3 id="根据对明文信息的处理方式"><a href="#根据对明文信息的处理方式" class="headerlink" title="根据对明文信息的处理方式"></a>根据对明文信息的处理方式</h3><p>可将对称密码体制再分为分组密码和序列密码(流密码)</p>
+<table>
+<thead>
+<tr>
+<th>分组密码</th>
+<th>序列密码(字符流)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>一个字符/1 bit处理<br/>k足够长，不重复使用<br/>密钥非常重要（异或）</td>
+</tr>
+</tbody></table>
+<p><img src="https://img-blog.csdnimg.cn/accdb101870f4b57a1628013efd0d6c6.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<h3 id="根据是否能进行可逆的加密变换"><a href="#根据是否能进行可逆的加密变换" class="headerlink" title="根据是否能进行可逆的加密变换"></a>根据是否能进行可逆的加密变换</h3><table>
+<thead>
+<tr>
+<th>单向函数密码体制</th>
+<th>双向变换密码体制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>例子： b%m=c</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="对称密码体制的优缺点"><a href="#对称密码体制的优缺点" class="headerlink" title="对称密码体制的优缺点"></a>对称密码体制的优缺点</h3><ul>
+<li><p>优点</p>
+<p>加密、解密的处理速度快、效率高、算法安全性高</p>
+</li>
+<li><p>缺点</p>
+<ol>
+<li>密钥分发过程复杂，说花代价高</li>
+<li>密钥管理量的困难</li>
+</ol>
+</li>
+</ul>
+<h3 id="非对称密码体制的优缺点"><a href="#非对称密码体制的优缺点" class="headerlink" title="非对称密码体制的优缺点"></a>非对称密码体制的优缺点</h3><ul>
+<li><p>优点</p>
+<ol>
+<li>密钥分配简单</li>
+<li>系统密钥量少</li>
+<li>系统开放性好(随便加入正负)</li>
+<li>可以实现数字签名(私钥不可伪造性；不可否认性：因偷了或丢了造成的损失都要负责)</li>
+</ol>
+</li>
+<li><p>缺点</p>
+<p>加密、解密的运算复杂、处理速度较慢，同等安全强度下，<strong>非对称密码体制的密钥位数较多</strong></p>
+</li>
+</ul>
+<img src="https://img-blog.csdnimg.cn/82530aed237e476da6f8e5b5b24885f7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmhhbmdfMjAwMl9HWg==,size_18,color_FFFFFF,t_70,g_se,x_16" alt="img" style="zoom: 33%;" />
+
+<blockquote>
+<p>对称密码体制是每个人都有其他人的密钥，一旦加了一个人就要通知所有人人手增加一把新人的密钥。</p>
+<p>对称密码体制每人一把公钥和私钥，用收件人的公钥加密信件，收件人只需要用自己的私钥解密即可。若增加一人只需给新人配两把公私密钥就行，不需要通知所有人</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/03/01/%E7%AC%94%E8%AE%B0/%E5%AF%86%E7%A0%81%E5%AD%A6/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%A6%82%E8%BF%B0/" title="《应用密码学》——第一章 概述" target="_blank" rel="external">https://zhang0224gz.github.io/2022/03/01/笔记/密码学/第一章 概述/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/03/07/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E6%A6%82%E8%BF%B0/" title="《计算机网络》——第一章 概述"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/02/23/%E5%88%B7%E9%A2%98/%E8%93%9D%E6%A1%A5/" title="蓝桥杯题目"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

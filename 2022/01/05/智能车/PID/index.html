@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PID三环 | Flutter</title>
+  <meta name="description" content=".直立环pd：d参数的引入是为了抑制震荡   p，比例参数，它的作用是反应了控制的响应速度，过小的话平衡车表现是pwm明显不够直立不起来，过大的话小车过于震荡，震荡的时候就要加微分参数抑制震荡·   d，微分参数，它的作用是反应了对震荡的抑制。过小的话和没加微分参数只有比例参数一样的现象，过大的话会低频迅速抖动  控制时序：角度5ms采集一次 直立环和角度环10ms控制一次  下面是程序分析：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PID三环">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/PID/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content=".直立环pd：d参数的引入是为了抑制震荡   p，比例参数，它的作用是反应了控制的响应速度，过小的话平衡车表现是pwm明显不够直立不起来，过大的话小车过于震荡，震荡的时候就要加微分参数抑制震荡·   d，微分参数，它的作用是反应了对震荡的抑制。过小的话和没加微分参数只有比例参数一样的现象，过大的话会低频迅速抖动  控制时序：角度5ms采集一次 直立环和角度环10ms控制一次  下面是程序分析：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.geek-workshop.com/forum/201208/22/163856lxjiqd8xlvzh775b.png">
+<meta property="og:image" content="http://image.geek-workshop.com/forum/201208/22/163857bferffolflo9ly9l.png">
+<meta property="og:image" content="http://image.geek-workshop.com/forum/201208/22/163858sssxmnssijjjczf3.png">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcxMjAzMTgxMjQxODUy?x-oss-process=image/format,png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190405181029625.">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190405181046972.">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcxMjAzMTkwODQ3MTYw?x-oss-process=image/format,png">
+<meta property="og:image" content="https://pica.zhimg.com/80/v2-5d5dc9c392db2f296f78b5fe7d652d37_1440w.jpg?source=1940ef5c">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/808930db6a7a498197e34fb2a77c0c19.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01hcmsxOTc=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2022-01-05T08:13:52.956Z">
+<meta property="article:modified_time" content="2022-04-13T16:16:07.052Z">
+<meta property="article:author" content="zhang0224gz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.geek-workshop.com/forum/201208/22/163856lxjiqd8xlvzh775b.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/PID/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 13.5px;">初始化</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 13px;">刷题</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13.5px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 14px;">蓝桥杯</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" class="title">两个蓝牙的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-18T02:16:09.468Z" itemprop="datePublished">2022-04-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="title">总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">涉及的C/C++的知识点</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" class="title">慎终追远(转载)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T00:42:02.098Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="title">摄像头--信标</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BC%A0%E6%84%9F%E5%99%A8%EF%BC%88%E9%99%80%E8%9E%BA%E4%BB%AA%E5%92%8C%E5%8A%A0%E9%80%9F%E5%BA%A6%E8%AE%A1%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">传感器（陀螺仪和加速度计）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9B%B4%E7%AB%8B%E8%BD%A6%EF%BC%8CPID%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">直立车，PID部分</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%92%E5%BA%A6%E7%8E%AF"><span class="toc-number">2.1.</span> <span class="toc-text">角度环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PID"><span class="toc-number">2.2.</span> <span class="toc-text">PID</span></a></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-智能车/PID" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PID三环
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/PID/" class="article-date">
+	  <time datetime="2022-01-05T08:13:52.956Z" itemprop="datePublished">2022-01-05</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+  </span>
+
+        
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/PID/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>.直立环pd：d参数的引入是为了抑制震荡</p>
+<p>  p，比例参数，它的作用是反应了控制的响应速度，过小的话平衡车表现是pwm明显不够直立不起来，过大的话小车过于震荡，震荡的时候就要加微分参数抑制震荡·</p>
+<p>  d，微分参数，它的作用是反应了对震荡的抑制。过小的话和没加微分参数只有比例参数一样的现象，过大的话会低频迅速抖动</p>
+<p> 控制时序：角度5ms采集一次 直立环和角度环10ms控制一次</p>
+<p> 下面是程序分析：</p>
+<p> /************************************************************************/</p>
+<p> 直立环<br> ：</p>
+<p> int balance(float Angle,float Gyro)</p>
+<p> { </p>
+<p> float Bias;</p>
+<p> int balance;</p>
+<p> Bias=Angle-ZHONGZHI; //===求出平衡的角度中值 和机械相关</p>
+<p> balance=Bkp<em>Bias+Gyro</em>Bkd; //===计算平衡控制的电机PWM PD控制 kp是P系数 kd是D系数 </p>
+<p> return balance;</p>
+<p> }</p>
+<p> 角度环pid分析：这里使用的是<br> 位置pid控制器的PD控制器，这里<br> 微分D乘的参数是角速度是因为：这里的角速度已经转变为弧度/s单位，当在单位时间内，车子由一个角度猛然的转到另一个角度的时候，角速度先变大后变为0，这里的角速度就可以理解为在这段时间内的此时的角度差值和上次角度差值的差值(因为角度差值除以单位时间就是角速度)，这就很符合位置pid的微分乘的参数的要求了。所以这里的微分乘的是角速度（这里的角速度单位已经从°/s转为弧度/s）</p>
+<p> 角度环是根据平衡角度的变化给出的pwm值</p>
+<p> kp：是比例参数 他决定平衡小车响应速度的快还是慢 太小响应速度慢太大会发生低频抖动</p>
+<p> kd：是微分参数 对于干扰要进行迅速响应的的要加入微分参数 太小的话没什么作用太大会高频抖动</p>
+<p> 只有直立环调试比较好的现象是：平衡车可以直立几秒钟然后像一个方向加速</p>
+<p> 直立环调试指南：</p>
+<p> 在调试直立环的时候，我们要把速度环和转向环屏蔽掉，只打开直立环。</p>
+<p> （1）先确定平衡车机械平衡位置角度。</p>
+<p> （2）确定kp值得极性和大小:</p>
+<p>  首先我们估计kp的取值范围。我们的PWM设置的是7200代表占空比100%，假如我们设定 kp 值为 720，那么平衡小车在±10°的时候就会满转。根据我们的感性认识，这显然太大了，那我们就可以估计 kp 值在 0~720 之间，首先大概我们给一个值 kp=-200,我们可以观察到，小车往哪边倒，电机会往那边加速让小车到下，就是一个我们不愿看到的正反馈的效果。说明 kp 值的极性反了，接下来我们设定 kp=200,这个时候可以看到平衡小车有直立的趋势，虽然响应太慢，但是，我们可以确定 kp 值极性是正的。具体的数据接下来再仔细调试。</p>
+<p> 确定 kp 值的大小（令 kd=0，请结合本小节开头的直立控制函数理解）确定参数的原则是：<br> kp 一直增加，直到出现大幅度的低频抖动。</p>
+<p> 设定 kp=200,这个时候我们可以看到，小车虽然有平衡的趋势，但是显然响<br> 应太慢了。</p>
+<p> 设定 kp=350,这个时候我们可以看到，小车虽然有平衡的趋势，而且响应有<br> 所加快，但是响应还是不足以让小车保持平衡。</p>
+<p> 设定 kp=500,这个时候我们可以看到，小车的响应明显加快，而且来回推动<br> 小车的时候，会有大幅度的低频抖动。说明这个时候 kp 值已经足够大了，需要<br> 增加微分D控制削弱 p 控制，抑制低频抖动(也就是抑制超调)。</p>
+<p> （3）确定kd值得极性和大小：</p>
+<p>  我们得到的 MPU6050 输出的陀螺仪的原始数据，通过观察数据，我们发现最大值不会超过 4 位数（9999），再根据 7200 代表占空比 100%，所以我们估算 kd 值应该在 0~2 之间，我们先设定 kd=-0.5，当我们拿起小车旋转的时候，车轮会反向转动，并没有能够实现<br> 跟随效果。这说明了 kd的极性反了。接下来，我们设定 kd=0.5,这个时候我们可以看到，当我们旋转小车的时候，车轮会同向以相同的速度跟随转动，这说明我们实现了角速度闭环，至此，我们可以确定 kd 的极性是正的。具体的数据接下来再仔细调试。</p>
+<p>  确定 kd 值的大小（令 kp=500，请结合本小节开头的直立控制函数理解）</p>
+<p>  确定参数的原则是：<br> kd 一直增加，直到出现高频抖动。</p>
+<p>  设定 kd=0.5,这个时候我们可以看到，低频大幅度频抖动已经基本消除。</p>
+<p>  设定 kd=1,这个时候我们可以看到，整体性能已经非常棒。</p>
+<p>  设定 kd=1.7,这个时候我们可以看到，小车开始出现高频剧烈抖动(调试过程</p>
+<p>  遇到这种情况请马上关闭小车，长时间高频抖动会导致驱动被烧坏的)</p>
+<p> 至此，我们可以确定得到 kp=500,kd=1.7 是 P、D 参数的最大值。然后我们进行最关键的一步，对每个系数乘以 0.6,取整得到 kp=300,kd=1，这就是最终我们需要的参数，这样做的原因是，我们之前得到的参数是 kp、kd 最大值，理想值是根据我们的工程经验，对每个数据乘以 0.6 得到。这个时候我们可以看到，小车没有任何的抖动，非常平稳，但是依然无法保持长时间的直立，直立很短一段时间后会往一个方向加速倒下。这个等我们下面加上速度环才能得到更好的性能。只有直立环是很难让小车达到很好的直立效果的。至此，直立调试部分就告一段落了。</p>
+<p>感谢平衡小车之家在技术上的帮助</p>
+<p> 如果觉得有用的话 请关注我哦 </p>
+<p> 也可以和我一起交流，或者评论，我会一一回复。<br>————————————————<br>版权声明：本文为CSDN博主「假如明天没有太阳」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhaoyuaiweide/article/details/54572483">https://blog.csdn.net/zhaoyuaiweide/article/details/54572483</a></p>
+<p><strong>1.占空比</strong></p>
+<p>就是输出的PWM中，高电平保持的时间与该PWM的时钟周期的时间之比。</p>
+<p>如，一个PWM的频率是1000Hz，那么它的时钟周期就是1ms，就是1000us，如果高电平出现的时间是200us，那么低电平的时间肯定是800us，那么占空比就是200：1000，也就是说PWM的占空比就是1:5。</p>
+<p><strong>2.分辨率</strong></p>
+<p>也就是占空比最小能达到多少，如8位的PWM，理论的分辨率就是1：255(单斜率)，16位的的PWM理论就是1:65535(单斜率)。</p>
+<p>频率就是这样的，如16位的PWM，它的分辨率达到了1:65535，要达到这个分辨率，T/C就必须从0计数到65535才能达到，如果计数从0计到80之后又从0开始计到80…….，那么它的分辨率最小就是1:80了，但是，它也快了，也就是说PWM的输出频率高了。</p>
+<p><strong>3.双斜率 / 单斜率</strong></p>
+<ul>
+<li>假设一个PWM从0计数到80，之后又从0计数到80……. 这个就是单斜率</li>
+<li>假设一个PWM从0计数到80，之后是从80计数到0……. 这个就是双斜率</li>
+</ul>
+<p>可见，双斜率的计数时间多了一倍，所以输出的PWM频率就慢了一半，但是分辨率却是1：(80+80)=1:160，就是提高了一倍。</p>
+<p>假设PWM是单斜率，设定最高计数是80，我们再设定一个比较值是10，那么T/C从0计数到10时(这时计数器还是一直往上计数，直到计数到设定值80)，单片机就会根据你的设定，控制某个IO口在这个时候是输出1还是输出0还是端口取反，这样，就是PWM的最基本的原理了。</p>
+<h1 id="传感器（陀螺仪和加速度计）"><a href="#传感器（陀螺仪和加速度计）" class="headerlink" title="传感器（陀螺仪和加速度计）"></a>传感器（陀螺仪和加速度计）</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jaczen/article/details/80579472">(4条消息) 陀螺仪原理–转载_jaczen的博客-CSDN博客_陀螺仪原理</a></p>
+<p>- 加速度计（accelerometer）检测什么</p>
+<p>- 陀螺仪（gyroscope，也称作 gyro）检测什么</p>
+<p>- 如何将传感器ADC读取的数据转换为物理单位（加速度传感器的单位是g，陀螺仪的单位是 度/秒）</p>
+<p>- 如何结合加速度传感器和陀螺仪的数据以得到设备和地平面之间的倾角的准确信息</p>
+<p>加速度计检测到得力的方向与它本身加速度的方向是相反的。这种力量通常被称为 <a target="_blank" rel="noopener" href="http://en.wikipedia.org/wiki/Fictitious_force">惯性力或假想力</a> </p>
+<p><img src="http://image.geek-workshop.com/forum/201208/22/163856lxjiqd8xlvzh775b.png" alt="4.png"></p>
+<p><img src="http://image.geek-workshop.com/forum/201208/22/163857bferffolflo9ly9l.png" alt="5.png"></p>
+<p><img src="http://image.geek-workshop.com/forum/201208/22/163858sssxmnssijjjczf3.png" alt="6.png"></p>
+<p>R ^ 2 = RX ^ 2 + RY ^ 2 + RZ ^ 2（ 公式1），此公式等价于 <a target="_blank" rel="noopener" href="http://demonstrations.wolfram.com/PythagoreanTheorem3D/">三维空间勾股定理</a>。</p>
+<h1 id="直立车，PID部分"><a href="#直立车，PID部分" class="headerlink" title="直立车，PID部分"></a>直立车，PID部分</h1><h2 id="角度环"><a href="#角度环" class="headerlink" title="角度环"></a>角度环</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44270218/article/details/113664633">(4条消息) 【平衡小车制作】（五）位置式PID、直立环与速度环概念（超详解）_鲁乎乎的博客-CSDN博客_直立环</a></p>
+<p>这个信息挺全的</p>
+<p><a target="_blank" rel="noopener" href="https://c.miaowlabs.com/E02.html">直立平衡角度环PID控制 · 给新手的两轮自平衡小车开发实战指南 (miaowlabs.com)</a></p>
+<h2 id="PID"><a href="#PID" class="headerlink" title="PID"></a>PID</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33243369/article/details/78702912">(4条消息) PID应用时要注意的一些点_maitd的博客-CSDN博客_pid限幅</a></p>
+<p>位置式连续式</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcxMjAzMTgxMjQxODUy?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p> 位置式离散式(注意此时<strong>Kp=Kp, Ki=Kp*T/Ti, Kd=Kp*Td/T</strong>)</p>
+<p><img src="https://img-blog.csdnimg.cn/20190405181029625." alt="在这里插入图片描述"></p>
+<p>增量式离散式：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190405181046972." alt="在这里插入图片描述"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">参数整定找最佳，从小到大顺序查 </span><br><span class="line">先是比例后积分，最后再把微分加 </span><br><span class="line">曲线振荡很频繁，比例度盘要放大(Kp减小) </span><br><span class="line">曲线漂浮绕大湾，比例度盘往小扳(Kp增大)</span><br><span class="line">曲线偏离回复慢，积分时间往下降(Ki增大)</span><br><span class="line">曲线波动周期长，积分时间再加长(Ki减小)</span><br><span class="line">曲线振荡频率快，先把微分降下来(Kd增大) </span><br><span class="line">动差大来波动慢。微分时间应加长(Kd减小) </span><br><span class="line">理想曲线两个波，前高后低4比1 </span><br><span class="line">一看二调多分析，调节质量不会低</span><br></pre></td></tr></table></figure>
+
+<p>二.控制PID的执行周期(T)<br>虽然在离散化的公式里这个地方这个参数隐藏了,但注意它只是被隐藏了,但还是还会发生作用,看一下离散位置PID公式里那几个参数的公式,是不是它会影响参数的大小啊.<br>所以在应用第二个第三个PID公式时执行周期一定是要确定的,不能变更的,一T变更那么参数就得跟着变了,注意是T变了,参数就得相应的去变化,而不是一直不变,但如果此时你的参数维持不变的话,显然这组参数已经不是当前的最优参数了.<br>举个例子,有一个取样周期为1的PID和一个取样周期为10的PID控制同一个的执行元件,若此时参数还采取一样,它的控制效果显而易见是不会一样的.所以要控制执行周期,最好能将Ki=KpT/Ti, Kd=KpTd/T,这个公式直接应用,公式变为:<br><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2ltZy5ibG9nLmNzZG4ubmV0LzIwMTcxMjAzMTkwODQ3MTYw?x-oss-process=image/format,png" alt="这里写图片描述"></p>
+<p>我推荐用这个公式,在控制好T,或者获取T的实际值,代入,调节Ti和Td.许多开源四轴的控制一般是用这个公式的.</p>
+<p>三.积分环节的限幅<br>我不推荐做智能车啥的用增量式PID,说是简化了运算,但现在的单片机啥的运算能力和频率都挺强的,又不是51那个时代了,所以减那一点实在没什么作用.此外用增量式PID,不好去做积分限幅的,只能对每次的输出做限制,但对积分的限幅没什么作用.<br>有时候当误差量e(k)比较大,而e(k)-e(k-1)要小的多的时候,系统有较大的迟滞的时候(感觉是)要防止积分的饱和.就是当系统的输出一直摇摆,不会收敛,而且摇摆的频率比较缓慢,那么我感觉可能是饱和,得限制下积分了.也就是</p>
+<p>这个环节的累积值大小做限幅.<br>我感觉用的时候可以最后加积分环节,看一下系统的稳态误差,如果没稳态误差,我就直接不加了,如果有的话,那么看一下稳态误差的大小在什么范围,积分限幅也就大致限制在那个范围了.</p>
+<p>四.微分环节的滤波<br>当系统容易收到高频信号的干扰时,微分作用会将高频信号的扰动放大(自控课本上说的),高频信号变化的较快,而微分是去求误差的变化率,所以有高频扰动信号,就会被微分作用给放大,建议对微分环节做低通滤波,通常是一阶低通滤波,讲低通滤波的帖子文章挺多的,我就不写了.</p>
+<p>五.关于各种自适应PID<br>包括什么神经网络PID,模糊PID,遗传算法优化PID等等,本质上都是对参数的统计和优化,但通常这些算法运算量时挺大的,写肯定可以写出来,但这个在一些嵌入式设备上运行的效率速度不是很好,会占很大的运行速度,而且要搞清楚各种自适应PID的使用范围,比如模糊PID适用于过程控制,控制个温度什么的,它不适合用来做运动控制,控制电机什么的,因为计算量较大,在单片机上还有可能会参数迟滞什么的.做个智能车类的小东西,还是用不上这些方法的,单纯PID就够了,论文里的一些自适应PID方法,不一定都是经过实际检验的,可能只是在MATLAB里做了个仿真.所以我感觉不能全信.</p>
+<p>先把单片机，驱动芯片，<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E9%99%80%E8%9E%BA%E4%BB%AA&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1221857999%7D">陀螺仪</a>，加速度计，电机准备好。</p>
+<p>然后搭车，质量尽可能集中在两个车轮轴心线，陀螺仪和加速度计也要尽可能放在轴心线。</p>
+<p><img src="https://pica.zhimg.com/80/v2-5d5dc9c392db2f296f78b5fe7d652d37_1440w.jpg?source=1940ef5c" alt="img"></p>
+<p>我这个是个错误的示范，质量比较分散了，但是又无可奈何，又想要零点，又想把传感器伸的远一点。。。</p>
+<p>然后调试代码，1读取<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E4%B8%89%E8%BD%B4%E5%8A%A0%E9%80%9F%E5%BA%A6&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1221857999%7D">三轴加速度</a>和角速度2姿态结算，<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E4%BA%92%E8%A1%A5%E6%BB%A4%E6%B3%A2&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1221857999%7D">互补滤波</a>，四元数，卡尔曼估计器都可以。</p>
+<p><strong>直立控制</strong>，找出你的车的机械零点，也就是<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E8%B4%A8%E9%87%8F%E5%B9%B3%E8%A1%A1%E7%82%B9&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:1221857999%7D">质量平衡点</a>。最简单的方法：电机输出=p<em>（当前角度-期望角度）＋d</em>（角速度）</p>
+<p>参数整定参考一下csdn的一些文吧。</p>
+<p><strong>你的车就立起来了</strong>。</p>
+<p>直立控制不止这一种，也有各种双pi，双pd的串级控制等等。</p>
+<p>然后再搞速度和方向。</p>
+<p>可以去智能车论坛找个代码研究一下。</p>
+<p><a target="_blank" rel="noopener" href="https://www.its203.com/article/Mark197/119486864?2022-03-13T1?2022-03-20T0">https://www.its203.com/article/Mark197/119486864?2022-03-13T1?2022-03-20T0</a></p>
+<p><img src="https://img-blog.csdnimg.cn/808930db6a7a498197e34fb2a77c0c19.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L01hcmsxOTc=,size_16,color_FFFFFF,t_70#pic_center" alt="图1.串级PID流程框图"></p>
+<p>机械结构的设计决定了整个系统的极 限，硬件电路提供实现极限的方法与条件，而软件算法则是决定了整体系统能 否达到极限</p>
+<p><a target="_blank" rel="noopener" href="https://www.its203.com/article/Mark197/119486864?2022-03-13T1">https://www.its203.com/article/Mark197/119486864?2022-03-13T1</a></p>
+<p>直立车模控制中三种滤波算法简单分析</p>
+<p><a target="_blank" rel="noopener" href="https://www.eefocus.com/sensor/467379?_ga=2.136496885.490729479.1647172634-1494707267.1647172610&amp;pk_vid=3f99cf4edfd158d71647182427d8fba1">https://www.eefocus.com/sensor/467379?_ga=2.136496885.490729479.1647172634-1494707267.1647172610&amp;pk_vid=3f99cf4edfd158d71647182427d8fba1</a></p>
+<p>参数调试的话可以参照平衡小车之家的平衡车调试指南来进行相应的调试，里边写的还是比较好的哦<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/3e5fc765bb4cf7ec4bfed00b.html">https://wenku.baidu.com/view/3e5fc765bb4cf7ec4bfed00b.html</a></p>
+<p>这里说一下机械结构对控制的影响。机械结构对直立控制的影响还是比较巨大的，特别是车速越快对结构的要求就越高，如果只是单纯的想立起来的话对结构的要求则没那么高。</p>
+<p>主要遵循的原则就是<strong>机械重心越集中、越靠近两车轮轴线越好</strong>。车子除去底盘的话基本就电池和电路板了。电池是比较重的，所以可以优先考虑电池的放置，其次就是考虑电路板的放置了。<strong>重心越低越靠近车轮轴线相应的PID参数的调试就会更加的简单</strong>。反之的话则会更难。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cxy80.com/article/qq_36240874/100026227">https://www.cxy80.com/article/qq_36240874/100026227</a></p>
+<p><a target="_blank" rel="noopener" href="https://its401.com/article/qq_46336588/119916341">https://its401.com/article/qq_46336588/119916341</a></p>
+<p>关于直立环</p>
+<p><a target="_blank" rel="noopener" href="https://www.guyuehome.com/24372">https://www.guyuehome.com/24372</a></p>
+<p>详细介绍如何从0开始写一个数据通信，将数据从单片机发送到上位机（或者虚拟示波器）进行数据或图像显示，以及常见问题或注意事项解答   <a target="_blank" rel="noopener" href="https://www.guyuehome.com/19990">https://www.guyuehome.com/19990</a></p>
+<p>卡尔曼滤波（非矩阵）在平衡直立车直立角度测量中的应用（MATLAB模拟仿真），简单易懂，详细注释，附卡尔曼滤波(矩阵)  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44339029/article/details/105597930">https://blog.csdn.net/qq_44339029/article/details/105597930</a></p>
+<p>直立车的控制可分为直立环、转向环、和速度环，首先要写的肯定是直立环，<strong>直立环根据姿态传感器的数据</strong>，进行直立环PID控制，输出直立环PWM，使车保持直立状态，直立车直立是基础，当然直立环也不是越硬越好，这个看个人的需要吧，关于直立的角度，经过我的多次实验，<strong>一定不要太低</strong>，过低后会带来很多不必要的麻烦（比如上坡道时车不稳，贴地，电感值异常等），<strong>一般直立环调节到原地站立在机械零点，给予下压或者上挑干扰后可以在短距离的前后移动后恢复稳定状态，这时候就可以加转向环了</strong>，之前刚开始调完直立环后，我直接加的速度环，发现虽然给两个电机相同的PWM值，但是我的车就是不跑直线，后来经过数据采集后发现，两者的转速也没有什么规律可言，通过差值PWM来使其走直线也是不可行的，索性就直接先加转向环，<strong>通过转向环的作用来纠正其偏离中心赛道的偏差</strong>，发现效果很好，调完转向环后再调速度环（同时调也行），转向环和速度环都可以看做是对直立环的干扰，<strong>推荐使用串级PID的方法</strong></p>
+<p>直立环：在周期性中断中采集姿态传感器的数据，比如10ms采集一次，在主函数中初始化相应的外设，比如姿态传感器MPU6050的初始化、IIC的初始化、电机PWM的初始化，然后在直立控制函数中，先调用写好的由陀螺仪和加速计计算角度的函数，分别计算出当前小车距离地面的夹角，然后采用滤波算法，获取其融合后真正使用的角度值，然后将<strong>该角度值与设定的机械零点值相减，获取偏差通过PID算法对其进行控制，调试参数使其保持直立</strong></p>
+<p>转向环和速度环：在周期性中断中采集电感值ADC的数据，比如10ms采集一次，在主函数中初始化相应的外设，比如编码器所用的定时器的初始化、电感值ADC通道的初始化等，然后在控制函数里，读取编码器的值，并对其进行异常数据检查及处理，适当的滤波处理，然后由左右编码器的值得到车中心的速度值与设定值做差来获取速度偏差进行控制，<strong>在输出速度环和转向环PWM时建议采用平滑输出的方式，来减小短时间内对直立环的干扰</strong>，此外关于转向环，根据在不同的赛道元素采用不同的转向环系数的方式来增强控制效果，当然这种方法虽然使得控制效果更优化，但是需要检测和判断赛道元素，调试的参数也变多了，大家根据实际情况选择是否使用，还有非常重要的一点<strong>各环PWM的输出一定要限幅</strong>，限幅值的大小也是很重要的调节参数，尤其是直立环的</p>
+<blockquote>
+<p>MCU（Microcontroller Unit）微控制单元，核心板上的芯片</p>
+</blockquote>
+<blockquote>
+<p>USB转TTL是可以直接转换，插头同时插在塑料壳上的</p>
+</blockquote>
+<blockquote>
+<p>编码器分正交编码器和角度编码器(不用了)，一个是带方向的(数字显示正负表示正反)，一个不带方向  512</p>
+</blockquote>
+<p>速度环、直立环、转向环</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzA4NTU3MjQ0OA==&chksm=9fd4beeda8a337fbc175ecf57e14a9a8dabd9b191f709be966c5d45a7d522e54a0054e3f545e&idx=1&mid=2247487714&scene=21&sn=ffd263a91ac865915838e2d9b92e12bf#wechat_redirect">电子设计竞赛(4)-常用的两种PID算法 (qq.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzAxMjQxNjEyMw==&mid=2247485153&idx=1&sn=e5d188f90eec15bf1eea2c2f76b2f78e&chksm=9bb363f5acc4eae300a8e69c06ee6865169ad577fde16ed5b6505ec37e3b10c8cfc9708a8c3c&scene=21">基于TC264的两种电机驱动使用教程及PID算法浅析–逐飞科技 (qq.com)</a></p>
+<blockquote>
+<p>陀螺仪：灵敏度高，调整舵机角度偏转</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/a568713197/article/details/82845959">(33条消息) 平衡车直立PID调节总结_a568713197的博客-CSDN博客_平衡车pid</a></p>
+<p>这个有代码参考</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24221271/article/details/80837203">(33条消息) PID实践笔记-PID浅解及两轮直立车参数调试经验_尔过留香的博客-CSDN博客_方向环pid</a></p>
+<p>这个很不错</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24221271/article/details/80650640">(33条消息) PID实践笔记-两轮直立车的速度控制_尔过留香的博客-CSDN博客_直立车速度环</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/118543118">拒绝瞎调，用matlab，自动调节PID参数 - 知乎 (zhihu.com)</a></p>
+<p>好方法！！</p>
+<p>[平衡小车PID，就该这么调！！！ - 知乎 (zhihu.com)](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/119160742#:~:text=%E5%9C%A8%E7%9B%B4%E7%AB%8B%E7%8E%AF%E4%B8%AD%EF%BC%8CPID%E7%9A%84%E5%85%A5%E5%8F%A3%E5%8F%82%E6%95%B0%E4%B8%BA%EF%BC%9A%E5%B9%B3%E8%A1%A1%E5%B0%8F%E8%BD%A6%E7%9A%84%E5%A7%BF%E6%80%81%E8%A7%92%E5%92%8C%E5%A7%BF%E6%80%81%E8%A7%92%E5%AF%B9%E5%BA%94%E7%9A%84%E8%A7%92%E9%80%9F%E5%BA%A6%E3%80%82,%E5%80%BC%E5%BE%97%E8%AF%B4%E6%98%8E%EF%BC%8CMPU6050%E5%BE%97%E5%87%BA%E6%9D%A5%E7%9A%84%E5%A7%BF%E6%80%81%E8%A7%92%E6%9C%89%E4%B8%89%E7%A7%8D%EF%BC%9APITCH%EF%BC%88%E4%BF%AF%E4%BB%B0%E8%A7%92%EF%BC%89%E3%80%81ROLL%EF%BC%88%E7%BF%BB%E6%BB%9A%E8%A7%92%EF%BC%89%E3%80%81YAW%EF%BC%88%E8%88%AA%E5%90%91%E8%A7%92%EF%BC%89">https://zhuanlan.zhihu.com/p/119160742#:~:text=在直立环中，PID的入口参数为：平衡小车的姿态角和姿态角对应的角速度。,值得说明，MPU6050得出来的姿态角有三种：PITCH（俯仰角）、ROLL（翻滚角）、YAW（航向角）</a> 一般来说，MPU6050都是平方且平行装在平衡小车上，总不会有人垂直装吧。)</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/01/05/%E6%99%BA%E8%83%BD%E8%BD%A6/PID/" title="PID三环" target="_blank" rel="external">https://zhang0224gz.github.io/2022/01/05/智能车/PID/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/01/07/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/%E5%B1%82%E6%AC%A1%E5%88%86%E6%9E%90%E6%B3%95/" title="评价类模型"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/01/02/%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" title="计算机组成原理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

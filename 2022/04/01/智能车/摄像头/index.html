@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>摄像头--信标 | Flutter</title>
+  <meta name="description" content="信标车，摄像头处理部分技术报告–摄像头处理(2条消息) 智能车竞赛技术报告 | 节能信标组组 - 大连民族大学 - 粉红靓车队_卓晴的博客-CSDN博客_智能车信标灯算法 红外光虽然不可见，但却是最稳定的光源，除了受到自然光中红外光的干扰，不会受到其他光源的干扰，于是我们选择了通红外的170°广角摄像头。在国赛的比赛规则中，两个信标灯之间的距离最远有4.61米，本着减少算法复杂度的原则，我们通">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摄像头--信标">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="信标车，摄像头处理部分技术报告–摄像头处理(2条消息) 智能车竞赛技术报告 | 节能信标组组 - 大连民族大学 - 粉红靓车队_卓晴的博客-CSDN博客_智能车信标灯算法 红外光虽然不可见，但却是最稳定的光源，除了受到自然光中红外光的干扰，不会受到其他光源的干扰，于是我们选择了通红外的170°广角摄像头。在国赛的比赛规则中，两个信标灯之间的距离最远有4.61米，本着减少算法复杂度的原则，我们通">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/%E6%91%84%E5%83%8F%E5%A4%B4.png">
+<meta property="og:image" content="https://img-blog.csdn.net/20130825153036000">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220409201932455.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220409202054181.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220409202437342.png">
+<meta property="article:published_time" content="2022-04-01T09:14:46.059Z">
+<meta property="article:modified_time" content="2022-04-13T08:35:43.433Z">
+<meta property="article:author" content="zhang0224gz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/%E6%91%84%E5%83%8F%E5%A4%B4.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/zhang0224gz" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Flutter</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Vegetable bird &amp; Student</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%B7%E9%A2%98/" rel="tag">刷题</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" rel="tag">蓝桥杯</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 14px;">SET4</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 13.5px;">初始化</a> <a href="/tags/%E5%88%B7%E9%A2%98/" style="font-size: 13px;">刷题</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 13.5px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/" style="font-size: 14px;">蓝桥杯</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/18/%E6%99%BA%E8%83%BD%E8%BD%A6/%E4%B8%A4%E4%B8%AA%E8%93%9D%E7%89%99%E7%9A%84%E9%85%8D%E7%BD%AE/" class="title">两个蓝牙的配置</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-18T02:16:09.468Z" itemprop="datePublished">2022-04-18</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/06/%E5%88%B7%E9%A2%98/%E6%80%BB%E7%BB%93/" class="title">总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-06T02:26:51.915Z" itemprop="datePublished">2022-04-06</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/03/%E5%88%B7%E9%A2%98/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E7%82%B9/" class="title">涉及的C/C++的知识点</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-03T04:00:52.435Z" itemprop="datePublished">2022-04-03</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" class="title">慎终追远(转载)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-02T00:42:02.098Z" itemprop="datePublished">2022-04-02</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="title">摄像头--信标</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BF%A1%E6%A0%87%E8%BD%A6%EF%BC%8C%E6%91%84%E5%83%8F%E5%A4%B4%E5%A4%84%E7%90%86%E9%83%A8%E5%88%86"><span class="toc-number">1.</span> <span class="toc-text">信标车，摄像头处理部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E6%8A%A5%E5%91%8A%E2%80%93%E6%91%84%E5%83%8F%E5%A4%B4%E5%A4%84%E7%90%86"><span class="toc-number">1.0.1.</span> <span class="toc-text">技术报告–摄像头处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#csdn%E2%80%93-%E6%91%84%E5%83%8F%E5%A4%B4%E5%A4%84%E7%90%86"><span class="toc-number">1.0.2.</span> <span class="toc-text">csdn– 摄像头处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E6%B3%95"><span class="toc-number">1.0.3.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2"><span class="toc-number">1.0.3.1.</span> <span class="toc-text">中值滤波</span></a></li></ol></li></ol></li></ol></li></ol>
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-智能车/摄像头" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      摄像头--信标
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" class="article-date">
+	  <time datetime="2022-04-01T09:14:46.059Z" itemprop="datePublished">2022-04-01</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+  </span>
+
+        
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/%E6%91%84%E5%83%8F%E5%A4%B4.png" alt="摄像头"  />
+
+<h1 id="信标车，摄像头处理部分"><a href="#信标车，摄像头处理部分" class="headerlink" title="信标车，摄像头处理部分"></a>信标车，摄像头处理部分</h1><h3 id="技术报告–摄像头处理"><a href="#技术报告–摄像头处理" class="headerlink" title="技术报告–摄像头处理"></a>技术报告–摄像头处理</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuoqingjoking97298/article/details/120053997?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0.pc_relevant_paycolumn_v3&spm=1001.2101.3001.4242.1&utm_relevant_index=3">(2条消息) 智能车竞赛技术报告 | 节能信标组组 - 大连民族大学 - 粉红靓车队_卓晴的博客-CSDN博客_智能车信标灯算法</a></p>
+<p>红外光虽然不可见，但却是最稳定的光源，除了受到自然光中红外光的干扰，不会受到其他光源的干扰，于是我们选择了通红外的170°广角摄像头。在国赛的比赛规则中，两个信标灯之间的距离最远有4.61米，本着减少算法复杂度的原则，我们通过加长摄像头支架的高度来解决视野问题，摄像头支撑加到了45cm</p>
+<p><a target="_blank" rel="noopener" href="https://www.eet-china.com/mp/a73929.html">智能车竞赛技术报告 | 节能信标组-哈尔滨工业大学紫丁香五队-面包板社区 (eet-china.com)</a></p>
+<p>本智能车采用的是<strong>2个逐飞的170度红外摄像头</strong>，前后分别一个。在单片机采集图像后需要对其进行处理，以提取主要的图像信息。对于节能信标组，需要提取的就是亮着的信标灯的坐标。十六届信标灯的<strong>灯罩是扁平的，距离较远时，接收到的光较弱</strong>，而且由于<strong>场地灯光和太阳光的存在，会存在杂点、光斑</strong>，对信标灯的识别有着很大的影响。因此，在软件上必须排除干扰因素，对图像进行精准识别，并尽可能提取出更多的信息以供控制使用。</p>
+<p>  在图像处理中，我们提取的信息主要包括：<strong>信标灯的坐标、信标灯的长、宽、面积、周长，以及信标灯距离</strong>。由于信标灯为扁平状，当距离较远时，接收到的光比较少，提取到的信标灯仅为一个像素点；距离较近时，形状近似为一个椭圆。</p>
+<p>  <strong>当场地光线足够理想时，通过固定阈值二值化</strong>，便可将场地与信标灯区分开，再通过连通域提取，即可精确地收集到信标灯的所有信息。<strong>当场地光线不够理想时，当信标灯的距离较近时，由于图像画面中信标灯占了很大一部分，所以直接提取面积最大的连通域作为信标灯即可</strong>；<strong>当信标灯距离较远时，由于信标灯在画面上仅为一个像素点，所以杂光会对信标灯的提取造成很大的困难，甚至一些杂光的亮度大于信标灯的亮度</strong>，仅通过固定阈值很难提取出真正的信标灯位置。我们尝试过了许多二值化方法，大津法、平均值法等等，但是效果都比较一般，因为较远处的信标灯只有一个像素点，全局二值化显然不太合适。最后还是采取了<strong>分段固定阈值法，主要思想就是距离远的部分给低阈值，距离近的部分给高阈值</strong>，这样通过二值化，即可滤掉比信标灯暗的部分。剩下来的就是在图像中<strong>滤除杂光干扰，我们采用的方法是通过计算信标灯的坐标和形状，来去除一些形状不可能是信标灯的连通域</strong>，通过这种方法，可以排除大部分干扰。<strong>剩下满足条件的连通域中，我们选取与上一张图信标灯最近的连通域作为信标灯的位置，来计算其各个信息。</strong></p>
+<blockquote>
+<p>上位机：<br>上位机指可以直接发送操作指令的计算机或单片机，一般提供用户操作交互界面并向用户展示反馈数据。<br>典型设备类型：电脑，手机，平板，面板，触摸屏</p>
+<p>下位机：<br>下位机指直接与机器相连接的计算机或单片机，一般用于接收和反馈上位机的指令，并且根据指令控制机器执行动作以及从机器传感器读取数据。<br>典型设备类型：PLC，STM32，51，FPGA，ARM等各类可编程芯片</p>
+</blockquote>
+<p>信标位置提取</p>
+<p>  首先通过前摄像头采集的图像进行图像处理，来判断前方是否有信标灯。如果正前方采集到了信标灯的信息，那么便通过这个信息提取出其坐标，以坐标为基础来控制车的运动。如果前摄像头采集到的图片中没有信标灯的信息，那么这时候对后摄像头进行图像处理，来判断信标灯和车的相对位置，从而确定转向方向。整体逻辑在状态机中体现。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cxybb.com/article/zhuoqingjoking97298/120084272">智能车竞赛技术报告 | 节能信标组 - 兰州交通大学 - 先锋队_卓晴的博客-程序员宝宝_智能车信标组 - 程序员宝宝 (cxybb.com)</a></p>
+<p>摄像头处理算法</p>
+<p>我们采用总钻风摄像头来识别场地中的信标和障碍,总钻风摄像头采集回来 的图像是大小是<strong>188*120</strong>，以左上角为坐标原点向右下方为图像坐标正方向。在理想的图像中，应该只存在信标，但是由于环境光线，杂点，远处图像太小等因素干扰，图像效果难免会不理想。所以我们不仅通过<strong>调节、镜头焦距等方式来获得识别效果最佳的图像</strong>。通过<strong>图像膨胀对远处的图像进行膨胀操作；采用均值滤波，采用动态阈值二值化，忽略无效点等手段</strong>排除干扰因素，对赛场信息进行有效的识别。</p>
+<p>寻灯算法实现</p>
+<p>由于摄像头采集到的是一个188*120的图像矩阵，首先<strong>通过均值滤波对图像进行二值化，同时对图像图像有效像素点进行计数</strong>，如果<strong>有效点数过少则对图像进行膨胀操作</strong>，之后对于信标灯进行<strong>每一个像素点横坐标及纵坐标进行累加，以及像素点的个数进行累加，之后通过横纵坐标累加和除以像素点个数</strong>，即可得到信标灯的坐标。其中<strong>纵坐标为当前车模的方向，用信标灯的纵坐标与图像画面中轴线的纵坐标做差，得到小车车头朝向与信标灯方向的偏差，用此偏差放入PD控制器来控制舵机打角</strong>即可。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br></pre></td><td class="code"><pre><span class="line">■ 附录 程序源代码</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Get_Bin_Image</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> mode)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    </span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">short</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">long</span>  tv = <span class="number">0</span>;</span><br><span class="line">      <span class="comment">//char txt[16];</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (mode == <span class="number">0</span>)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          Threshold = GetOSTU(mt9v03x_image);  <span class="comment">//大津法阈值</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (mode == <span class="number">1</span>)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="comment">//累加</span></span><br><span class="line">          <span class="keyword">for</span> (i = <span class="number">33</span>; i &lt; MT9V03X_H; i++)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">for</span> (j = <span class="number">0</span> ; j &lt; Image_W; j++)</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  tv += mt9v03x_image[i][j];   <span class="comment">//累加</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          Threshold =(<span class="keyword">unsigned</span> <span class="keyword">short</span>)(tv / <span class="number">87</span> / <span class="number">120</span>);   <span class="comment">//求平均值,光线越暗越小，全黑约35，对着屏幕约160，一般情况下大约100</span></span><br><span class="line">          Threshold = Threshold + lqv;      <span class="comment">//此处阈值设置，根据环境的光线来设定</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (mode == <span class="number">2</span>)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line"> <span class="comment">//         Threshold = 110;</span></span><br><span class="line">          <span class="comment">//累加</span></span><br><span class="line">                    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; MT9V03X_H; i++)</span><br><span class="line">                    &#123;</span><br><span class="line">    </span><br><span class="line">                        <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; MT9V03X_W; j++)</span><br><span class="line">                        &#123;</span><br><span class="line">    </span><br><span class="line">                            tv += mt9v03x_image[i][j];   <span class="comment">//累加</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    Threshold =(<span class="keyword">unsigned</span> <span class="keyword">short</span>)(tv / MT9V03X_H / MT9V03X_W);   <span class="comment">//求平均值,光线越暗越小，全黑约35，对着屏幕约160，一般情况下大约100</span></span><br><span class="line">                    Threshold = Threshold + lqv;      <span class="comment">//此处阈值设置，根据环境的光线来设定//手动调节阈值</span></span><br><span class="line">          lq_sobel(mt9v03x_image, Bin_Image, (<span class="keyword">unsigned</span> <span class="keyword">char</span>) Threshold);</span><br><span class="line"></span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (mode == <span class="number">3</span>)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          lq_sobelAutoThreshold(mt9v03x_image, Bin_Image);  <span class="comment">//动态调节阈值</span></span><br><span class="line">          <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      white_1 = <span class="number">0</span>;</span><br><span class="line">      <span class="comment">/* 二值化 */</span></span><br><span class="line">      <span class="keyword">for</span> (i = <span class="number">33</span>; i &lt; MT9V03X_H; i++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; Image_W; j++)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (mt9v03x_image[i][j] &gt; Threshold) <span class="comment">//数值越大，显示的内容越多，较浅的图像也能显示出来</span></span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  Bin_Image[i][j] = <span class="number">255</span>;</span><br><span class="line">                  white_1++; <span class="comment">//数出第一次二值化完后的白点数 white_1</span></span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">                  Bin_Image[i][j] = <span class="number">0</span>;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">short</span> <span class="title">GetOSTU</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> tmImage[MT9V03X_H][MT9V03X_W])</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    </span><br><span class="line">      <span class="keyword">signed</span> <span class="keyword">short</span> i, j;</span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">long</span> Amount = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">long</span> PixelBack = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">long</span> PixelshortegralBack = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">long</span> Pixelshortegral = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">signed</span> <span class="keyword">long</span> PixelshortegralFore = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">signed</span> <span class="keyword">long</span> PixelFore = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">float</span> OmegaBack, OmegaFore, MicroBack, MicroFore, SigmaB, Sigma; <span class="comment">// 类间方差;</span></span><br><span class="line">      <span class="keyword">signed</span> <span class="keyword">short</span> MinValue, MaxValue;</span><br><span class="line">      <span class="keyword">signed</span> <span class="keyword">short</span> Threshold = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">unsigned</span> <span class="keyword">char</span> HistoGram[<span class="number">256</span>];              <span class="comment">//</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; <span class="number">256</span>; j++)</span><br><span class="line">          HistoGram[j] = <span class="number">0</span>; <span class="comment">//初始化灰度直方图</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (j = <span class="number">0</span>; j &lt; MT9V03X_H; j++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; MT9V03X_W; i++)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              HistoGram[tmImage[j][i]]++; <span class="comment">//统计灰度级中每个像素在整幅图像中的个数</span></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (MinValue = <span class="number">0</span>; MinValue &lt; <span class="number">256</span> &amp;&amp; HistoGram[MinValue] == <span class="number">0</span>; MinValue++);        <span class="comment">//获取最小灰度的值</span></span><br><span class="line">      <span class="keyword">for</span> (MaxValue = <span class="number">255</span>; MaxValue &gt; MinValue &amp;&amp; HistoGram[MinValue] == <span class="number">0</span>; MaxValue--); <span class="comment">//获取最大灰度的值</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (MaxValue == MinValue)</span><br><span class="line">          <span class="keyword">return</span> MaxValue;         <span class="comment">// 图像中只有一个颜色</span></span><br><span class="line">      <span class="keyword">if</span> (MinValue + <span class="number">1</span> == MaxValue)</span><br><span class="line">          <span class="keyword">return</span> MinValue;        <span class="comment">// 图像中只有二个颜色</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (j = MinValue; j &lt;= MaxValue; j++)</span><br><span class="line">          Amount += HistoGram[j];        <span class="comment">//  像素总数</span></span><br><span class="line"></span><br><span class="line">      Pixelshortegral = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (j = MinValue; j &lt;= MaxValue; j++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          Pixelshortegral += HistoGram[j] * j;        <span class="comment">//灰度值总数</span></span><br><span class="line">      &#125;</span><br><span class="line">      SigmaB = <span class="number">-1</span>;</span><br><span class="line">      <span class="keyword">for</span> (j = MinValue; j &lt; MaxValue; j++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          PixelBack = PixelBack + HistoGram[j];     <span class="comment">//前景像素点数</span></span><br><span class="line">          PixelFore = Amount - PixelBack;           <span class="comment">//背景像素点数</span></span><br><span class="line">          OmegaBack = (<span class="keyword">float</span>) PixelBack / Amount;   <span class="comment">//前景像素百分比</span></span><br><span class="line">          OmegaFore = (<span class="keyword">float</span>) PixelFore / Amount;   <span class="comment">//背景像素百分比</span></span><br><span class="line">          PixelshortegralBack += HistoGram[j] * j;  <span class="comment">//前景灰度值</span></span><br><span class="line">          PixelshortegralFore = Pixelshortegral - PixelshortegralBack;  <span class="comment">//背景灰度值</span></span><br><span class="line">          MicroBack = (<span class="keyword">float</span>) PixelshortegralBack / PixelBack;   <span class="comment">//前景灰度百分比</span></span><br><span class="line">          MicroFore = (<span class="keyword">float</span>) PixelshortegralFore / PixelFore;   <span class="comment">//背景灰度百分比</span></span><br><span class="line">          Sigma = OmegaBack * OmegaFore * (MicroBack - MicroFore) * (MicroBack - MicroFore);   <span class="comment">//计算类间方差</span></span><br><span class="line">          <span class="keyword">if</span> (Sigma &gt; SigmaB)                    <span class="comment">//遍历最大的类间方差g //找出最大类间方差以及对应的阈值</span></span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              SigmaB = Sigma;</span><br><span class="line">              Threshold = j;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> Threshold;                        <span class="comment">//返回最佳阈值;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*!</span></span><br><span class="line"><span class="comment">   * @brief    基于soble边沿检测算子的一种边沿检测</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param    imageIn    输入数组</span></span><br><span class="line"><span class="comment">   *           imageOut   输出数组      保存的二值化后的边沿信息</span></span><br><span class="line"><span class="comment">   *           Threshold  阈值</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @return</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @note</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @example</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @date     2020/5/15</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">lq_sobel</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> imageIn[MT9V03X_H][MT9V03X_W], <span class="keyword">unsigned</span> <span class="keyword">char</span> imageOut[MT9V03X_H][MT9V03X_W], <span class="keyword">unsigned</span> <span class="keyword">char</span> Threshold)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">/** 卷积核大小 */</span></span><br><span class="line">      <span class="keyword">short</span> KERNEL_SIZE = <span class="number">3</span>;</span><br><span class="line">      <span class="keyword">short</span> xStart = KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> xEnd = MT9V03X_W - KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> yStart = KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> yEnd = MT9V03X_H - KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> i, j, k;</span><br><span class="line">      <span class="keyword">short</span> temp[<span class="number">4</span>];</span><br><span class="line">      <span class="keyword">for</span> (i = yStart; i &lt; yEnd; i++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (j = xStart; j &lt; xEnd; j++)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="comment">/* 计算不同方向梯度幅值  */</span></span><br><span class="line">              temp[<span class="number">0</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>]     <span class="comment">//&#123;</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>]        <span class="comment">// &#123;</span></span><br><span class="line">    <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">              temp[<span class="number">1</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>]     <span class="comment">//&#123;</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j]       <span class="comment">// &#123;</span></span><br><span class="line">     <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];    <span class="comment">// &#123;</span></span><br><span class="line">     <span class="number">1</span>,  <span class="number">1</span>,  <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">              temp[<span class="number">2</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>]       <span class="comment">//  0, -1, -1</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j]       <span class="comment">//  1,  0, -1</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>];    <span class="comment">//  1,  1,  0</span></span><br><span class="line"></span><br><span class="line">              temp[<span class="number">3</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>]       <span class="comment">// -1, -1,  0</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j]       <span class="comment">// -1,  0,  1</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];    <span class="comment">//  0,  1,  1</span></span><br><span class="line"></span><br><span class="line">              temp[<span class="number">0</span>] = <span class="built_in">abs</span>(temp[<span class="number">0</span>]);</span><br><span class="line">              temp[<span class="number">1</span>] = <span class="built_in">abs</span>(temp[<span class="number">1</span>]);</span><br><span class="line">              temp[<span class="number">2</span>] = <span class="built_in">abs</span>(temp[<span class="number">2</span>]);</span><br><span class="line">              temp[<span class="number">3</span>] = <span class="built_in">abs</span>(temp[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">              <span class="comment">/* 找出梯度幅值最大值  */</span></span><br><span class="line">              <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt; <span class="number">4</span>; k++)</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  <span class="keyword">if</span> (temp[<span class="number">0</span>] &lt; temp[k])</span><br><span class="line">                  &#123;</span><br><span class="line">    </span><br><span class="line">                      temp[<span class="number">0</span>] = temp[k];</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">              <span class="keyword">if</span> (temp[<span class="number">0</span>] &gt; Threshold)</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  imageOut[i][j] = <span class="number">255</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  imageOut[i][j] = <span class="number">0</span>;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*!</span></span><br><span class="line"><span class="comment">   * @brief    基于soble边沿检测算子的一种自动阈值边沿检测</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @param    imageIn    输入数组</span></span><br><span class="line"><span class="comment">   *           imageOut   输出数组      保存的二值化后的边沿信息</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @return</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @note</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @example</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * @date     2020/5/15</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">lq_sobelAutoThreshold</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> imageIn[MT9V03X_H][MT9V03X_W], <span class="keyword">unsigned</span> <span class="keyword">char</span> imageOut[MT9V03X_H][MT9V03X_W])</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">/** 卷积核大小 */</span></span><br><span class="line">      <span class="keyword">short</span> KERNEL_SIZE = <span class="number">3</span>;</span><br><span class="line">      <span class="keyword">short</span> xStart = KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> xEnd = MT9V03X_W - KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> yStart = KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> yEnd = MT9V03X_H - KERNEL_SIZE / <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">short</span> i, j, k;</span><br><span class="line">      <span class="keyword">short</span> temp[<span class="number">4</span>];</span><br><span class="line">      <span class="keyword">for</span> (i = yStart; i &lt; yEnd; i++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (j = xStart; j &lt; xEnd; j++)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="comment">/* 计算不同方向梯度幅值  */</span></span><br><span class="line">              temp[<span class="number">0</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>]     <span class="comment">//&#123;</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>]       <span class="comment">// &#123;</span></span><br><span class="line">    <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];    <span class="comment">// &#123;</span></span><br><span class="line">    <span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">              temp[<span class="number">1</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>]     <span class="comment">//&#123;</span></span><br><span class="line">    &#123;</span><br><span class="line">    <span class="number">-1</span>, <span class="number">-1</span>, <span class="number">-1</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j]       <span class="comment">// &#123;</span></span><br><span class="line">     <span class="number">0</span>,  <span class="number">0</span>,  <span class="number">0</span>&#125;,</span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];    <span class="comment">// &#123;</span></span><br><span class="line">     <span class="number">1</span>,  <span class="number">1</span>,  <span class="number">1</span>&#125;&#125;;</span><br><span class="line"></span><br><span class="line">              temp[<span class="number">2</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>]       <span class="comment">//  0, -1, -1</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j]       <span class="comment">//  1,  0, -1</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>];    <span class="comment">//  1,  1,  0</span></span><br><span class="line"></span><br><span class="line">              temp[<span class="number">3</span>] = -(<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>]       <span class="comment">// -1, -1,  0</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j]       <span class="comment">// -1,  0,  1</span></span><br><span class="line">              - (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];    <span class="comment">//  0,  1,  1</span></span><br><span class="line"></span><br><span class="line">              temp[<span class="number">0</span>] = <span class="built_in">abs</span>(temp[<span class="number">0</span>]);</span><br><span class="line">              temp[<span class="number">1</span>] = <span class="built_in">abs</span>(temp[<span class="number">1</span>]);</span><br><span class="line">              temp[<span class="number">2</span>] = <span class="built_in">abs</span>(temp[<span class="number">2</span>]);</span><br><span class="line">              temp[<span class="number">3</span>] = <span class="built_in">abs</span>(temp[<span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line">              <span class="comment">/* 找出梯度幅值最大值  */</span></span><br><span class="line">              <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt; <span class="number">4</span>; k++)</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  <span class="keyword">if</span> (temp[<span class="number">0</span>] &lt; temp[k])</span><br><span class="line">                  &#123;</span><br><span class="line">    </span><br><span class="line">                      temp[<span class="number">0</span>] = temp[k];</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">              <span class="comment">/* 使用像素点邻域内像素点之和的一定比例    作为阈值  */</span></span><br><span class="line">              temp[<span class="number">3</span>] = (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i - <span class="number">1</span>][j + <span class="number">1</span>]</span><br><span class="line">                      + (<span class="keyword">short</span>) imageIn[i][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i][j] + (<span class="keyword">short</span>) imageIn[i][j + <span class="number">1</span>]</span><br><span class="line">                      + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j - <span class="number">1</span>] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j] + (<span class="keyword">short</span>) imageIn[i + <span class="number">1</span>][j + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">              <span class="keyword">if</span> (temp[<span class="number">0</span>] &gt; temp[<span class="number">3</span>] / <span class="number">12.0f</span>)</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  imageOut[i][j] = <span class="number">255</span>;</span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  imageOut[i][j] = <span class="number">0</span>;</span><br><span class="line">              &#125;</span><br><span class="line"></span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Bin_Image_Filter</span> <span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    </span><br><span class="line">      sint16 nr; <span class="comment">//行</span></span><br><span class="line">      sint16 nc; <span class="comment">//列</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span> (nr = <span class="number">33</span>; nr &lt; MT9V03X_H - <span class="number">1</span>; nr++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (nc = <span class="number">1</span>; nc &lt; Image_W - <span class="number">1</span>; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> ((Bin_Image[nr][nc] == <span class="number">0</span>)<span class="comment">//黑点</span></span><br><span class="line">                      &amp;&amp; (Bin_Image[nr - <span class="number">1</span>][nc] + Bin_Image[nr + <span class="number">1</span>][nc] + Bin_Image[nr][nc + <span class="number">1</span>] + Bin_Image[nr][nc - <span class="number">1</span>] &gt; (<span class="number">2</span>*<span class="number">255</span>)))<span class="comment">//若黑点上下右三方向有大于两个白点</span></span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  Bin_Image[nr][nc] = <span class="number">255</span>;<span class="comment">//将该黑点置为白点</span></span><br><span class="line">              &#125;</span><br><span class="line">              <span class="keyword">else</span> <span class="keyword">if</span> ((Bin_Image[nr][nc] == <span class="number">255</span>)<span class="comment">//白点</span></span><br><span class="line">                      &amp;&amp; (Bin_Image[nr - <span class="number">1</span>][nc] + Bin_Image[nr + <span class="number">1</span>][nc] + Bin_Image[nr][nc + <span class="number">1</span>] + Bin_Image[nr][nc - <span class="number">1</span>] &lt; (<span class="number">2</span>*<span class="number">255</span>)))<span class="comment">//若白点上下右三方向有小于两个白点</span></span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  Bin_Image[nr][nc] = <span class="number">0</span>;<span class="comment">//将该白点置为黑点</span></span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Bin_Image_Filter_peng</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">            </span>&#123;</span><br><span class="line">    </span><br><span class="line">                sint16 nr; <span class="comment">//行</span></span><br><span class="line">                sint16 nc; <span class="comment">//列</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> (nr = <span class="number">33</span>; nr &lt; MT9V03X_H - <span class="number">1</span>; nr++)</span><br><span class="line">                &#123;</span><br><span class="line">    </span><br><span class="line">                    <span class="keyword">for</span> (nc = <span class="number">31</span>; nc &lt; Image_W - <span class="number">1</span>; nc = nc + <span class="number">1</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">    </span><br><span class="line">                        <span class="keyword">if</span> ((dilation_Image[nr][nc] == <span class="number">0</span>)<span class="comment">//黑点</span></span><br><span class="line">                                &amp;&amp; (dilation_Image[nr - <span class="number">1</span>][nc] + dilation_Image[nr + <span class="number">1</span>][nc] + dilation_Image[nr][nc + <span class="number">1</span>] + dilation_Image[nr][nc - <span class="number">1</span>] &gt; (<span class="number">2</span>*<span class="number">255</span>)))<span class="comment">//若黑点上下右三方向有大于两个白点</span></span><br><span class="line">                        &#123;</span><br><span class="line">    </span><br><span class="line">                            dilation_Image[nr][nc] = <span class="number">255</span>;<span class="comment">//将该黑点置为白点</span></span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">else</span> <span class="keyword">if</span> ((dilation_Image[nr][nc] == <span class="number">255</span>)<span class="comment">//白点</span></span><br><span class="line">                                &amp;&amp; (dilation_Image[nr - <span class="number">1</span>][nc] + dilation_Image[nr + <span class="number">1</span>][nc] + dilation_Image[nr][nc + <span class="number">1</span>] + dilation_Image[nr][nc - <span class="number">1</span>] &lt; (<span class="number">2</span>*<span class="number">255</span>)))<span class="comment">//若白点上下右三方向有小于两个白点</span></span><br><span class="line">                        &#123;</span><br><span class="line">    </span><br><span class="line">                            dilation_Image[nr][nc] = <span class="number">0</span>;<span class="comment">//将该白点置为黑点</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">Seek_Road</span> <span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    </span><br><span class="line">      sint16 nr; <span class="comment">//行</span></span><br><span class="line">      sint16 nc; <span class="comment">//列</span></span><br><span class="line">      sint16 temp = <span class="number">0</span>; <span class="comment">//临时数值</span></span><br><span class="line">      <span class="comment">//for(nr=1; nr&lt;MAX_ROW-1; nr++)</span></span><br><span class="line">      temp = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (nr = <span class="number">8</span>; nr &lt; <span class="number">24</span>; nr++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (nc = MAX_COL / <span class="number">2</span>; nc &lt; MAX_COL; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (Bin_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  ++temp;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">for</span> (nc = <span class="number">0</span>; nc &lt; MAX_COL / <span class="number">2</span>; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (Bin_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  --temp;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      OFFSET0 = temp;</span><br><span class="line">      temp = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (nr = <span class="number">24</span>; nr &lt; <span class="number">40</span>; nr++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (nc = MAX_COL / <span class="number">2</span>; nc &lt; MAX_COL; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (Bin_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  ++temp;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">for</span> (nc = <span class="number">0</span>; nc &lt; MAX_COL / <span class="number">2</span>; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (Bin_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  --temp;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      OFFSET1 = temp;</span><br><span class="line">      temp = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (nr = <span class="number">40</span>; nr &lt; <span class="number">56</span>; nr++)</span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (nc = MAX_COL / <span class="number">2</span>; nc &lt; MAX_COL; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (Bin_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  ++temp;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">for</span> (nc = <span class="number">0</span>; nc &lt; MAX_COL / <span class="number">2</span>; nc = nc + <span class="number">1</span>)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              <span class="keyword">if</span> (Bin_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                  --temp;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      OFFSET2 = temp;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/***********通过边沿提取找到灯的重心点********/</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Seek_Beacon</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    </span><br><span class="line">      uint8 nr=<span class="number">0</span>; <span class="comment">//行</span></span><br><span class="line">      uint8 nc=<span class="number">0</span>; <span class="comment">//列</span></span><br><span class="line"></span><br><span class="line">      dotcnt=<span class="number">0</span>;</span><br><span class="line">      y_sum = <span class="number">0</span>;</span><br><span class="line">      x_sum = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">for</span> (nr = x_zuobiao; nr &lt; MT9V03X_H - <span class="number">1</span>; nr++)<span class="comment">//7.22 nr=1</span></span><br><span class="line">      &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span> (nc = <span class="number">1</span>; nc &lt;Image_W - <span class="number">1</span>; nc++)</span><br><span class="line">        &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">if</span> ((Bin_Image[nr - <span class="number">1</span>][nc] + Bin_Image[nr + <span class="number">1</span>][nc] + Bin_Image[nr][nc + <span class="number">1</span>] + Bin_Image[nr][nc - <span class="number">1</span>] &gt; <span class="number">255</span>))<span class="comment">//若该点上下左右有大于一个白点，记录坐标信息</span></span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">              y_sum += nc;</span><br><span class="line">              x_sum += nr;</span><br><span class="line">              dotcnt++;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      dotcnt_new = dotcnt;</span><br><span class="line">      x_sum_new = x_sum;</span><br><span class="line">      y_sum_new = y_sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Seek_Beacon_peng</span> <span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">    </span><br><span class="line">        uint8 nr=<span class="number">0</span>; <span class="comment">//行</span></span><br><span class="line">        uint8 nc=<span class="number">0</span>; <span class="comment">//列</span></span><br><span class="line"></span><br><span class="line">        dotcnt=<span class="number">0</span>;</span><br><span class="line">        y_sum = <span class="number">0</span>;</span><br><span class="line">        x_sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (nr = <span class="number">33</span>; nr &lt; MT9V03X_H - <span class="number">1</span>; nr++)<span class="comment">//7.24-30</span></span><br><span class="line">        &#123;</span><br><span class="line">    </span><br><span class="line">          <span class="keyword">for</span> (nc = <span class="number">0</span>; nc &lt; Image_W - <span class="number">1</span>; nc++)</span><br><span class="line">          &#123;</span><br><span class="line">    </span><br><span class="line">           <span class="comment">// if ((dilation_Image[nr - 1][nc] + dilation_Image[nr + 1][nc] + dilation_Image[nr][nc + 1] + dilation_Image[nr][nc - 1] &gt; (1*255)))//若该点左右下有大于一个白点，记录坐标信息</span></span><br><span class="line">            <span class="keyword">if</span>(dilation_Image[nr][nc])</span><br><span class="line">              &#123;</span><br><span class="line">    </span><br><span class="line">                y_sum += nc;</span><br><span class="line">                x_sum += nr;</span><br><span class="line">                dotcnt++;</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dotcnt_new = dotcnt;</span><br><span class="line">        x_sum_new = x_sum;</span><br><span class="line">        y_sum_new = y_sum;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//膨胀运算</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dilation</span><span class="params">(<span class="keyword">unsigned</span> <span class="keyword">char</span> *data, uint8 width, uint8 height)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    uint8 i, j, flag;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">1</span>;i &lt; height - <span class="number">1</span>;i++)</span><br><span class="line">    &#123;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">1</span>;j &lt; width - <span class="number">1</span>;j++)</span><br><span class="line">        &#123;</span><br><span class="line">    </span><br><span class="line">            flag = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> m = i - <span class="number">1</span>;m &lt; i + <span class="number">2</span>;m++)</span><br><span class="line">            &#123;</span><br><span class="line">    </span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> n = j - <span class="number">1</span>; n &lt; j + <span class="number">2</span>;n++)</span><br><span class="line">                &#123;</span><br><span class="line">    </span><br><span class="line">                    <span class="comment">//自身及领域中若有一个为255</span></span><br><span class="line">                    <span class="comment">//则将该点设为255</span></span><br><span class="line">                    <span class="keyword">if</span>(data[i * width + j] == <span class="number">255</span> || data[m * width + n] == <span class="number">255</span>)</span><br><span class="line">                    &#123;</span><br><span class="line">    </span><br><span class="line">                        flag = <span class="number">0</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(flag == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">    </span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(flag == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">    </span><br><span class="line">                dilation_Image[i][j] = <span class="number">255</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">    </span><br><span class="line">                dilation_Image[i][j]  = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">select_pengzhang</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(white_1 &gt;= <span class="number">0</span> &amp;&amp; white_1 &lt; <span class="number">35</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    </span><br><span class="line">        dilation(&amp;Bin_Image[<span class="number">0</span>][<span class="number">0</span>], MT9V03X_W, MT9V03X_H);</span><br><span class="line">        Bin_Image_Filter_peng();</span><br><span class="line">        Seek_Beacon_peng ();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(white_1 &gt;= <span class="number">35</span>)</span><br><span class="line">    &#123;</span><br><span class="line">    </span><br><span class="line"><span class="comment">//        Bin_Image_Filter();</span></span><br><span class="line">        Bin_Image_Filter();</span><br><span class="line">        Seek_Beacon();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getspeed</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"> </span>&#123;</span><br><span class="line">    </span><br><span class="line">     Pulses_l = gpt12_get(GPT12_T2);<span class="comment">//左轮速度</span></span><br><span class="line">     Pulses_r = -gpt12_get(GPT12_T6);<span class="comment">//右轮速度</span></span><br><span class="line">     gpt12_clear(GPT12_T2);</span><br><span class="line">     gpt12_clear(GPT12_T6);</span><br><span class="line">     speed_ave_now = (Pulses_l + Pulses_r) / <span class="number">2</span>;   <span class="comment">// 总速度   占空比与速度对应关系3000--44,10000--145</span></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/********位置式PID********/</span></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">pid_pos</span><span class="params">(<span class="keyword">float</span> *err, <span class="keyword">float</span> *PID_pos, <span class="keyword">float</span> now, <span class="keyword">float</span> target)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">float</span> pe, ie, de;</span><br><span class="line">    <span class="keyword">float</span> out;</span><br><span class="line"></span><br><span class="line">    err[<span class="number">1</span>] = err[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    err[<span class="number">0</span>] = target - now;</span><br><span class="line">    <span class="keyword">if</span>(err[<span class="number">0</span>] &lt; <span class="number">10</span>)</span><br><span class="line">    err[<span class="number">2</span>] += err[<span class="number">0</span>] * PID_pos[<span class="number">1</span>]; <span class="comment">//积分误差</span></span><br><span class="line">    err[<span class="number">2</span>] = (err[<span class="number">2</span>] &gt; PID_pos[<span class="number">3</span>]) ? PID_pos[<span class="number">3</span>] : err[<span class="number">2</span>]; <span class="comment">//限幅保护</span></span><br><span class="line">    err[<span class="number">2</span>] = (err[<span class="number">2</span>] &lt; -PID_pos[<span class="number">3</span>]) ? -PID_pos[<span class="number">3</span>] : err[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    pe = err[<span class="number">0</span>];</span><br><span class="line">    ie = err[<span class="number">2</span>];</span><br><span class="line">    de = err[<span class="number">0</span>] - err[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    out = pe * PID_pos[<span class="number">0</span>] + de * PID_pos[<span class="number">2</span>] + ie;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/******增量式PID******/</span></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">pid_increase</span><span class="params">(<span class="keyword">float</span> *err, <span class="keyword">float</span> *PID_inc, <span class="keyword">float</span> now, <span class="keyword">float</span> target)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">float</span> pe, ie, de;</span><br><span class="line">    <span class="keyword">float</span> out;</span><br><span class="line"></span><br><span class="line">    err[<span class="number">2</span>] = err[<span class="number">1</span>];</span><br><span class="line">    err[<span class="number">1</span>] = err[<span class="number">0</span>];</span><br><span class="line">    err[<span class="number">0</span>] = target - now;</span><br><span class="line"></span><br><span class="line">    pe = err[<span class="number">0</span>] - err[<span class="number">1</span>];</span><br><span class="line">    ie = err[<span class="number">0</span>];</span><br><span class="line">    de = err[<span class="number">0</span>] - <span class="number">2</span> * err[<span class="number">1</span>] + err[<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    out = pe * PID_inc[<span class="number">0</span>] + ie * PID_inc[<span class="number">1</span>] + de * PID_inc[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="csdn–-摄像头处理"><a href="#csdn–-摄像头处理" class="headerlink" title="csdn– 摄像头处理"></a>csdn– 摄像头处理</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuoqingjoking97298/article/details/116399961">(1条消息) 节能信标组：让我们一起来内卷_卓晴的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41833526/article/details/109445998">(1条消息) 十三届智能汽车竞赛 信标对抗组 思路参考 程序参考（二）图像处理_ZZM丶的博客-CSDN博客</a></p>
+<p>有了图像矩阵之后，就可以进行处理了，最终找出信标灯中心在画面中的坐标。信标灯在亮起时会以一定频率闪烁，发出一定频率范围的红光和红外光。摄像头镜头使用了红外滤光片，环境光线比较好的情况下，当信标灯亮起时，其红外光能够很明显在图像上显示为一个光斑，我们则通过逐行扫描图像矩阵的方式来求出这个光斑在画面中的像素坐标，具体操作如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************找坐标***************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_LR</span><span class="params">(<span class="keyword">void</span>)</span>  </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">int</span> i,j;</span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> lside=<span class="number">80</span>,rside=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;DATALINE;i++)</span><br><span class="line">  &#123;</span><br><span class="line">    lside=<span class="number">80</span>,rside=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">80</span><span class="number">-1</span>;j++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span>(!image_dec[i][j]&amp;&amp;!image_dec[i][j+<span class="number">1</span>])            <span class="comment">//同一行中连续两个像素点亮</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span>(lside==<span class="number">80</span>) lside=j;                <span class="comment">//定左边缘</span></span><br><span class="line">        rside=j+<span class="number">1</span>;                            <span class="comment">//定又边缘</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(lside&lt;rside) PianCha[i]=(lside+rside)/<span class="number">2</span>;           <span class="comment">//最大为80</span></span><br><span class="line">    <span class="keyword">else</span>            PianCha[i]=<span class="number">0xff</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">find_XY</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>,k=<span class="number">0</span>,p=<span class="number">0</span>,g=<span class="number">0</span>,m=<span class="number">0</span>,q=<span class="number">0</span>;</span><br><span class="line">  <span class="keyword">float</span> Xx=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;DATALINE<span class="number">-1</span>;i++)</span><br><span class="line">  &#123;</span><br><span class="line">     <span class="keyword">if</span>((PianCha[i]!=<span class="number">0xff</span>)&amp;&amp;(PianCha[i+<span class="number">1</span>]!=<span class="number">0xff</span>))         <span class="comment">//连续四个点表示确定为信标灯而不是噪点</span></span><br><span class="line">     &#123;</span><br><span class="line">       <span class="keyword">if</span>(g==<span class="number">0</span>)</span><br><span class="line">       &#123;</span><br><span class="line">         k=i;</span><br><span class="line">         g=<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span>(m==<span class="number">0</span>) p++;</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">else</span> <span class="keyword">if</span>(g==<span class="number">1</span>) m=<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">for</span>(q=<span class="number">0</span>;q&lt;p<span class="number">-1</span>;q++) Xx+=PianCha[k+q];</span><br><span class="line">  x_MID=Xx/(p<span class="number">-1</span>);</span><br><span class="line">  y_MID=(k+(p&gt;&gt;<span class="number">1</span>));                                       <span class="comment">//右移一位相当于除以二 而运算速度更快</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>在某些光线条件比较差（比如存在阳光、带红外光的灯管等）的情况下，阳光中有红外光的分量，带红外光的灯管直接发出红外光。图像中的光斑就不仅仅是信标灯发出的红外光了了，恶劣时甚至被大片的光干扰淹没，此时想要克服或者减弱这个影响，就需要利用到一个点：信标灯的红外光是以一定频率闪烁的而其他的红外光是常亮的。利用这个特性，可以对相邻的或一定帧间隔内的两张或多张图像之间做 差 或者做 异或 操作，能将常亮的红外光滤除掉，信标灯又能清晰的出现在图像中了：</p>
+<p>在某些光线条件比较差（比如存在阳光、带红外光的灯管等）的情况下，阳光中有红外光的分量，带红外光的灯管直接发出红外光。图像中的光斑就不仅仅是信标灯发出的红外光了了，恶劣时甚至被大片的光干扰淹没，此时想要克服或者减弱这个影响，就需要利用到一个点：信标灯的红外光是以一定频率闪烁的而其他的红外光是常亮的。利用这个特性，可以对相邻的或一定帧间隔内的两张或多张图像之间做 差 或者做 异或 操作，能将常亮的红外光滤除掉，信标灯又能清晰的出现在图像中了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************闪烁识别***************************/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">SHANSHUOSHIBIE</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> q,w;</span><br><span class="line">  Image_Decompression((uint8 *)ADdata,(uint8 *)image_dec[<span class="number">0</span>]);    <span class="comment">//解压图像</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(shan&gt;<span class="number">0</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    shan=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(q=<span class="number">0</span>;q&lt;<span class="number">60</span>;q++)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span>(w=<span class="number">0</span>;w&lt;<span class="number">80</span>;w++)</span><br><span class="line">      &#123;</span><br><span class="line">        shanshuo[q][w]=copy[q][w]^image_dec[q][w];               <span class="comment">//两幅图像对应位置像素异或操作</span></span><br><span class="line">        copy[q][w]=image_dec[q][w];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  shan++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_53809032/article/details/114488252">(1条消息) 十六届智能车信标组的浅析_wuxing4550的博客-CSDN博客_智能车信标</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/baiyh1994/article/details/53090559">(1条消息) 浅谈全国大学生智能车竞赛-摄像头组图像处理及控制算法_Q792499178的博客-CSDN博客_智能车摄像头图像处理</a></p>
+<p>初学图像处理的人，一般首先熟悉图像格式，图像存储方式，8位灰度图，24位彩色图等基础知识，然后接触到的图像算法一般都是图像直方图、图像二值化处理等基础算法。二值化算法作为图像处理入门级算法，在很多场合都有应用。常用的二值化算法是固定阈值二值化，算法本身很简单，机器视觉处理的很多都是8位灰度图像，灰度值从0到255,。所谓二值化就是给定一个阈值，让小于这个阈值的灰度值为0，大于等于这个阈值的设为255，这样在图像上显示出来就是一幅黑白图像。</p>
+<p>threshold(src, dst, 100, 255, 0);</p>
+<p>第一个参数是输入图像，第二个是输出图像，第三个是阈值，第四个是指将大于等于阈值的灰度值设置为多大的值，最后一个参数是二值化方式</p>
+<p>如果直接用大律法进行二值化，实际效果并不是很好，因为这是全局阈值，比较好的二值化方法应该用局部阈值，毕竟图像上每个地方的灰度值差别是比较大的。所以，opencv里面有提供了一个局部自适应二值化函数adaptiveThreshold。这个函数的效果比较好，但是，很多人用这个函数的时候，却不知道参数怎么设置比较好，结果往往出来的效果不理想，反而认为算法不好。其实，就算固定阈值二值化算法，在很多时候都能得到很好的效果，只不过我们很多人不是很清楚算法怎么配合使用而已。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_35971306/article/details/112669927">(2条消息) 二值化_初探图像二值化_twxy的博客-CSDN博客</a></p>
+<p><strong>二值图像</strong>即为每个像素只有两个可能值的数字图像，常出现在图像掩码，图像分割，二值化和dithering。</p>
+<p>其将<strong>大于某个临界灰度值的像素灰度设为灰度极大值，小于这个值的为灰度极小值，从而实现二值化</strong></p>
+<p>根据域值，二值化分为固定阈值和自适应阈值。比较常用的二值化方法有：双峰法，P参数法，迭代法和OTSU法等。</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20511799">直方图</a>是图像的重要特质，它可以帮助我们分析图像中的灰度变化。因此，如果物体与背景的灰度值对比明显，直方图就会包含双峰(bimodal histogram)，它们分别为图像的前景和背景。而它们之间的谷底即为边缘附近相对较少数目的像素点，一般来讲，这个最小值就为最优二值化的分界点，通过这个点可以把前景和背景很好地分开。</p>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><p><img src="https://img-blog.csdn.net/20130825153036000" alt="img"></p>
+<h4 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lixiao0314/article/details/120948652">(4条消息) 图像处理——中值滤波_lixiao0314的博客-CSDN博客_图像中值滤波</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ranjiewen/article/details/52595562">(4条消息) 数字图像处理——中值滤波_ranjiewen的博客-CSDN博客_数字图像处理中值滤波算法</a></p>
+<p>突变的噪声</p>
+<p>核心思路：</p>
+<p>当数据出现很大的跳变时，均值滤波会有很大的影响，中值滤波没有，<strong>消去阶跃性噪声</strong></p>
+<p>中位数更加能反应数据所处的位置</p>
+<p>原图：</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220409201932455.png" alt="image-20220409201932455" style="zoom: 80%;" />
+
+<p>进入干扰数据：</p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220409202054181.png" alt="image-20220409202054181"></p>
+<p><strong>均值滤波能反映数据的变化</strong></p>
+<p>可以适应数据整体上升，也随之上升</p>
+<img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220409202437342.png" alt="image-20220409202437342" style="zoom:80%;" />
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//中值滤波核心：快而准的排序</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/04/01/%E6%99%BA%E8%83%BD%E8%BD%A6/%E6%91%84%E5%83%8F%E5%A4%B4/" title="摄像头--信标" target="_blank" rel="external">https://zhang0224gz.github.io/2022/04/01/智能车/摄像头/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/zhang0224gz" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/zhang0224gz" target="_blank"><span class="text-dark">Flutter</span><small class="ml-1x">Vegetable bird &amp; Student</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/04/02/%E6%96%87%E5%8C%96/%E5%8F%A5%E5%AD%90/%E6%85%8E%E7%BB%88%E8%BF%BD%E8%BF%9C/" title="慎终追远(转载)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/03/29/%E6%95%99%E8%B5%84/%E6%A8%A1%E5%9D%97%E4%B8%80%20%E6%95%99%E8%82%B2%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E5%92%8C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86/%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E6%95%99%E8%82%B2%E4%B8%8E%E7%A4%BE%E4%BC%9A%E5%8F%91%E5%B1%95/" title="模块一 教育基础知识和基本原理——第二章 教育与社会发展"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
