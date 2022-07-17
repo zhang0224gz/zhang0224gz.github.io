@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>数据库第三章 | Flutter</title>
+  <meta name="description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455CREATE SCHEMA &#96;school&#96;DEFAULT CHARACTER SET utf8COLLATE utf8_bin;-- CREATE DATABASE &#96;school&#96;;-- Dro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库第三章">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/05/01/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455CREATE SCHEMA &#96;school&#96;DEFAULT CHARACTER SET utf8COLLATE utf8_bin;-- CREATE DATABASE &#96;school&#96;;-- Dro">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-01T11:34:02.458Z">
+<meta property="article:modified_time" content="2022-06-15T04:24:34.764Z">
+<meta property="article:author" content="zhang0224gz">
+<meta property="article:tag" content="数据库">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/05/01/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://blog.csdn.net/Zhang_2002_GZ?type=blog" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Eureka</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Study Notes &amp; Supplement</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 13px;">SET4</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/tips/" style="font-size: 14px;">tips</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 14px;">初始化</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 14px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/17/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" class="title">卡尔曼滤波（修饰直立角度）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-17T08:38:23.433Z" itemprop="datePublished">2022-07-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/17/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%A4%A7%E6%B4%A5%E6%B3%95/" class="title">大津法求图像动态阈值</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-17T08:25:09.202Z" itemprop="datePublished">2022-07-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/04/%E6%99%BA%E8%83%BD%E8%BD%A6/%E9%9C%8D%E5%A4%AB%E5%8F%98%E6%8D%A2%E6%A3%80%E6%B5%8B%E6%A4%AD%E5%9C%86/" class="title">霍夫变换检测椭圆</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-04T01:50:45.957Z" itemprop="datePublished">2022-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/29/%E5%88%B7%E9%A2%98/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" class="title">算法基础</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-29T14:58:27.560Z" itemprop="datePublished">2022-06-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/26/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%931/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-26T12:30:07.979Z" itemprop="datePublished">2022-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<aside class="sidebar sidebar-toc collapse" id="collapseToc" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    <nav id="toc" class="article-toc">
+      <h3 class="toc-title">文章目录</h3>
+      
+    </nav>
+  </div>
+</aside>
+
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-笔记/数据库" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      数据库第三章
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/05/01/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
+	  <time datetime="2022-05-01T11:34:02.458Z" itemprop="datePublished">2022-05-01</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/05/01/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">CREATE SCHEMA `school`</span><br><span class="line">DEFAULT CHARACTER SET utf8</span><br><span class="line">COLLATE utf8_bin;</span><br><span class="line"></span><br><span class="line">-- CREATE DATABASE `school`;</span><br><span class="line">-- Drop DATABASE `school`;</span><br><span class="line"></span><br><span class="line">use school;</span><br><span class="line">create table `student`(</span><br><span class="line">	`sno` <span class="keyword">char</span>(<span class="number">10</span>) <span class="keyword">not</span> null primary key,</span><br><span class="line">    `sname` varchar(<span class="number">45</span>) <span class="keyword">not</span> null ,</span><br><span class="line">    `sage` <span class="keyword">int</span> null <span class="keyword">default</span> <span class="number">18</span>,</span><br><span class="line">    `sdept` varchar(<span class="number">45</span>)</span><br><span class="line">)COMMENT = <span class="string">&#x27;学生信息表&#x27;</span>;</span><br><span class="line">drop table student;</span><br><span class="line"></span><br><span class="line"><span class="function">create table <span class="title">course</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	cno <span class="keyword">char</span>(<span class="number">4</span>) <span class="keyword">not</span> null primary key,</span></span></span><br><span class="line"><span class="params"><span class="function">    cname varchar(<span class="number">45</span>) <span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="params"><span class="function">    -- 列级约束</span></span></span><br><span class="line"><span class="params"><span class="function">    cpno <span class="keyword">char</span>(<span class="number">4</span>) references cno,</span></span></span><br><span class="line"><span class="params"><span class="function">    credit tinyint</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line">-- drop table course;</span><br><span class="line"></span><br><span class="line"><span class="function">create table <span class="title">sc</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">	sno <span class="keyword">char</span>(<span class="number">10</span>),</span></span></span><br><span class="line"><span class="params"><span class="function">    cno <span class="keyword">char</span>(<span class="number">4</span>),</span></span></span><br><span class="line"><span class="params"><span class="function">    score <span class="keyword">int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">    -- 表级约束</span></span></span><br><span class="line"><span class="params"><span class="function">    primary key (sno,cno),</span></span></span><br><span class="line"><span class="params"><span class="function">    -- 约束限制：constraint关键字</span></span></span><br><span class="line"><span class="params"><span class="function">    constraint `fk_sno` foreign key(sno) references student(sno),</span></span></span><br><span class="line"><span class="params"><span class="function">    foreign key(cno) references course(cno)</span></span></span><br><span class="line"><span class="params"><span class="function">	-- 类型要一致，宽度要一致</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line">drop table sc;</span><br><span class="line"></span><br><span class="line">问题：Error Code: <span class="number">1822.</span> Failed to add the foreign key constraint. Missing index <span class="keyword">for</span> constraint <span class="string">&#x27;fk_sno&#x27;</span> in the referenced table <span class="string">&#x27;student&#x27;</span></span><br><span class="line"></span><br><span class="line">MySQL报这个错时去检查外键设置！！！这个外键是不是另外一个表的主键</span><br><span class="line">设置外键的时候需要注意以下几点：</span><br><span class="line">（<span class="number">1</span>）外键是用于两个表的数据之间建立连接，可以是一列或者多列，即一个表可以有一个或多个外键。</span><br><span class="line">（<span class="number">2</span>）这个表里面设置的外键必须是另外一个表的主键！</span><br><span class="line">（<span class="number">3</span>）外键可以不是这个表的主键，但必须和另外一个表的主键相对应（字段的类型和值必须一样）。</span><br><span class="line">（<span class="number">4</span>）带有主键的那张表称为父表，含外键的是子表，必须先删除外键约束才能删除父表。</span><br><span class="line"></span><br><span class="line">所以：school生成表时忘记给sno加主键了。经过搜索暂没有法子直接修改数据为主键，故删表重写QAQ</span><br><span class="line"></span><br><span class="line">刚刚了解constraint约束，发现一个加主键的法子</span><br><span class="line"><span class="function">alter table student add constraint pk primary <span class="title">key</span> <span class="params">(sno)</span></span>;</span><br><span class="line">格式为：</span><br><span class="line">alter table 表格名称 add constraint 约束名称 增加的约束类型 （列名）</span><br><span class="line">    constraint `fk_sno` <span class="function">foreign <span class="title">key</span><span class="params">(sno)</span> references <span class="title">student</span><span class="params">(sno)</span></span></span><br><span class="line"><span class="function">没有写名字系统会默认生成名字，如：sc_ibfk_1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>，根据内容划分</span><br><span class="line"><span class="number">2.</span>根据作用域、作用范围划分</span><br><span class="line">域(列)完整性：</span><br><span class="line">域完整性是对数据表中字段属性的约束</span><br><span class="line">实体完整性在MySQL中实现：</span><br><span class="line">通过主键约束和候选键约束实现的</span><br><span class="line">参照完整性：</span><br><span class="line">也就是说是MySQL的外键</span><br><span class="line"><span class="number">3.</span>根据声明语句的书写形式、约束声明的位置划分</span><br><span class="line">列级约束</span><br><span class="line"><span class="function">name <span class="title">varchar</span><span class="params">(<span class="number">20</span>)</span> <span class="keyword">default</span> ‘老王’</span></span><br><span class="line"><span class="function">表级约束</span></span><br><span class="line"><span class="function">[constraint fk_name] foreign <span class="title">key</span><span class="params">(deptno)</span> references <span class="title">dept</span><span class="params">(deptno)</span> 所有的列都声明完了，再声明约束</span></span><br><span class="line"><span class="function">create table <span class="title">emp</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">empno <span class="keyword">int</span> promary key auto_increment,</span></span></span><br><span class="line"><span class="params"><span class="function">ename varchar(<span class="number">32</span>) <span class="keyword">not</span> null,</span></span></span><br><span class="line"><span class="params"><span class="function">deptno <span class="keyword">int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">[constraint fk_name] foreign key(deptno) references dept(deptno) – 添加外键约束</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line">[]可选择内容，去掉</span><br><span class="line">id、name组合值不能重复，单一重复可通过</span><br><span class="line"><span class="function">constraint id_unique <span class="title">unique</span><span class="params">(id, name)</span> – 添加复合约束</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">练习代码：</span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function">USE school</span>;</span><br><span class="line"><span class="function">CREATE TABLE <span class="title">t1</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">#<span class="keyword">default</span>:默认约束, 域完整性;指定某列的默认值，插入数据时候，此列没有值，则用<span class="keyword">default</span>指定的值来填充</span></span></span><br><span class="line"><span class="params"><span class="function">id INT DEFAULT <span class="number">1</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">#,写; : id INT DEFAULT <span class="number">1</span>;</span></span></span><br><span class="line"><span class="params"><span class="function">#错误代码： <span class="number">1064</span></span></span></span><br><span class="line"><span class="params"><span class="function">#You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version <span class="keyword">for</span> the right syntax to use near <span class="string">&#x27;&#x27; at line 2</span></span></span></span><br><span class="line"><span class="string"><span class="params"><span class="function">#错误代码： 1064</span></span></span></span><br><span class="line"><span class="string"><span class="params"><span class="function">#You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;</span>name varchar(<span class="number">20</span>) <span class="keyword">default</span> <span class="string">&#x27;老王&#x27;</span>)</span>&#x27; at line 1</span></span><br><span class="line"><span class="function">NAME <span class="title">VARCHAR</span><span class="params">(<span class="number">20</span>)</span> DEFAULT &#x27;老王&#x27;</span></span><br><span class="line"><span class="function">)</span>;</span><br><span class="line"></span><br><span class="line">#插入操作</span><br><span class="line"><span class="function">INSERT INTO t1 <span class="title">VALUES</span> <span class="params">(<span class="string">&#x27;haha&#x27;</span>)</span></span>;#未要求要全部写入</span><br><span class="line">#错误代码： <span class="number">1136</span></span><br><span class="line">#Column count doesn<span class="number">&#x27;</span>t match value count at row <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="function">INSERT INTO <span class="title">t1</span><span class="params">(id)</span> <span class="title">VALUES</span> <span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line"><span class="function">INSERT <span class="title">t1</span><span class="params">(NAME)</span> <span class="title">VALUES</span> <span class="params">(<span class="string">&#x27;haha&#x27;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">#修改默认值</span><br><span class="line">ALTER TABLE t1 MODIFY id INT DEFAULT <span class="number">4</span>;</span><br><span class="line"><span class="function">ALTER TABLE t1 MODIFY NAME <span class="title">VARCHAR</span><span class="params">(<span class="number">20</span>)</span> DEFAULT &#x27;小白&#x27;</span>;</span><br><span class="line"></span><br><span class="line">#删除默认值操作modify/change</span><br><span class="line">ALTER TABLE t1 MODIFY id INT;</span><br><span class="line"><span class="function">ALTER TABLE t1 CHANGE NAME NAME <span class="title">VARCHAR</span><span class="params">(<span class="number">20</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">#查询内容</span><br><span class="line">SELECT * FROM t1;</span><br><span class="line"></span><br><span class="line"><span class="function">CREATE TABLE <span class="title">t2</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">#<span class="keyword">not</span> null: 非空约束，域完整性;指定某列的值不为空，在插入数据的时候必须非空 ‘’ 不等于 null, <span class="number">0</span>不等于 null</span></span></span><br><span class="line"><span class="params"><span class="function">id INT NOT <span class="literal">NULL</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">NAME VARCHAR(<span class="number">20</span>) NOT <span class="literal">NULL</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line"></span><br><span class="line">#插入操作</span><br><span class="line"><span class="function">INSERT <span class="title">t2</span><span class="params">(id)</span> <span class="title">VALUES</span> <span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">#错误代码： <span class="number">1364</span></span><br><span class="line">#Field <span class="string">&#x27;name&#x27;</span> doesn<span class="number">&#x27;</span><span class="function">t have a <span class="keyword">default</span> value</span></span><br><span class="line"><span class="function">INSERT <span class="title">t2</span><span class="params">(NAME)</span> <span class="title">VALUES</span> <span class="params">(<span class="string">&#x27;小花&#x27;</span>)</span></span>;</span><br><span class="line">#错误代码： <span class="number">1364</span></span><br><span class="line">#Field <span class="string">&#x27;id&#x27;</span> doesn<span class="number">&#x27;</span><span class="function">t have a <span class="keyword">default</span> value</span></span><br><span class="line"><span class="function">INSERT t2 <span class="title">VALUES</span> <span class="params">(<span class="number">3</span>,<span class="string">&#x27;小华&#x27;</span>)</span>,<span class="params">(<span class="number">5</span>,<span class="string">&#x27;小黑&#x27;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">#添加<span class="keyword">not</span> null约束</span><br><span class="line">#<span class="number">1.</span>建表时</span><br><span class="line">#<span class="number">2.</span>alter语句添加:alter…modify/change…</span><br><span class="line">ALTER TABLE t2 MODIFY id INT NOT <span class="literal">NULL</span>;</span><br><span class="line"><span class="function">ALTER TABLE t2 MODIFY NAME <span class="title">VARCHAR</span><span class="params">(<span class="number">20</span>)</span> NOT <span class="literal">NULL</span></span>;</span><br><span class="line"></span><br><span class="line">#删除约束：alter…modify/change…</span><br><span class="line">ALTER TABLE t2 MODIFY id INT;</span><br><span class="line"><span class="function">ALTER TABLE t2 CHANGE NAME NAME <span class="title">VARCHAR</span><span class="params">(<span class="number">10</span>)</span></span>;<span class="meta">#alter完全修改内容</span></span><br><span class="line"></span><br><span class="line">SELECT * FROM t2;</span><br><span class="line"></span><br><span class="line"><span class="function">CREATE TABLE <span class="title">t3</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">#unique: 唯一约束，实体完整性；指定列或者列组合不能重复，保证数据的唯一性；不能出现重复的值，但是可以有多个null；同一张表可以有多个唯一的约束</span></span></span><br><span class="line"><span class="params"><span class="function">id INT UNIQUE,</span></span></span><br><span class="line"><span class="params"><span class="function">NAME VARCHAR(<span class="number">20</span>)</span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span>;</span><br><span class="line"></span><br><span class="line">#插入操作</span><br><span class="line"><span class="function">INSERT <span class="title">t3</span><span class="params">(id)</span> <span class="title">VALUES</span> <span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line"><span class="function">INSERT <span class="title">t3</span><span class="params">(NAME)</span> <span class="title">VALUES</span> <span class="params">(<span class="string">&#x27;小花&#x27;</span>)</span></span>;</span><br><span class="line"><span class="function">INSERT t3 <span class="title">VALUES</span> <span class="params">(<span class="number">3</span>,<span class="string">&#x27;小华&#x27;</span>)</span>,<span class="params">(<span class="number">5</span>,<span class="string">&#x27;小黑&#x27;</span>)</span></span>;</span><br><span class="line">#内容重复输入</span><br><span class="line"><span class="function">INSERT t3 <span class="title">VALUES</span> <span class="params">(<span class="number">3</span>,<span class="string">&#x27;小华&#x27;</span>)</span>,<span class="params">(<span class="number">5</span>,<span class="string">&#x27;小黑&#x27;</span>)</span></span>;</span><br><span class="line">#错误代码： <span class="number">1062</span></span><br><span class="line">#Duplicate entry <span class="string">&#x27;3&#x27;</span> <span class="keyword">for</span> key <span class="string">&#x27;t3.id&#x27;</span></span><br><span class="line"></span><br><span class="line">#添加约束</span><br><span class="line">ALTER TABLE t3</span><br><span class="line"></span><br><span class="line">#删除约束</span><br><span class="line">ALTER TABLE t3 DROP INDEX id_unique;</span><br><span class="line">DROP id ON t3;</span><br><span class="line"></span><br><span class="line">SELECT * FROM t3;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">#SQL：结构化的查询语言</span><br><span class="line">#交互式SQL，嵌入式SQL</span><br><span class="line"><span class="meta">#select 目标表达式列表</span></span><br><span class="line"><span class="meta">#from 目标关系列表</span></span><br><span class="line"><span class="meta">#where 目标条件列表 -&gt; 条件子句</span></span><br><span class="line"><span class="meta">#order by 排序子句</span></span><br><span class="line"><span class="meta">#group by 分组子句</span></span><br><span class="line"></span><br><span class="line">#一、单表查询</span><br><span class="line">#一个<span class="keyword">for</span>语句遍历所有的行</span><br><span class="line">#数据库中第三种状态：除了真假，还有未知</span><br><span class="line">#目标列查询 *,col1,col2</span><br><span class="line">#目标表达式列表 重命名 数学表达式函数</span><br><span class="line"></span><br><span class="line">use school;</span><br><span class="line">select * from student;</span><br><span class="line">select sno,sname from student;</span><br><span class="line"></span><br><span class="line">#重命名</span><br><span class="line">select sno as <span class="string">&#x27;学号&#x27;</span>, sname as <span class="string">&#x27;姓名&#x27;</span> from student;</span><br><span class="line"><span class="meta">#as和单引号可省略，单引号使用防止字符有空格</span></span><br><span class="line">select sno 学号,sname as <span class="string">&#x27;姓  名&#x27;</span> from student;</span><br><span class="line"></span><br><span class="line">select <span class="number">2022</span>-sage <span class="string">&#x27;出生年份&#x27;</span> from student;</span><br><span class="line">#不加<span class="string">&#x27;出生年份&#x27;</span>以<span class="string">&#x27;2022-sage&#x27;</span>作为列名</span><br><span class="line">select <span class="number">2022</span>-sage  from student;</span><br><span class="line"></span><br><span class="line">select cno from course;</span><br><span class="line">#可跟函数</span><br><span class="line"><span class="function">select <span class="title">lower</span><span class="params">(cno)</span> from course</span>;</span><br><span class="line"><span class="function">select <span class="title">upper</span><span class="params">(cno)</span> from course</span>;</span><br><span class="line"></span><br><span class="line">#聚集函数/统计查询</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> from student</span>;</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> as &#x27;班级人数&#x27; from student</span>;</span><br><span class="line"></span><br><span class="line">#单条件查询where</span><br><span class="line">select sno,sname,ssex from student where ssex=<span class="string">&#x27;女&#x27;</span>;</span><br><span class="line">select sno,sname,ssex,sage from student where sage&lt;=<span class="number">30</span> <span class="keyword">and</span> ssex=<span class="string">&#x27;男&#x27;</span>;</span><br><span class="line">select sno,sname,ssex,sage from student where sage&lt;=<span class="number">30</span> <span class="keyword">or</span> ssex=<span class="string">&#x27;男&#x27;</span>;#<span class="string">&#x27;男&#x27;</span>不要加空格,虽然有些软件可以自动去两边空格,仅侥幸</span><br><span class="line">select * from student where sdept=<span class="string">&#x27;计算机系&#x27;</span> <span class="keyword">or</span> sdept=<span class="string">&#x27;历史系&#x27;</span>;</span><br><span class="line">#减短查询：查询集合<span class="function">in</span></span><br><span class="line"><span class="function">select * from student where sdept <span class="title">in</span> <span class="params">(<span class="string">&#x27;计算机系&#x27;</span>,<span class="string">&#x27;音乐系&#x27;</span>,<span class="string">&#x27;历史系&#x27;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">select * from student where sage&gt;=<span class="number">23</span> <span class="keyword">and</span> sage&lt;<span class="number">25</span>;#[<span class="number">23</span>,<span class="number">25</span>)</span><br><span class="line">select * from student where <span class="keyword">not</span> sage&gt;=<span class="number">23</span> <span class="keyword">and</span> sage&lt;<span class="number">25</span>;</span><br><span class="line">select * from student where sage between <span class="number">23</span> <span class="keyword">and</span> <span class="number">25</span>;#并，闭区间[<span class="number">23</span>,<span class="number">25</span>]，多条件无法实现 </span><br><span class="line"></span><br><span class="line">#一个<span class="keyword">for</span>语句遍历所有的行，where为真<span class="literal">true</span>才被选中</span><br><span class="line">#数据库中第三种状态：除了真假，还有未知</span><br><span class="line">select * from course;</span><br><span class="line">select * from course where <span class="keyword">not</span> cpno=<span class="string">&#x27;C001&#x27;</span>; #为空未被选中</span><br><span class="line">select * from course where cpno!=<span class="string">&#x27;C001&#x27;</span>; </span><br><span class="line">select * from course where cpno=null;#无法比较……得到未知</span><br><span class="line">select * from course where cpno is null;</span><br><span class="line">select * from course where cpno is <span class="keyword">not</span> null;#方式一</span><br><span class="line"><span class="function">select * from course where <span class="title">not</span> <span class="params">(cpno is null)</span></span>;#方式二</span><br><span class="line"></span><br><span class="line">#只限制前三条查询：起始下标<span class="number">0</span>,偏移量<span class="number">3</span>（网页分页查询使用）</span><br><span class="line">select * from student where ssex=<span class="string">&#x27;男&#x27;</span> limit <span class="number">0</span>,<span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">#所有的人按系科排序（默认：升序排序asc）-&gt; 字符集utf8 排序规则utf8_bin</span><br><span class="line">select * from student order by sdept desc;</span><br><span class="line">select * from student order by sdept desc, sage asc;#放最后执行</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">#单表查询的分组聚集查询</span><br><span class="line"><span class="meta">#select 目标表达式列表 from 目标关系列表 where 目标条件列表 group by 分组条件列表(方便计算) order by 排序列列表(排序所依赖的列，方便看，最后一个子句)</span></span><br><span class="line"></span><br><span class="line">select * from course where cpno=null;</span><br><span class="line"><span class="meta">#where子句只认后面结果是否为真，null不管在哪是不是空和任何数据得到结果都是不知道，无法比较 </span></span><br><span class="line">select * from course where cpno is null;</span><br><span class="line"><span class="function">select * from course where <span class="title">not</span><span class="params">(cpno is null)</span></span>;</span><br><span class="line"><span class="function">select <span class="title">lower</span><span class="params">(cno)</span>,cname from course</span>;</span><br><span class="line">select * from student order by sdept asc, sage desc;</span><br><span class="line"></span><br><span class="line">#<span class="number">1.</span>coubt(*)记得元祖的数目(整个行)，<span class="number">2.</span>某个分量里出现的个数(某一列)</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> from student</span>;</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> from student where ssex</span>=<span class="string">&#x27;男&#x27;</span>;</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(ssex)</span> from student where ssex</span>=<span class="string">&#x27;女&#x27;</span>;#没去重，记了两次 -&gt; <span class="function">distinct</span></span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(distinct ssex)</span> from student where ssex</span>=<span class="string">&#x27;女&#x27;</span>;</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(distinct ssex)</span> from student</span>;</span><br><span class="line"></span><br><span class="line">select * from course order by cpno asc;</span><br><span class="line">#升序排列空值放最上面,可能作为最小值看待 </span><br><span class="line"></span><br><span class="line">#聚集查询/统计查询</span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> as &#x27;人数&#x27;, <span class="title">max</span><span class="params">(sage)</span> as &#x27;最大年龄&#x27;, <span class="title">min</span><span class="params">(sage)</span> as &#x27;最小年龄&#x27;, <span class="title">sum</span><span class="params">(sage)</span>, <span class="title">avg</span><span class="params">(sage)</span> from student</span>;</span><br><span class="line">#正常，更多都是用在分组统计</span><br><span class="line">#空值统计是不在内的</span><br><span class="line"></span><br><span class="line">select cpno, count(*) from course group by cpno;</span><br><span class="line">#询问：空值怎办？是否有一个专有的分组？ 分组和排序,空值都算在内 (空值作为一个具体的值也参与分组,只是计数,但不能进行计算:求平均值...)</span><br><span class="line"></span><br><span class="line"><span class="function">select <span class="title">count</span><span class="params">(*)</span> as &#x27;人数&#x27;, <span class="title">max</span><span class="params">(sage)</span> as &#x27;最大年龄&#x27;, <span class="title">min</span><span class="params">(sage)</span> as &#x27;最小年龄&#x27;, <span class="title">sum</span><span class="params">(sage)</span>, <span class="title">avg</span><span class="params">(sage)</span> from student where ssex</span>=<span class="string">&#x27;男&#x27;</span>;</span><br><span class="line">select sdept, count(*) as <span class="string">&#x27;人数&#x27;</span>, max(sage) as <span class="string">&#x27;最大年龄&#x27;</span>, min(sage) as <span class="string">&#x27;最小年龄&#x27;</span>, sum(sage), avg(sage) from student group by sdept;</span><br><span class="line">#对分组进行筛选</span><br><span class="line"><span class="meta">#where是对元祖进行筛选，having是对分组进行筛选（具体的值），无太大差别（having必须在group by后面用，可以使用聚集函数count(*)&gt;=2）</span></span><br><span class="line">select sdept, count(*) as <span class="string">&#x27;人数&#x27;</span>, max(sage) as <span class="string">&#x27;最大年龄&#x27;</span>, min(sage) as <span class="string">&#x27;最小年龄&#x27;</span>, sum(sage), avg(sage) <span class="function">from student group by sdept having <span class="title">count</span><span class="params">(*)</span>&gt;</span>=<span class="number">2</span>;</span><br><span class="line">select sdept,avg(sage) as <span class="string">&#x27;平均年龄&#x27;</span> from student where ssex=<span class="string">&#x27;男&#x27;</span> group by sdept having avg(sage)&gt;=<span class="number">22</span>;</span><br><span class="line">#可以使用别名进行筛选，<span class="string">&#x27;平均年龄&#x27;</span>&gt;=<span class="number">22</span>当成字符串和<span class="number">22</span>比较 -&gt; 平均年龄&gt;=<span class="number">22</span></span><br><span class="line">select sdept,avg(sage) as <span class="string">&#x27;平均年龄&#x27;</span> from student where ssex=<span class="string">&#x27;男&#x27;</span> group by sdept having 平均年龄&gt;=<span class="number">22</span>;</span><br><span class="line">#名字里含有空格加 ``(用于表名，列名)</span><br><span class="line">select sdept,avg(sage) as <span class="string">&#x27;平 均 年 龄&#x27;</span> from student where ssex=<span class="string">&#x27;男&#x27;</span> group by sdept having `平 均 年 龄`&gt;=<span class="number">22</span>;</span><br><span class="line"></span><br><span class="line">#单表查询的模糊查询 like</span><br><span class="line">select * from student where sname like <span class="string">&quot;刘%&quot;</span>; # %：<span class="number">0</span>个或多个字符 </span><br><span class="line">select * from course where cname like <span class="string">&#x27;%C语言%&#x27;</span>; #对大小写敏感Cc</span><br><span class="line">select * from student where sname like <span class="string">&#x27;诸葛_&#x27;</span>; #一个 _ 表示一个字符</span><br><span class="line">#内容就含有%和_:替代别人的功能卸载掉 \% 或 \_</span><br><span class="line">select * from course where cname like <span class="string">&#x27;\%C语言%&#x27;</span>;</span><br><span class="line">#若\也作为内容,使用\\表示内容,利用ESCAPE寻找其它字符赋予其\的功能</span><br><span class="line">select * from course where cname like <span class="string">&#x27;1%C语言%&#x27;</span> escape <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">#用的比较少好，一般用正则表达式</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">#多表查询</span><br><span class="line">#<span class="number">1.</span>连接查询</span><br><span class="line">#最简单链接：笛卡尔积(交叉连接)cross join</span><br><span class="line">#内连接inner join...on:一般连接，等值连接，自然连接(公共属性上的等值连接)nature join</span><br><span class="line">#外连接：左外连接left join...on，右外连接right join...on，全外连接full join</span><br><span class="line"></span><br><span class="line">#<span class="number">2.</span>嵌套查询:不相关子查询(干完就跑路)、相关子查询(交错互通，内层查询都要看一下外层查询，外层查询都要看一下内层查询)</span><br><span class="line">#不相关子查询(干完就跑路) in(…)</span><br><span class="line">#一个值 ‘=’；多个值 ‘in<span class="number">&#x27;</span>或<span class="string">&#x27;=ANY&#x27;</span></span><br><span class="line"><span class="meta">#sname<span class="meta-string">&lt;&gt;</span><span class="meta-string">&quot;刘备&quot;</span> : 不包括刘备</span></span><br><span class="line">#<span class="string">&quot;&gt; ALL&quot;</span> == &gt; max 大于所有的</span><br><span class="line">#<span class="string">&quot;&gt; ANY&quot;</span> == &gt;min 大于某一个 P92</span><br><span class="line"></span><br><span class="line">#<span class="number">3.</span>集合查询</span><br><span class="line">待续……</span><br><span class="line"></span><br><span class="line">use school;</span><br><span class="line">#单表查询 <span class="number">9&#x27;</span>：</span><br><span class="line">#简单查询、条件查询、空值查询(is null/is <span class="keyword">not</span> null)、</span><br><span class="line"><span class="meta">#between and、count(*) min(*)，目标表达式(列名、重名、运算、函数)、</span></span><br><span class="line">#分组查询(group by...having)、模糊查询(like，escape，<span class="string">&quot;\\&quot;</span>)、排序字句(order by...asc/desc)</span><br><span class="line"><span class="meta">#select 目标表达式列表 from 目标关系列表 where 目标条件列表(and,or,not分割) group by 分组列 order by 排序依据列+排序方式</span></span><br><span class="line"></span><br><span class="line">select * from sc;</span><br><span class="line">select sno from sc where cno=<span class="string">&quot;C003&quot;</span>;</span><br><span class="line">#找出选修C001也选修C003的同学学号</span><br><span class="line">select sno,cno from sc where cno=<span class="string">&quot;C001&quot;</span> <span class="keyword">and</span> cno=<span class="string">&quot;C003&quot;</span>;#错的</span><br><span class="line">(select sno,cno from sc where cno=<span class="string">&quot;C001&quot;</span>) <span class="class"><span class="keyword">union</span> (<span class="title">select</span> <span class="title">sno</span>,<span class="title">cno</span> <span class="title">from</span> <span class="title">sc</span> <span class="title">where</span> <span class="title">cno</span>=</span><span class="string">&quot;C003&quot;</span>);</span><br><span class="line">select sno from sc where cno=<span class="string">&quot;C001&quot;</span> <span class="keyword">and</span> </span><br><span class="line">sno in (select sno from sc where cno=<span class="string">&quot;C003&quot;</span>);</span><br><span class="line">select sc.sno,sname,sc.cno,cname,grade from student,course,sc where student.sno=sc.sno <span class="keyword">and</span> sc.cno=course.cno <span class="keyword">and</span> sc.cno=<span class="string">&quot;C003&quot;</span>;</span><br><span class="line"></span><br><span class="line">#多表查询</span><br><span class="line">#<span class="number">1.</span>连接查询</span><br><span class="line">select * from student,sc where student.sno=sc.sno;</span><br><span class="line">select sno,sname from student,sc where student.sno=sc.sno <span class="keyword">and</span> cno=<span class="string">&quot;C003&quot;</span>;#Error Code: <span class="number">1052.</span> Column <span class="string">&#x27;sno&#x27;</span> in field <span class="built_in">list</span> is ambiguous</span><br><span class="line">select student.sno,sname from student,sc where student.sno=sc.sno <span class="keyword">and</span> cno=<span class="string">&quot;C003&quot;</span>;</span><br><span class="line">select sc.sno,<span class="function">sname <span class="title">from</span> <span class="params">(student inner join sc on student.sno=sc.sno)</span> where cno</span>=<span class="string">&quot;C003&quot;</span>;</span><br><span class="line"></span><br><span class="line">#最简单链接：笛卡尔积(交叉连接)cross join</span><br><span class="line">select * from student,sc;</span><br><span class="line">select * from student cross join sc;</span><br><span class="line"></span><br><span class="line">#内连接inner join...on:一般连接，等值连接，自然连接(公共属性上的等值连接)nature join,</span><br><span class="line">select * from student inner join sc;</span><br><span class="line">select sc.sno,<span class="function">sname <span class="title">from</span> <span class="params">(student inner join sc on student.sno=sc.sno)</span> where cno</span>=<span class="string">&quot;C003&quot;</span>;</span><br><span class="line">select * from student natural join sc;#只剩一行sno</span><br><span class="line">select * from student natural join student;#Error Code: <span class="number">1066.</span> Not unique table/alias: <span class="string">&#x27;student&#x27;</span></span><br><span class="line">select * from student A natural join student B;#自己与自己自然连接，先相等再去掉一份</span><br><span class="line"></span><br><span class="line">#外连接：左外连接left join...on，右外连接right join...on，全外连接full join</span><br><span class="line">select * from student left join sc on student.sno=sc.sno;</span><br><span class="line">select * from sc right join student on student.sno=sc.sno;</span><br><span class="line">select * from student full join sc on student.sno=sc.sno;#Error Code: <span class="number">1054.</span> Unknown column <span class="string">&#x27;student.sno&#x27;</span> in <span class="string">&#x27;on clause&#x27;</span></span><br><span class="line">select * from student full join sc ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#<span class="number">2.</span>嵌套查询:不相关子查询(干完就跑路)、相关子查询(交错互通，内层查询都要看一下外层查询，外层查询都要看一下内层查询)</span><br><span class="line">#不相关子查询(干完就跑路)</span><br><span class="line">select sno,<span class="function">sname from student where</span></span><br><span class="line"><span class="function">sno <span class="title">in</span> <span class="params">(select cno from sc where cno=<span class="string">&quot;C003&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">select sname from student where sdept=(select sdept from student where sname=<span class="string">&quot;刘备&quot;</span>);#一个值 ‘=’；多个值 ‘in<span class="number">&#x27;</span>或<span class="string">&#x27;=ANY&#x27;</span></span><br><span class="line">select sname from student where sname&lt;&gt;<span class="string">&quot;刘备&quot;</span> <span class="keyword">and</span> sdept=(select sdept from student where sname=<span class="string">&quot;刘备&quot;</span>);<span class="meta">#sname<span class="meta-string">&lt;&gt;</span><span class="meta-string">&quot;刘备&quot;</span> 不包括刘备</span></span><br><span class="line">select * from student where sdept&lt;&gt;<span class="string">&quot;计算机系&quot;</span> <span class="keyword">and</span> sage&gt;ANY (select sage from student where sdept=<span class="string">&quot;计算机系&quot;</span>);</span><br><span class="line">#<span class="string">&quot;&gt; ALL&quot;</span> == &gt; max 大于所有的</span><br><span class="line">#<span class="string">&quot;&gt; ANY&quot;</span> == &gt;min 大于某一个 P92</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#<span class="number">3.</span>集合查询</span><br><span class="line">(select sno,cno from sc where cno=<span class="string">&quot;C001&quot;</span>) <span class="keyword">union</span> (select sno,cno from sc where cno=<span class="string">&quot;C003&quot;</span>);</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">#SQL查询 select</span><br><span class="line">#一、单表查询</span><br><span class="line">#<span class="number">1.</span>目标查询 from</span><br><span class="line">#<span class="number">2.</span>条件查询 where</span><br><span class="line">#<span class="number">3.</span>分组查询 group by</span><br><span class="line">#<span class="number">4.</span>排序查询 order by</span><br><span class="line">#二、多表查询</span><br><span class="line">#<span class="number">1.</span>连接查询 cross join</span><br><span class="line">#<span class="number">2.</span>嵌套查询</span><br><span class="line">#（<span class="number">1</span>）不相关子查询</span><br><span class="line">#（<span class="number">2</span>）相关子查询 EXISTS</span><br><span class="line">#<span class="number">3.</span>集合查询 </span><br><span class="line"></span><br><span class="line">use school;</span><br><span class="line"></span><br><span class="line">select * from student;</span><br><span class="line">#连接查询</span><br><span class="line">select b.* from student a,student b where a.sname=<span class="string">&#x27;刘备&#x27;</span> <span class="keyword">and</span> b.sname&lt;&gt;<span class="string">&quot;刘备&quot;</span> <span class="keyword">and</span> a.sdept=b.sdept;</span><br><span class="line">select * from student a,student b where a.sname=<span class="string">&#x27;刘备&#x27;</span> <span class="keyword">and</span> b.sname&lt;&gt;<span class="string">&quot;刘备&quot;</span> <span class="keyword">and</span> a.sdept=b.sdept;</span><br><span class="line">#不相关子查询</span><br><span class="line">select sdept from student where sname=<span class="string">&quot;刘备&quot;</span>;</span><br><span class="line">select * from student where sname&lt;&gt;<span class="string">&quot;刘备&quot;</span> <span class="keyword">and</span> sdept=(select sdept from student where sname=<span class="string">&quot;刘备&quot;</span>);</span><br><span class="line">#相关子查询</span><br><span class="line">select * from student X where X.sname&lt;&gt;<span class="string">&quot;刘备&quot;</span> <span class="function"><span class="keyword">and</span> <span class="title">EXISTS</span><span class="params">(select * from student Y where Y.sname=<span class="string">&quot;刘备&quot;</span> <span class="keyword">and</span> Y.sdept=X.sdept)</span></span>;</span><br><span class="line"></span><br><span class="line">#EXISTS 存在谓词：只要有返回值就为真</span><br><span class="line">select * from sc where sno=<span class="string">&#x27;202006001&#x27;</span> <span class="keyword">and</span> cno=<span class="string">&#x27;C003&#x27;</span>;</span><br><span class="line"><span class="function">select sname from student where <span class="title">EXISTS</span> <span class="params">(select * from sc where sno=student.sno <span class="keyword">and</span> cno=<span class="string">&#x27;C003&#x27;</span>)</span></span>;<span class="meta">#m*n</span></span><br><span class="line">select sname from student,sc where student.sno=sc.sno <span class="keyword">and</span> cno=<span class="string">&#x27;C003&#x27;</span>;</span><br><span class="line"><span class="function">select sname from student where sno <span class="title">in</span> <span class="params">(select sno from sc where cno=<span class="string">&#x27;C003&#x27;</span>)</span></span>;<span class="meta">#m+n</span></span><br><span class="line"></span><br><span class="line">#最难最重要: 存在谓词表达全部和否定</span><br><span class="line">select sname from student,sc where student.sno=sc.sno <span class="keyword">and</span> cno&lt;&gt;<span class="string">&#x27;C003&#x27;</span>;#错误！！！</span><br><span class="line"><span class="function">select sname from student where sno <span class="keyword">not</span> <span class="title">in</span> <span class="params">(select sno from sc where cno=<span class="string">&#x27;C003&#x27;</span>)</span></span>;<span class="meta">#m+n</span></span><br><span class="line"></span><br><span class="line"><span class="function">select * from course where <span class="keyword">not</span> <span class="title">exists</span><span class="params">(select * from sc where sno=<span class="string">&#x27;202006001&#x27;</span> <span class="keyword">and</span> cno=course.cno)</span></span>;</span><br><span class="line"><span class="function">select * from course where <span class="title">exists</span><span class="params">(select * from sc where sno=<span class="string">&#x27;202006001&#x27;</span> <span class="keyword">and</span> cno=course.cno)</span></span>;</span><br><span class="line"></span><br><span class="line">#查询选修了全部课程的学生的信息 等价于 不存在一门课该学生没有选修</span><br><span class="line">select sno,<span class="function">sname from student where <span class="keyword">not</span> <span class="title">exists</span><span class="params">(select * from course where <span class="keyword">not</span> exists(select * from sc where student.sno=sc.sno <span class="keyword">and</span> sc.cno=course.cno))</span></span>;</span><br><span class="line">select sno,<span class="function">sname from student where <span class="keyword">not</span> <span class="title">exists</span><span class="params">(select * from course where cpno=<span class="string">&#x27;C003&#x27;</span> AND <span class="keyword">not</span> exists(select * from sc where student.sno=sc.sno <span class="keyword">and</span> sc.cno=course.cno))</span></span>;</span><br><span class="line">#查询选修了【<span class="number">202006001</span>选修的课】全部课程的学生信息 等价于 不存在这么一门课，刘备选了而你没有选</span><br><span class="line"><span class="function">select sno from sc A where <span class="keyword">not</span> <span class="title">exists</span><span class="params">(select * from sc B where B.sno=<span class="string">&#x27;202006001&#x27;</span> <span class="keyword">and</span> <span class="keyword">not</span> exists(select * from sc C where B.cno=C.cno <span class="keyword">and</span> A.sno=C.sno))</span></span>;</span><br><span class="line"></span><br><span class="line">#查询选修了【<span class="number">202006001</span>选修的课】全部课程的学生信息 等价于 不存在这么一门课，刘备选了而你没有选(distinct去重）</span><br><span class="line">select distinct sno from sc A where <span class="keyword">not</span> exists(select * from sc B where B.sno=<span class="string">&#x27;202006001&#x27;</span> <span class="keyword">and</span> <span class="keyword">not</span> exists(select * from sc C where B.cno=C.cno <span class="keyword">and</span> A.sno=C.sno));</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br></pre></td><td class="code"><pre><span class="line">USE school;</span><br><span class="line"></span><br><span class="line">DELIMITER $$ </span><br><span class="line"><span class="function">CREATE  PROCEDURE  <span class="title">insert_student</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">    p_sno  CHAR(<span class="number">10</span>),</span></span></span><br><span class="line"><span class="params"><span class="function">    p_sname  VARCHAR(<span class="number">50</span>),</span></span></span><br><span class="line"><span class="params"><span class="function">    p_sex  VARCHAR(<span class="number">1</span>),</span></span></span><br><span class="line"><span class="params"><span class="function">    p_age INT,</span></span></span><br><span class="line"><span class="params"><span class="function">    p_dept VARCHAR(<span class="number">20</span>)</span></span></span><br><span class="line"><span class="params"><span class="function"> )</span></span></span><br><span class="line"><span class="function">BEGIN</span></span><br><span class="line"><span class="function">   # 声明变量info，以表明插入是否成功。</span></span><br><span class="line"><span class="function">   DECLARE  info  <span class="title">VARCHAR</span><span class="params">(<span class="number">20</span>)</span>  DEFAULT  &#x27;插入成功&#x27;</span>; </span><br><span class="line">   # 异常处理</span><br><span class="line">   DECLARE  CONTINUE  HANDLER  FOR  <span class="number">1062</span>  SET  info=<span class="string">&#x27;插入失败，不能插入重复的数据&#x27;</span>; </span><br><span class="line">   <span class="function">INSERT  INTO  student  <span class="title">VALUES</span><span class="params">(p_sno,p_sname,p_sex,p_age,p_dept)</span></span>;</span><br><span class="line">   SELECT  info;</span><br><span class="line">END  $$   </span><br><span class="line">DELIMITER ;</span><br><span class="line"></span><br><span class="line">SET @sno=<span class="string">&#x27;202006012&#x27;</span>;</span><br><span class="line">SET @sname=<span class="string">&#x27;魏延&#x27;</span>;</span><br><span class="line">SET @ssex=<span class="string">&#x27;男&#x27;</span>;</span><br><span class="line">SET @sage=<span class="number">25</span>;</span><br><span class="line">SET @sdept=<span class="string">&#x27;计算机系&#x27;</span>;</span><br><span class="line"></span><br><span class="line">SET @sno=<span class="string">&#x27;202006012&#x27;</span>;</span><br><span class="line">SET @sname=<span class="string">&#x27;甄宓&#x27;</span>;</span><br><span class="line">SET @ssex=<span class="string">&#x27;女&#x27;</span>;</span><br><span class="line">SET @sage=<span class="number">32</span>;</span><br><span class="line">SET @sdept=<span class="string">&#x27;汉语言系&#x27;</span>;</span><br><span class="line"><span class="function">CALL <span class="title">insert_student</span><span class="params">(@sno,@sname,@ssex,@sage,@sdept)</span></span>;</span><br><span class="line">SELECT * FROM student;</span><br><span class="line"></span><br><span class="line">#系统变量，用户自定义变量，局部变量</span><br><span class="line">select @@version;</span><br><span class="line"></span><br><span class="line"><span class="meta">#delimiter双$符号的作用</span></span><br><span class="line">#插入一个相同学号的同学</span><br><span class="line">#插入一个超出字符限制的数据</span><br><span class="line">#区别和联系</span><br><span class="line">#存储过程使用call,可返回好多输出变量，作为一句话调用</span><br><span class="line">#函数不用call调用，写上就可以得到值，可以作为表达式一部分</span><br><span class="line">#触发器在满足特定条件下才能触发</span><br><span class="line">#游标</span><br><span class="line"></span><br><span class="line">#创建存储过程</span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc01</span><span class="params">()</span></span></span><br><span class="line"><span class="function">begin </span></span><br><span class="line"><span class="function">	select sname,sage from student</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line">call proc01;</span><br><span class="line"></span><br><span class="line">#定义局部变量: 用户自定义，在begin/end块中有效</span><br><span class="line"><span class="meta">#declare var_name type [default var_value];</span></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc02</span><span class="params">()</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare tname <span class="title">varchar</span><span class="params">(<span class="number">20</span>)</span> <span class="keyword">default</span> &quot;student&#x27;s name&quot;</span>;</span><br><span class="line">    -- <span class="function">declare tname <span class="title">varchar</span><span class="params">(<span class="number">5</span>)</span> <span class="keyword">default</span> &quot;student&#x27;s name&quot;</span>;</span><br><span class="line">    <span class="built_in">set</span> tname = <span class="string">&#x27;Yangyang&#x27;</span>;</span><br><span class="line">    select tname;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="function">call <span class="title">proc02</span><span class="params">()</span></span>;</span><br><span class="line">#Error Code: <span class="number">1406.</span> Data too <span class="keyword">long</span> <span class="keyword">for</span> column <span class="string">&#x27;tname&#x27;</span> at row <span class="number">1</span></span><br><span class="line">drop procedure proc02;</span><br><span class="line"></span><br><span class="line">#用户变量：用户自定义，不需要提前声明，使用及声明；可在begin/end块外有效(外部也可以使用用户变量)</span><br><span class="line"># @var_name</span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc03</span><span class="params">()</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	<span class="built_in">set</span> @tname </span>= <span class="string">&#x27;potato&#x27;</span>;</span><br><span class="line">    select @tname;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="function">call <span class="title">proc03</span><span class="params">()</span></span>;</span><br><span class="line">select @tname;</span><br><span class="line"></span><br><span class="line">#系统变量分为全局变量和会话变量</span><br><span class="line"># @@global.var_name</span><br><span class="line">#全局变量在MYSQL启动的时候由服务器自动将他的初始化为默认值</span><br><span class="line">#会话变量在每次建立一个新的连接的时候,由MYSQL来初始化,MYSQL会将当前所有全局变量的值复制一份,来作为会话变量</span><br><span class="line">#全局变量的修改会影响整个服务器,但是对会话变量的修改,只会影响到当前的会话(也就是当前的数据库连接)</span><br><span class="line">#可以更改的系统变量,我们可以利用<span class="built_in">set</span>语句进行更改</span><br><span class="line">show global variables;-- 查看全局变量</span><br><span class="line">select @@sort_buffer_size;-- 查看某全局变量</span><br><span class="line"><span class="built_in">set</span> @@sort_buffer_size = <span class="number">50000</span>;-- 修改全局变量的值</span><br><span class="line"><span class="built_in">set</span> global sort_buffer_size = <span class="number">100000</span>;</span><br><span class="line">select @@sort_buffer_size;</span><br><span class="line"></span><br><span class="line">#存储过程传参</span><br><span class="line"><span class="meta">#in表示传入的参数,可以传入数值或者变量,即使传入变量,并不会改变变量的值,可以内部更改,</span></span><br><span class="line">#仅仅作用在函数范围内</span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc04</span><span class="params">(in miniage <span class="keyword">int</span>,in maxage <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	select * from student where sage&gt;miniage <span class="keyword">and</span> sage&lt;maxage</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line">drop procedure proc04;</span><br><span class="line"><span class="function">call <span class="title">proc04</span><span class="params">(<span class="number">22</span>,<span class="number">30</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#out表示从存储过程内部传值给调用者</span></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc05</span><span class="params">(in in_sage <span class="keyword">int</span>, out out_sname varchar(<span class="number">45</span>))</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	select sname into out_sname from student where sage</span>=in_sage;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="function">call <span class="title">proc05</span><span class="params">(<span class="number">22</span>,@out_res)</span></span>;</span><br><span class="line">select @out_res;</span><br><span class="line"></span><br><span class="line"><span class="meta">#inout表示从外部传入的参数经过修改后可以返回的变量,既可以使用传入变量的值</span></span><br><span class="line">#也可以修改变量的值(即使函数执行完)</span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc06</span><span class="params">(inout num <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	<span class="built_in">set</span> num </span>= num*<span class="number">10</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="built_in">set</span> @inout_num = <span class="number">2</span>;</span><br><span class="line"><span class="function">call <span class="title">proc06</span><span class="params">(@inout_num)</span></span>;</span><br><span class="line">select @inout_num;</span><br><span class="line"></span><br><span class="line">#流程控制-判断</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span>...then...;</span></span><br><span class="line"><span class="meta">#elseif...then...;</span></span><br><span class="line"><span class="meta">#end <span class="meta-keyword">if</span>;</span></span><br><span class="line">#判断IF语句包含多个条件判断,根据结果为TURE和FALSE执行语句,与编程语言中的<span class="keyword">if</span>、<span class="keyword">else</span> <span class="keyword">if</span>、</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span>语法类似</span></span><br><span class="line">delimiter $$</span><br><span class="line">create procedure proc07(in score <span class="keyword">int</span>)</span><br><span class="line">begin</span><br><span class="line">	<span class="keyword">if</span> score&lt;<span class="number">60</span> then select <span class="string">&#x27;不及格&#x27;</span>;</span><br><span class="line">    elseif score&gt;=<span class="number">60</span> <span class="keyword">and</span> score&lt;<span class="number">80</span> then select <span class="string">&#x27;及格&#x27;</span>;</span><br><span class="line">    elseif score&gt;=<span class="number">80</span> <span class="keyword">and</span> score&lt;<span class="number">90</span> then select <span class="string">&#x27;良好&#x27;</span>;</span><br><span class="line">    elseif score&gt;=<span class="number">90</span> <span class="keyword">and</span> score&lt;=<span class="number">100</span> then select <span class="string">&#x27;优秀&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span> select <span class="string">&#x27;成绩错误！&#x27;</span>;</span><br><span class="line">    end <span class="keyword">if</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="built_in">set</span> @score = <span class="number">79</span>;</span><br><span class="line"><span class="function">call <span class="title">proc07</span><span class="params">(@score)</span></span>;</span><br><span class="line"></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc08</span><span class="params">(in in_name varchar(<span class="number">45</span>))</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare var_float <span class="title">decimal</span><span class="params">(<span class="number">7</span>,<span class="number">2</span>)</span></span>; -- 定义局部变量，<span class="number">7</span>个长度，<span class="number">2</span>个小数 </span><br><span class="line">	<span class="function">declare res <span class="title">varchar</span><span class="params">(<span class="number">20</span>)</span></span>;</span><br><span class="line">    select sage into var_float from student where sname=in_name;</span><br><span class="line">    <span class="keyword">if</span> var_float&gt;<span class="number">25</span> then <span class="built_in">set</span> res=<span class="string">&#x27;毕业了&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">set</span> res=<span class="string">&#x27;在上学&#x27;</span>;</span><br><span class="line">    end <span class="keyword">if</span>;</span><br><span class="line">    select res;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="function">call <span class="title">proc08</span><span class="params">(<span class="string">&#x27;刘备&#x27;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc07</span><span class="params">(in score <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare res <span class="title">varchar</span><span class="params">(<span class="number">45</span>)</span></span>;</span><br><span class="line">	<span class="keyword">if</span> score&lt;<span class="number">60</span> then <span class="built_in">set</span> res= <span class="string">&#x27;不及格&#x27;</span>;</span><br><span class="line">    elseif score&gt;=<span class="number">60</span> <span class="keyword">and</span> score&lt;=<span class="number">100</span> then <span class="built_in">set</span> res= <span class="string">&#x27;及格&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">set</span> res= <span class="string">&#x27;成绩错误&#x27;</span>;</span><br><span class="line">    end <span class="keyword">if</span>;</span><br><span class="line">    select res as <span class="string">&#x27;成绩结果&#x27;</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line">drop procedure proc07;</span><br><span class="line"><span class="built_in">set</span> @score=<span class="number">55</span>;</span><br><span class="line"><span class="function">call <span class="title">proc07</span><span class="params">(@score)</span></span>;</span><br><span class="line"></span><br><span class="line">#流程控制-<span class="keyword">case</span></span><br><span class="line"><span class="meta">#case... </span></span><br><span class="line"><span class="meta">#when...then...;</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span>...;</span></span><br><span class="line"><span class="meta">#end case;</span></span><br><span class="line">#CASE是另一个条件判断语句,类似于编程语言中的<span class="keyword">switch</span>语法</span><br><span class="line">#语法一:当<span class="keyword">case</span>后面的语句与when后面的语句相等时,则会执行then后面的语句,如果均不匹配则执行<span class="keyword">else</span></span><br><span class="line">#语法二:直接写<span class="keyword">case</span> 当when后面的条件成立则执行then后面的语句,如果都不成立,则执行<span class="keyword">else</span></span><br><span class="line">delimiter $$</span><br><span class="line">create procedure proc08(in food varchar(<span class="number">45</span>),in pay_type <span class="keyword">int</span>)</span><br><span class="line">begin</span><br><span class="line">	<span class="keyword">case</span> <span class="string">&#x27;面包&#x27;</span></span><br><span class="line">    when <span class="number">1</span> then select <span class="string">&#x27;微信支付&#x27;</span>;</span><br><span class="line">    when <span class="number">2</span> then select <span class="string">&#x27;支付宝支付&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span> select <span class="string">&#x27;其他支付方式&#x27;</span>;</span><br><span class="line">    end <span class="keyword">case</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;饮料&#x27;</span></span><br><span class="line">    when <span class="number">1</span> then select <span class="string">&#x27;微信支付&#x27;</span>;</span><br><span class="line">    when <span class="number">2</span> then select <span class="string">&#x27;支付宝支付&#x27;</span>;</span><br><span class="line">    <span class="keyword">else</span> select <span class="string">&#x27;其他支付方式&#x27;</span>;</span><br><span class="line">    end <span class="keyword">case</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="function">call <span class="title">proc08</span><span class="params">(<span class="string">&#x27;饮料&#x27;</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">#控制流程-循环</span><br><span class="line">#循环分类：<span class="keyword">while</span>、repeate、loop</span><br><span class="line">#循环控制：leave 类似于<span class="keyword">break</span>,跳出,结束当前所在的循环</span><br><span class="line"><span class="meta">#		   iteater 类似于continue,继续,结束本次循环,继续下一次</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#label:while...do</span></span><br><span class="line">#...</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span>...then leave label;</span></span><br><span class="line"><span class="meta">#end while lable;</span></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc09</span><span class="params">(in insertCount <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare i <span class="keyword">int</span> <span class="keyword">default</span> 1</span>;</span><br><span class="line">    label:<span class="keyword">while</span> i&lt;=insertCount <span class="keyword">do</span> </span><br><span class="line">    insert into student(sno,sname) values(i,concat(<span class="string">&#x27;user-&#x27;</span>,i));</span><br><span class="line">    <span class="built_in">set</span> i=i+<span class="number">1</span>;</span><br><span class="line">end <span class="keyword">while</span> label;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line">drop procedure proc09;</span><br><span class="line"><span class="function">call <span class="title">proc09</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc10</span><span class="params">(in delCount <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare i <span class="keyword">int</span> <span class="keyword">default</span> 1</span>;</span><br><span class="line">    label:<span class="keyword">while</span> i&lt;=delCount <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">delete</span> from student where sno=i;</span><br><span class="line">    <span class="keyword">if</span> i=<span class="number">5</span> then leave label;</span><br><span class="line">    end <span class="keyword">if</span>;</span><br><span class="line">    <span class="built_in">set</span> i = i+<span class="number">1</span>;</span><br><span class="line">    end <span class="keyword">while</span> label;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line">drop procedure proc10;</span><br><span class="line"><span class="function">call <span class="title">proc10</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">#Error Code: <span class="number">1175.</span> You are <span class="keyword">using</span> safe update mode <span class="keyword">and</span> you tried to update a table without a WHERE that uses a KEY column. Cannot use range access on index <span class="string">&#x27;PRIMARY&#x27;</span> due to type <span class="keyword">or</span> collation conversion on field <span class="string">&#x27;sno&#x27;</span> To disable safe mode, toggle the option in Preferences -&gt; SQL Editor <span class="keyword">and</span> reconnect.</span><br><span class="line">#因为MySql运行在safe-updates模式下，该模式会导致非主键条件下无法执行update或者<span class="keyword">delete</span>命令。可以通过以下SQL进行状态查询</span><br><span class="line">show variables like <span class="string">&#x27;SQL_SAFE_UPDATES&#x27;</span>;</span><br><span class="line">SET SQL_SAFE_UPDATES = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#label:repeat</span></span><br><span class="line">#...;</span><br><span class="line"><span class="meta">#until 条件表达式;</span></span><br><span class="line"><span class="meta">#end repeat label;</span></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc11</span><span class="params">(in insertCount <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare i <span class="keyword">int</span> <span class="keyword">default</span> 1</span>;</span><br><span class="line">    label:<span class="function">repeat</span></span><br><span class="line"><span class="function">		insert into <span class="title">student</span><span class="params">(sno,sname)</span> <span class="title">values</span><span class="params">(i,concat(<span class="string">&#x27;user-&#x27;</span>,i))</span></span>;</span><br><span class="line">        <span class="built_in">set</span> i=i+<span class="number">1</span>;</span><br><span class="line">        until i&gt;insertCount</span><br><span class="line">        end repeat label;</span><br><span class="line">	select <span class="string">&#x27;循环结束&#x27;</span>;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line"><span class="function">call <span class="title">proc11</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#label:loop</span></span><br><span class="line"># ...</span><br><span class="line"><span class="meta"># <span class="meta-keyword">if</span> 条件表达式 then leave label;</span></span><br><span class="line"><span class="meta"># end <span class="meta-keyword">if</span>;</span></span><br><span class="line"><span class="meta"># end loop label;</span></span><br><span class="line">delimiter $$</span><br><span class="line"><span class="function">create procedure <span class="title">proc12</span><span class="params">(in delCount <span class="keyword">int</span>)</span></span></span><br><span class="line"><span class="function">begin</span></span><br><span class="line"><span class="function">	declare i <span class="keyword">int</span> <span class="keyword">default</span> 1</span>;</span><br><span class="line">    label:loop</span><br><span class="line">		<span class="keyword">delete</span> from student where sno=i;</span><br><span class="line">        <span class="built_in">set</span> i=i+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> i&gt;delCount then leave label;</span><br><span class="line">        end <span class="keyword">if</span>;</span><br><span class="line">        end loop label;</span><br><span class="line">end $$</span><br><span class="line">delimiter ;</span><br><span class="line">drop procedure proc12;</span><br><span class="line"><span class="function">call <span class="title">proc12</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">#调用储存过程显示Error Code: <span class="number">1305.</span> PROCEDURE school.proc12 does <span class="keyword">not</span> exist</span><br><span class="line">#<span class="number">1.</span>首先考虑是否是此储存过程当真不在，查看当前存储过程，发现存储过程存在：</span><br><span class="line"><span class="meta">#show procedure status;</span></span><br><span class="line"># <span class="number">2.</span>此时想到是用户没有当前存储过程的调用权限，赋予存储过程权限给当前用户，此时又出现了一个错误</span><br><span class="line">#GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br><span class="line">#ERROR <span class="number">1133</span> (<span class="number">42000</span>): Can<span class="number">&#x27;</span>t find any matching row in the user table</span><br><span class="line">#通过查询资料发现，需要先将当前的存储过程刷新，再执行授权语句：</span><br><span class="line">#FLUSH PRIVILEGES;</span><br><span class="line">#GRANT ALL  PRIVILEGES ON test.*  TO <span class="string">&#x27;root&#x27;</span>@localhost;</span><br><span class="line">#<span class="number">3.</span>再执行调用此存储过程，显示成功调用</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/05/01/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%93/" title="数据库第三章" target="_blank" rel="external">https://zhang0224gz.github.io/2022/05/01/笔记/数据库/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://blog.csdn.net/Zhang_2002_GZ?type=blog" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://blog.csdn.net/Zhang_2002_GZ?type=blog" target="_blank"><span class="text-dark">Eureka</span><small class="ml-1x">Study Notes &amp; Supplement</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/05/07/%E7%AC%94%E8%AE%B0/Web/Web/" title="(no title)"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/04/23/%E7%AC%94%E8%AE%B0/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%BA%8C%E7%AB%A0/" title="(no title)"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+    <li class="toggle-toc">
+      <a class="toggle-btn collapsed" data-toggle="collapse" href="#collapseToc" aria-expanded="false" title="文章目录" role="button">
+        <span>[&nbsp;</span><span>文章目录</span>
+        <i class="text-collapsed icon icon-anchor"></i>
+        <i class="text-in icon icon-close"></i>
+        <span>]</span>
+      </a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

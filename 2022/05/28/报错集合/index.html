@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>报错集合 | Flutter</title>
+  <meta name="description" content="报错1：yarn create umi myapp  @typescript-eslint&#x2F;parser@5.26.0: The engine “node” is incompatible with this module. Expected version “^12.22.0 || ^14.17.0 || &gt;&#x3D;16.0.0”. Got “12.14.0” error Found inco">
+<meta property="og:type" content="article">
+<meta property="og:title" content="报错集合">
+<meta property="og:url" content="https://zhang0224gz.github.io/2022/05/28/%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="报错1：yarn create umi myapp  @typescript-eslint&#x2F;parser@5.26.0: The engine “node” is incompatible with this module. Expected version “^12.22.0 || ^14.17.0 || &gt;&#x3D;16.0.0”. Got “12.14.0” error Found inco">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174129730-1728082988.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174155924-729432114.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174211646-2129655843.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174226230-50949781.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174233751-1796080030.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174241271-459236568.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174247318-1561517594.png">
+<meta property="og:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174314650-2106403391.png">
+<meta property="og:image" content="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220531170337590.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1212358/201810/1212358-20181005220220325-400897019.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1212358/201810/1212358-20181005220231973-218721473.png">
+<meta property="og:image" content="https://img2018.cnblogs.com/blog/1212358/201810/1212358-20181005220242021-1510968611.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20201210183435212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjE0NjI5Ng==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c66cefc7b3a5408780fdedbe10e0d1b8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzgwMTU1,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/c727a6a4565341798887a666039e9c9e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzgwMTU1,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/fb448b998e5a41de96b10af6fb3fae63.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmloX0Fu,size_20,color_FFFFFF,t_70,g_se,x_16">
+<meta property="article:published_time" content="2022-05-28T01:32:21.423Z">
+<meta property="article:modified_time" content="2022-05-31T10:16:53.532Z">
+<meta property="article:author" content="zhang0224gz">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174129730-1728082988.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://zhang0224gz.github.io/2022/05/28/%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://blog.csdn.net/Zhang_2002_GZ?type=blog" target="_blank">
+          <img class="img-circle img-rotate" src="/images/flutter.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">Eureka</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Study Notes &amp; Supplement</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Jiangsu, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/CET/">CET</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E5%AD%A6%E5%BB%BA%E6%A8%A1/">数学建模</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E6%96%87/">语文</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/SET4/" rel="tag">SET4</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Web/" rel="tag">Web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tips/" rel="tag">tips</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="tag">初始化</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" rel="tag">教育知识与能力</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="tag">计算机组成原理</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/SET4/" style="font-size: 13px;">SET4</a> <a href="/tags/Web/" style="font-size: 13px;">Web</a> <a href="/tags/tips/" style="font-size: 14px;">tips</a> <a href="/tags/%E5%88%9D%E5%A7%8B%E5%8C%96/" style="font-size: 14px;">初始化</a> <a href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" style="font-size: 14px;">密码学</a> <a href="/tags/%E6%95%99%E8%82%B2%E7%9F%A5%E8%AF%86%E4%B8%8E%E8%83%BD%E5%8A%9B/" style="font-size: 13.5px;">教育知识与能力</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 13px;">数据库</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 14px;">数据结构</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" style="font-size: 13px;">计算机组成原理</a> <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 14px;">计算机网络</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">七月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">二月 2022</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">一月 2022</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/12/">十二月 2021</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/17/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" class="title">卡尔曼滤波（修饰直立角度）</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-17T08:38:23.433Z" itemprop="datePublished">2022-07-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/17/%E6%99%BA%E8%83%BD%E8%BD%A6/%E5%A4%A7%E6%B4%A5%E6%B3%95/" class="title">大津法求图像动态阈值</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-17T08:25:09.202Z" itemprop="datePublished">2022-07-17</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E6%99%BA%E8%83%BD%E8%BD%A6/">智能车</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/07/04/%E6%99%BA%E8%83%BD%E8%BD%A6/%E9%9C%8D%E5%A4%AB%E5%8F%98%E6%8D%A2%E6%A3%80%E6%B5%8B%E6%A4%AD%E5%9C%86/" class="title">霍夫变换检测椭圆</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-07-04T01:50:45.957Z" itemprop="datePublished">2022-07-04</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/%E5%88%B7%E9%A2%98/">刷题</a>
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/29/%E5%88%B7%E9%A2%98/%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80/" class="title">算法基础</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-29T14:58:27.560Z" itemprop="datePublished">2022-06-29</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2022/06/26/%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E5%BA%931/" class="title">(no title)</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2022-06-26T12:30:07.979Z" itemprop="datePublished">2022-06-26</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-报错集合" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      报错集合
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2022/05/28/%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" class="article-date">
+	  <time datetime="2022-05-28T01:32:21.423Z" itemprop="datePublished">2022-05-28</time>
+	</a>
+</span>
+        
+        
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2022/05/28/%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="报错1yarn-create-umi-myapp"><a class="markdownIt-Anchor" href="#报错1yarn-create-umi-myapp"></a> 报错1：yarn create umi myapp</h1>
+<blockquote>
+<p>@typescript-eslint/parser@5.26.0: The engine “node” is incompatible with this module. Expected version “^12.22.0 || ^14.17.0 || &gt;=16.0.0”. Got “12.14.0”<br />
+error Found incompatible module.<br />
+info Visit <a target="_blank" rel="noopener" href="https://yarnpkg.com/en/docs/cli/create">https://yarnpkg.com/en/docs/cli/create</a> for documentation about this command.</p>
+</blockquote>
+<p>@typescript-eslint/parser@5.26.0:引擎“Node”与此模块不兼容。预期的版本”^ 12.22.0 | | ^ 14.17.0 | | &gt; = 16.0.0”。有“12.14.0”<br />
+错误发现不兼容的模块<br />
+\info访问https://yarnpkg.com/en/docs/cli/create获取该命令的相关文档。</p>
+<p>解决办法 : 命令行执行即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn config set ignore-engines true</span><br></pre></td></tr></table></figure>
+<p>重新install项目包，发现还有问题。</p>
+<p>删除node_modules包和<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=yarn&amp;spm=1001.2101.3001.7020">yarn</a>.lock文件，重新yarn install。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">//安装</span><br><span class="line">npm install -g yarn </span><br><span class="line">//查看版本</span><br><span class="line">yarn -v  </span><br><span class="line">// 初始化</span><br><span class="line">yarn init </span><br><span class="line">// 添加包</span><br><span class="line">yarn add [package]</span><br><span class="line">yarn add [package]@[version]</span><br><span class="line">yarn add [package]@[tag]</span><br><span class="line">// 添加到不同依赖项</span><br><span class="line">yarn add [package] --dev</span><br><span class="line">yarn add [package] --peer</span><br><span class="line">yarn add [package] --optional</span><br><span class="line">// 升级包</span><br><span class="line">yarn upgrade [package]</span><br><span class="line">// 移除依赖包</span><br><span class="line">yarn remove [package]</span><br><span class="line">// 安装所有依赖</span><br><span class="line">yarn 或 yarn install</span><br></pre></td></tr></table></figure>
+<h1 id="报错2stylelint"><a class="markdownIt-Anchor" href="#报错2stylelint"></a> 报错2：Stylelint</h1>
+<p>node.js基于 Chrome V8 引擎的 Javascript 运行环境<br />
+<code>此处说明下：新版的Node.js已自带npm，安装Node.js时会一起安装，npm的作用就是对Node.js依赖的包进行管理，也可以理解为用来安装/卸载Node.js需要装的东西</code><br />
+Stylelint是一个强大的，现代的代码检查工具，与ESLint类似，Stylelint能够通过定义一系列的编码风格规则帮助我们避免在样式表中出现错误。<br />
+<code>npm</code> is two things: first and foremost, it is an online repository for the publishing of open-source Node.js projects; second, it is a command-line utility for interacting with said repository that aids in package installation, version management, and dependency management. A plethora of Node.js libraries and applications are published on npm, and many more are added every day. These applications can be searched for on <a target="_blank" rel="noopener" href="https://www.npmjs.com/">https://www.npmjs.com/</a>. Once you have a package you want to install, it can be installed with a single command-line command.</p>
+<blockquote>
+<p>Stylelint:Please specify path to ‘stylelint’ package correctly<br />
+Stylelint:请正确指定’ styelint '包的路径</p>
+</blockquote>
+<p>错误原因：这是因为没有在dos窗口下载stylelint导致的，下载了就行了</p>
+<blockquote>
+<p>Stylelint: no configuration provided for D:\workspace…<br />
+Stylelint:没有为D:\工作区提供配置…</p>
+</blockquote>
+<p>错误原因：node.js下载后需要在工程中添加相关配置文件；一般我们写web不需要使用到stylelint哈……我打开的那个工程有这些pycharm默认打开了……<br />
+解决办法：直接取消勾选Enable就行</p>
+<h2 id="pycharm中使用stylelintnodejs全局环境重新配置"><a class="markdownIt-Anchor" href="#pycharm中使用stylelintnodejs全局环境重新配置"></a> pycharm中使用stylelint/nodejs全局环境重新配置</h2>
+<p>第一步：首先得安装 node.js<br />
+官网下载安装。</p>
+<ul>
+<li>​	配置依赖的环境变量</li>
+</ul>
+<p>npm config list 获取npm配置信息</p>
+<blockquote>
+<p>说明：这里的环境配置主要配置的是npm安装的全局模块所在的路径，以及缓存cache的路径，之所以要配置，是因为以后在执行类似：npm install express [-g] （后面的可选参数-g，g代表global全局安装的意思）的安装语句时，会将安装的模块安装到【C:\Users\用户名\AppData\Roaming\npm】路径中，占C盘空间。<br />
+例如：我希望将全模块所在路径和缓存路径放在我node.js安装的文件夹中，则在我安装的文件夹【D:\Develop\nodejs】下创建两个文件夹【node_global】及【node_cache】如下图：</p>
+</blockquote>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174129730-1728082988.png" alt="img" /></p>
+<p>创建完两个空文件夹之后，打开cmd命令窗口，输入</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config <span class="keyword">set</span> <span class="keyword">prefix</span> <span class="string">&quot;D:\Develop<span class="subst">\n</span>odejs<span class="subst">\n</span>ode_global&quot;</span></span><br><span class="line">npm config <span class="keyword">set</span> cache <span class="string">&quot;D:\Develop<span class="subst">\n</span>odejs<span class="subst">\n</span>ode_cache&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174155924-729432114.png" alt="img" /></p>
+<p>接下来设置环境变量，关闭cmd窗口，“我的电脑”-右键-“属性”-“高级系统设置”-“高级”-“环境变量”</p>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174211646-2129655843.png" alt="img" /></p>
+<p>进入环境变量对话框，在【系统变量】下新建【NODE_PATH】，输入【D:\my app\nodejs\node_global\node_modules】，将【用户变量】下的【Path】修改为【D:\Develop\nodejs\node_global】</p>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174226230-50949781.png" alt="img" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174233751-1796080030.png" alt="img" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174241271-459236568.png" alt="img" /></p>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174247318-1561517594.png" alt="img" /></p>
+<p>配置完后，安装个module测试下，我们就安装最常用的express模块，打开cmd窗口，</p>
+<blockquote>
+<p>express模块是 <strong>JavaScript 库或文件</strong>，可以用 Node 的 require () 函数将它们导入其它代码。 Express 本身就是一个模块，Express 应用中使用的中间件和数据库也是。 下面的代码以 Express 框架为例展示了如何通过名字来导入模块。</p>
+</blockquote>
+<blockquote>
+<p>全局安装</p>
+<p>命令：npm install express -g</p>
+<p>-g代表安装到nodejs安装目录下的lib里面，而-d代表把相依性套件也一起安装。</p>
+<p>2、本地安装</p>
+<p>命令：npm install express</p>
+<p>本地安装是安装在当前文件目录下，安装完成后，可以看到当前文件目录下多了一个“node_modules”文件夹，它里面有一个“express”文件夹</p>
+</blockquote>
+<p>输入如下命令进行模块的全局安装：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> express -g     <span class="comment"># -g是全局安装的意思</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://images2018.cnblogs.com/blog/1212358/201806/1212358-20180627174314650-2106403391.png" alt="img" /></p>
+<p><img src="https://zhang2002gz.oss-cn-qingdao.aliyuncs.com/img/image-20220531170337590.png" alt="image-20220531170337590" /></p>
+<p>上面ok之后 我们安装淘宝的cnpm镜像，因为国外的很慢。我们可以采用cnpm install 来代替npm安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+<p>npm默认的仓库地址是在国外网站，速度较慢，建议大家设置到淘宝镜像。但是切换镜像是比较麻烦的。推荐一款切换镜像的工具：nrm</p>
+<p>我们首先安装nrm，这里<code>-g</code>代表全局安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install nrm -g</span><br></pre></td></tr></table></figure>
+<p>然后通过<code>nrm ls</code>命令查看npm的仓库列表,带*的就是当前选中的镜像仓库：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1212358/201810/1212358-20181005220220325-400897019.png" alt="img" /></p>
+<p>通过<code>nrm use taobao</code>来指定要使用的镜像源：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1212358/201810/1212358-20181005220231973-218721473.png" alt="img" /></p>
+<p>然后通过<code>nrm test npm</code>来测试速度：</p>
+<p><img src="https://img2018.cnblogs.com/blog/1212358/201810/1212358-20181005220242021-1510968611.png" alt="img" /></p>
+<p>注意：</p>
+<ul>
+<li>有教程推荐大家使用cnpm命令，但是使用发现cnpm有时会有bug，不推荐。</li>
+<li>安装完成请一定要重启下电脑！！！</li>
+<li>安装完成请一定要重启下电脑！！！</li>
+<li>安装完成请一定要重启下电脑！！！</li>
+</ul>
+<p>ps: 也可以不配置，配置主要是为了下面第二步寻找安装stylelint依赖的路径文件夹用。默认在 C:\Users\用户名\AppData\Roaming\npm 文件夹中。<br />
+设置好后，我的依赖包都安装在 node_modules 这个文件夹内：</p>
+<p><code>D:\work\nodejs\npm-global\node_modules</code></p>
+<p>第二步： 全局安装 stylelint<br />
+cmd 中输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g stylelint                     # 安装stylelint包</span><br><span class="line">npm install -g stylelint-config-standard     # 安装标准配置文件</span><br></pre></td></tr></table></figure>
+<p>下面是安装stylelint依赖的路径：</p>
+<p>​			<code>D:\work\nodejs\npm-global\node_modules\stylelint</code><br />
+第三步：设置pycharm</p>
+<p><img src="https://img-blog.csdnimg.cn/20201210183435212.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjE0NjI5Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p>
+<p>第四步：在项目中新建一个名为<code>.stylelintrc.json</code> 的文件<br />
+在文件中写入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">&quot;extends&quot;:&quot;stylelint-config-standard&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>转载链接地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42146296/article/details/110958641">(8条消息) pycharm中使用stylelint_寻寻觅觅oO的博客-CSDN博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/coder-lzh/p/9232192.html">nodeJS安装和环境变量的配置 - 发疯的man - 博客园 (cnblogs.com)</a></p>
+<p>pycharm文档说明：<a target="_blank" rel="noopener" href="https://www.jetbrains.com/help/pycharm/using-stylelint-code-quality-tool.html#ws_stylelint_lint_your_code">Stylelint | PyCharm (jetbrains.com)</a></p>
+<h1 id="报错3json-standard-does-not-allow-such-tokens"><a class="markdownIt-Anchor" href="#报错3json-standard-does-not-allow-such-tokens"></a> 报错3：JSON standard does not allow such tokens</h1>
+<ul>
+<li>JSON标准不允许这样的标记</li>
+</ul>
+<h1 id="报错4npm安装报错"><a class="markdownIt-Anchor" href="#报错4npm安装报错"></a> 报错4：npm安装报错</h1>
+<p>（npm ERR! code EPERM npm ERR! syscall mkdir npm ERR! path C:\Program Files\nodejs\node_ca…）</p>
+<p>使用npm 安装vue的时候突然报错了：</p>
+<p><img src="https://img-blog.csdnimg.cn/c66cefc7b3a5408780fdedbe10e0d1b8.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzgwMTU1,size_16,color_FFFFFF,t_70" alt="请添加图片描述" /></p>
+<p>错误详解<br />
+该错误发生在修改npm的全局安装路径之后，再执行npm install 包 -g或是npm install 包时发生，但是在管理员身份下运行cmd，均能执行成功。</p>
+<p>2.1 修改npm全局安装：<br />
+命令行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix &quot;D:\my app\nodejs\node_global&quot;</span><br><span class="line">npm config set cache &quot;D:\my app\nodejs\node_cache&quot;</span><br></pre></td></tr></table></figure>
+<p>在C盘User/用户名/下有一个<code>.npmrc</code>的文件<br />
+将上述node_global文件夹的路径加入环境变量<br />
+2.2 导致该安装问题的原因<br />
+没有管理员权限，无法在node_global和node_cache两个文件夹下进行一些必要的操作</p>
+<p>2.3 解决方法：<br />
+1.删除.npmrc文件<br />
+该文件在：C:\Users{账户}\下的.npmrc文件，<br />
+一般这种类型的都是默认被隐藏，一定要选择将隐藏取消掉</p>
+<p><img src="https://img-blog.csdnimg.cn/c727a6a4565341798887a666039e9c9e.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNzgwMTU1,size_16,color_FFFFFF,t_70" alt="请添加图片描述" /></p>
+<p>删掉即可。</p>
+<p>2.或者直接用命令清理就行，控制台输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm cache clean --force</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>删除用户下的.npmrc文件，即不改变全局安装的路径（不够好，本质问题仍没有解决，全局还是会安装在C盘）<br />
+每次都用管理员身份运行命令行（不够方便，vscode 下的命令行默认也不是管理员身份运行的）<br />
+直接修改node_global和node_cache文件夹的权限：<br />
+右键文件夹，打开属性，切换到安全选项卡</li>
+</ol>
+<p><img src="https://img-blog.csdnimg.cn/fb448b998e5a41de96b10af6fb3fae63.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAWmloX0Fu,size_20,color_FFFFFF,t_70,g_se,x_16" alt="在这里插入图片描述" /></p>
+<p>选择编辑，将没有打钩的位置全部打上钩（即将其它用户的权限设置为与管理员相同），应用即可。</p>
+<h1 id="npm-warn-using-force-recommended-protections-disabled"><a class="markdownIt-Anchor" href="#npm-warn-using-force-recommended-protections-disabled"></a> npm WARN using --force Recommended protections disabled.</h1>
+<p>npm WARN using——force建议的保护被禁用。  警告，使用 <code>--force</code> 将禁用推荐的保护</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://zhang0224gz.github.io/2022/05/28/%E6%8A%A5%E9%94%99%E9%9B%86%E5%90%88/" title="报错集合" target="_blank" rel="external">https://zhang0224gz.github.io/2022/05/28/报错集合/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://blog.csdn.net/Zhang_2002_GZ?type=blog" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/flutter.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://blog.csdn.net/Zhang_2002_GZ?type=blog" target="_blank"><span class="text-dark">Eureka</span><small class="ml-1x">Study Notes &amp; Supplement</small></a></h3>
+        <div>Strong is beautiful!</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2022/06/17/%E8%8B%B1%E8%AF%AD/%E6%BC%94%E8%AE%B2%E7%9A%84%E8%89%BA%E6%9C%AF/" title="The Art of Public Speaking"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2022/05/08/%E7%AC%94%E8%AE%B0/Web/web3/" title="JavaScript"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpaying.jpg" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/zhang0224gz" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
